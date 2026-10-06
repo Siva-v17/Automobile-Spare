@@ -1,0 +1,3544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop | Stackly Auto Parts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    /* ==========================================================
+       Stackly Auto Parts - shop.html styles
+       class prefix: stackly-shop-
+       ========================================================== */
+
+    :root{
+        --navy:#0b1d2b;
+        --navy-2:#092238;
+        --orange:#cc4b06;
+        --amber:#bf6a02;
+        --amber-dark:#a65a00;
+        --hot:#ff6a13;
+        --ink:#0d0d0d;
+        --muted:#5b5b5b;
+        --line:#dcdcdc;
+        --card:#fff;
+        --page:#fff;
+        --wrap:1290px;
+    }
+
+    *{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+    }
+
+    html{
+        scroll-behavior:smooth;
+    }
+
+    body{
+        font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+        color:var(--ink);
+        background:var(--page);
+        overflow-x:hidden;
+        -webkit-font-smoothing:antialiased;
+    }
+
+    img{
+        display:block;
+        max-width:100%;
+    }
+
+    a{
+        color:inherit;
+        text-decoration:none;
+    }
+
+    button{
+        font-family:inherit;
+        cursor:pointer;
+        border:0;
+        background:none;
+    }
+
+    ul{
+        list-style:none;
+    }
+
+    :focus-visible{
+        outline:2px solid var(--hot);
+        outline-offset:2px;
+    }
+
+    .stackly-shop-wrap{
+        width:100%;
+        max-width:var(--wrap);
+        margin:0 auto;
+        padding:0 20px;
+    }
+
+    /* ---------- HEADER ---------- */
+
+    .stackly-shop-site-header{
+        position:sticky;
+        top:0;
+        z-index:100;
+        background:#fff;
+        height:90px;
+        transition:box-shadow .3s;
+    }
+
+    .stackly-shop-site-header.stackly-shop-scrolled{
+        box-shadow:0 6px 24px rgba(0,0,0,.12);
+    }
+
+    .stackly-shop-site-header .stackly-shop-wrap{
+        height:100%;
+        display:flex;
+        align-items:center;
+        gap:0;
+    }
+
+    .stackly-shop-logo{
+        display:block;
+        flex:0 0 auto;
+        margin-right:auto;
+    }
+
+    .stackly-shop-logo img{
+        height:64px;
+        width:auto;
+    }
+
+    .stackly-shop-nav{
+        display:flex;
+        align-items:center;
+        gap:0;
+    }
+
+    .stackly-shop-nav a{
+        font-size:12px;
+        font-weight:600;
+        padding:8px 0;
+        margin:0 25px;
+        position:relative;
+        white-space:nowrap;
+    }
+
+    .stackly-shop-nav a::after{
+        content:"";
+        position:absolute;
+        left:0;
+        right:0;
+        bottom:2px;
+        height:2px;
+        background:var(--amber);
+        transform:scaleX(0);
+        transform-origin:left;
+        transition:transform .35s ease;
+    }
+
+    .stackly-shop-nav a:hover::after,
+    .stackly-shop-nav a.stackly-shop-active::after{
+        transform:scaleX(1);
+    }
+
+    .stackly-shop-nav a.stackly-shop-active{
+        color:var(--amber);
+        font-weight:700;
+    }
+
+    .stackly-shop-search{
+        display:flex;
+        align-items:center;
+        width:206px;
+        height:36px;
+        border:1px solid #777;
+        border-radius:8px;
+        padding:0 10px;
+        margin-left:28px;
+        transition:width .4s ease,border-color .3s,box-shadow .3s;
+    }
+
+    .stackly-shop-search:focus-within{
+        width:250px;
+        border-color:var(--amber);
+        box-shadow:0 0 0 3px rgba(191,106,2,.18);
+    }
+
+    .stackly-shop-search input{
+        flex:1;
+        min-width:0;
+        border:0;
+        outline:0;
+        font:500 12px 'Montserrat',sans-serif;
+        background:none;
+    }
+
+    .stackly-shop-search svg{
+        width:18px;
+        height:18px;
+        flex:0 0 auto;
+        fill:#444;
+    }
+
+    .stackly-shop-icon-btn{
+        position:relative;
+        margin-left:26px;
+        display:grid;
+        place-items:center;
+        width:34px;
+        height:34px;
+    }
+
+    .stackly-shop-icon-btn img{
+        width:32px;
+        height:32px;
+        object-fit:contain;
+        transition:transform .3s;
+    }
+
+    .stackly-shop-icon-btn:hover img{
+        transform:translateY(-2px) scale(1.08);
+    }
+
+    .stackly-shop-cart-count{
+        position:absolute;
+        top:-4px;
+        right:-6px;
+        min-width:18px;
+        height:18px;
+        border-radius:9px;
+        background:var(--orange);
+        color:#fff;
+        font-size:10px;
+        font-weight:700;
+        display:grid;
+        place-items:center;
+        padding:0 4px;
+    }
+
+    .stackly-shop-burger{
+        display:none;
+        width:40px;
+        height:40px;
+        margin-left:12px;
+        flex-direction:column;
+        justify-content:center;
+        gap:5px;
+        align-items:center;
+    }
+
+    .stackly-shop-burger span{
+        display:block;
+        width:22px;
+        height:2px;
+        background:var(--ink);
+        transition:transform .3s,opacity .3s;
+    }
+
+    .stackly-shop-burger.stackly-shop-open span:nth-child(1){
+        transform:translateY(7px) rotate(45deg);
+    }
+
+    .stackly-shop-burger.stackly-shop-open span:nth-child(2){
+        opacity:0;
+    }
+
+    .stackly-shop-burger.stackly-shop-open span:nth-child(3){
+        transform:translateY(-7px) rotate(-45deg);
+    }
+
+    /* ---------- HERO ---------- */
+
+    .stackly-shop-hero{
+        position:relative;
+        background:var(--navy);
+        height:165px;
+        overflow:hidden;
+        color:#fff;
+    }
+
+    .stackly-shop-hero-img{
+        position:absolute;
+        top:0;
+        right:0;
+        width:62%;
+        height:100%;
+        object-fit:cover;
+        object-position:right center;
+        -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 38%);
+        mask-image:linear-gradient(90deg,transparent 0,#000 38%);
+        will-change:transform;
+    }
+
+    .stackly-shop-hero .stackly-shop-wrap{
+        position:relative;
+        height:100%;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+    }
+
+    .stackly-shop-crumbs{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        font-size:20px;
+        font-weight:600;
+        margin-bottom:0;
+    }
+
+    .stackly-shop-crumbs svg{
+        width:10px;
+        height:14px;
+        stroke:#fff;
+        fill:none;
+        stroke-width:2;
+    }
+
+    .stackly-shop-hero h1{
+        font-size:46px;
+        font-weight:700;
+        line-height:1.1;
+        letter-spacing:-.5px;
+        overflow:hidden;
+        padding-bottom:3px;
+    }
+
+    .stackly-shop-hero h1 span{
+        display:inline-block;
+    }
+
+    .stackly-shop-hero p{
+        font-size:15px;
+        font-weight:500;
+        line-height:1.35;
+        max-width:440px;
+        margin-top:2px;
+    }
+
+    /* ---------- LAYOUT ---------- */
+
+    .stackly-shop-shop{
+        display:grid;
+        grid-template-columns:307px 1fr;
+        gap:27px;
+        padding-top:20px;
+        padding-bottom:70px;
+        align-items:start;
+    }
+
+    .stackly-shop-sidebar{
+        position:sticky;
+        top:106px;
+    }
+
+    .stackly-shop-cat-card{
+        background:#fff;
+        border-radius:6px;
+        box-shadow:0 2px 10px rgba(0,0,0,.14);
+        overflow:hidden;
+        padding-bottom:12px;
+    }
+
+    .stackly-shop-cat-head{
+        background:var(--orange);
+        color:#fff;
+        height:50px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:0 24px;
+        font-size:16px;
+        font-weight:700;
+    }
+
+    .stackly-shop-cat-head svg{
+        width:18px;
+        height:14px;
+        stroke:#fff;
+        stroke-width:2.4;
+        stroke-linecap:round;
+    }
+
+    .stackly-shop-cat-list{
+        padding:12px 6px 0;
+    }
+
+    .stackly-shop-cat-list a{
+        display:flex;
+        align-items:center;
+        height:37px;
+        padding:0 15px 0 14px;
+        font-size:14px;
+        font-weight:600;
+        border-radius:5px;
+        position:relative;
+        transition:background .25s,color .25s,padding .25s;
+    }
+
+    .stackly-shop-cat-list a img{
+        width:20px;
+        height:20px;
+        object-fit:contain;
+        margin-right:18px;
+        filter:grayscale(1);
+        transition:filter .25s;
+    }
+
+    .stackly-shop-cat-list a b{
+        margin-left:auto;
+        font-weight:600;
+        font-size:14px;
+    }
+
+    .stackly-shop-cat-list a:hover,
+    .stackly-shop-cat-list a.stackly-shop-on{
+        background:#fff4ea;
+        color:var(--orange);
+        padding-left:20px;
+    }
+
+    .stackly-shop-cat-list a:hover img,
+    .stackly-shop-cat-list a.stackly-shop-on img{
+        filter:none;
+    }
+
+    .stackly-shop-filter-card{
+        margin-top:16px;
+        background:#fff;
+        border:1px solid #d6d6d6;
+        border-radius:6px;
+        box-shadow:0 2px 10px rgba(0,0,0,.1);
+        padding:18px 33px 14px;
+    }
+
+    .stackly-shop-filter-card h3{
+        font-size:16px;
+        font-weight:700;
+        margin-bottom:12px;
+    }
+
+    .stackly-shop-filter-card h4{
+        font-size:14px;
+        font-weight:700;
+        margin:10px 0 6px;
+    }
+
+    .stackly-shop-chk{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        font-size:13px;
+        font-weight:500;
+        height:31px;
+        cursor:pointer;
+        user-select:none;
+        color:#222;
+    }
+
+    .stackly-shop-chk input{
+        appearance:none;
+        width:13px;
+        height:13px;
+        border:1px solid #666;
+        border-radius:2px;
+        display:grid;
+        place-items:center;
+        transition:background .2s,border-color .2s,transform .2s;
+    }
+
+    .stackly-shop-chk input:checked{
+        background:var(--amber);
+        border-color:var(--amber);
+    }
+
+    .stackly-shop-chk input:checked::after{
+        content:"";
+        width:3px;
+        height:7px;
+        border:solid #fff;
+        border-width:0 2px 2px 0;
+        transform:rotate(45deg) translate(-1px,-1px);
+    }
+
+    .stackly-shop-chk:hover input{
+        transform:scale(1.15);
+    }
+
+    .stackly-shop-range{
+        position:relative;
+        height:30px;
+        margin:6px -10px 0;
+    }
+
+    .stackly-shop-range .stackly-shop-track{
+        position:absolute;
+        left:10px;
+        right:10px;
+        top:13px;
+        height:4px;
+        border-radius:2px;
+        background:#e4e4e4;
+    }
+
+    .stackly-shop-range .stackly-shop-fill{
+        position:absolute;
+        top:13px;
+        height:4px;
+        border-radius:2px;
+        background:var(--amber);
+    }
+
+    .stackly-shop-range input{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:30px;
+        margin:0;
+        appearance:none;
+        background:none;
+        pointer-events:none;
+    }
+
+    .stackly-shop-range input::-webkit-slider-thumb{
+        appearance:none;
+        pointer-events:auto;
+        width:18px;
+        height:18px;
+        border-radius:50%;
+        background:#fff;
+        border:3px solid var(--amber);
+        cursor:grab;
+        transition:transform .2s;
+    }
+
+    .stackly-shop-range input::-moz-range-thumb{
+        pointer-events:auto;
+        width:12px;
+        height:12px;
+        border-radius:50%;
+        background:#fff;
+        border:3px solid var(--amber);
+        cursor:grab;
+    }
+
+    .stackly-shop-range input::-webkit-slider-thumb:hover{
+        transform:scale(1.2);
+    }
+
+    .stackly-shop-range-vals{
+        display:flex;
+        justify-content:space-between;
+        font-size:10px;
+        font-weight:600;
+        margin:0 -2px;
+    }
+
+    .stackly-shop-apply{
+        display:block;
+        width:100%;
+        margin-top:6px;
+        height:38px;
+        background:var(--amber);
+        color:#fff;
+        border-radius:4px;
+        font-size:14px;
+        font-weight:600;
+        position:relative;
+        overflow:hidden;
+        transition:background .25s;
+    }
+
+    .stackly-shop-apply:hover{
+        background:var(--amber-dark);
+    }
+
+    /* ---------- SHARED BUTTON SHINE ---------- */
+
+    .stackly-shop-btn-shine{
+        position:relative;
+        overflow:hidden;
+    }
+
+    .stackly-shop-btn-shine::before{
+        content:"";
+        position:absolute;
+        top:0;
+        left:-70%;
+        width:45%;
+        height:100%;
+        background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+        transform:skewX(-20deg);
+        transition:left .6s ease;
+    }
+
+    .stackly-shop-btn-shine:hover::before{
+        left:130%;
+    }
+
+    /* ---------- MAIN ---------- */
+
+    .stackly-shop-main{
+        min-width:0;
+    }
+
+    .stackly-shop-trust{
+        display:grid;
+        grid-template-columns:repeat(4,auto);
+        justify-content:space-between;
+        align-items:center;
+        border:1px solid #cfcfcf;
+        border-radius:10px;
+        padding:0 15px 0 14px;
+        height:73px;
+        gap:10px;
+    }
+
+    .stackly-shop-trust-item{
+        display:flex;
+        align-items:center;
+        gap:12px;
+    }
+
+    .stackly-shop-trust-item img{
+        width:36px;
+        height:36px;
+        object-fit:contain;
+        flex:0 0 auto;
+    }
+
+    .stackly-shop-trust-item strong{
+        display:block;
+        font-size:12px;
+        font-weight:700;
+        line-height:1.3;
+    }
+
+    .stackly-shop-trust-item span{
+        display:block;
+        font-size:12px;
+        font-weight:500;
+        color:#333;
+        line-height:1.3;
+    }
+
+    .stackly-shop-promo{
+        position:relative;
+        margin-top:16px;
+        height:195px;
+        border-radius:10px;
+        overflow:hidden;
+        background:var(--navy);
+        color:#fff;
+    }
+
+    .stackly-shop-promo>img{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:center;
+        will-change:transform;
+        transform:scale(1.08);
+    }
+
+    .stackly-shop-promo::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:linear-gradient(90deg,rgba(9,24,37,.92) 0,rgba(9,24,37,.7) 28%,rgba(9,24,37,0) 58%);
+    }
+
+    .stackly-shop-promo-body{
+        position:relative;
+        z-index:2;
+        padding:26px 30px;
+        max-width:340px;
+    }
+
+    .stackly-shop-promo small{
+        display:block;
+        font-size:9px;
+        font-weight:600;
+        letter-spacing:1.4px;
+        margin-bottom:12px;
+        text-transform:uppercase;
+    }
+
+    .stackly-shop-promo h2{
+        font-size:20px;
+        font-weight:700;
+        line-height:1.2;
+        margin-bottom:10px;
+    }
+
+    .stackly-shop-promo p{
+        font-size:12px;
+        font-weight:500;
+        margin-bottom:12px;
+    }
+
+    .stackly-shop-btn-orange{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        background:var(--hot);
+        color:#fff;
+        font-size:10px;
+        font-weight:700;
+        height:30px;
+        padding:0 14px;
+        border-radius:4px;
+        transition:background .25s,transform .25s;
+    }
+
+    .stackly-shop-btn-orange img{
+        width:16px;
+        height:10px;
+    }
+
+    .stackly-shop-btn-orange:hover{
+        background:#e65400;
+    }
+
+    .stackly-shop-btn-orange .stackly-shop-arr{
+        transition:transform .3s;
+    }
+
+    .stackly-shop-btn-orange:hover .stackly-shop-arr{
+        transform:translateX(4px);
+    }
+
+    .stackly-shop-sec-title{
+        font-size:28px;
+        font-weight:700;
+        margin:20px 0 14px;
+        letter-spacing:-.3px;
+    }
+
+    .stackly-shop-grid4{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        gap:11px;
+    }
+
+    .stackly-shop-prod{
+        background:#fff;
+        border:1px solid #d0d0d0;
+        border-radius:8px;
+        padding:16px 23px 18px;
+        height:327px;
+        display:flex;
+        flex-direction:column;
+        transition:box-shadow .3s,transform .3s,border-color .3s;
+    }
+
+    .stackly-shop-prod:hover{
+        box-shadow:0 14px 30px rgba(0,0,0,.14);
+        transform:translateY(-6px);
+        border-color:#c5c5c5;
+    }
+
+    .stackly-shop-prod .stackly-shop-pic{
+        height:150px;
+        display:grid;
+        place-items:center;
+        margin:0 -8px 22px;
+        overflow:hidden;
+    }
+
+    .stackly-shop-prod .stackly-shop-pic img{
+        max-height:130px;
+        max-width:100%;
+        object-fit:contain;
+        transition:transform .5s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .stackly-shop-prod:hover .stackly-shop-pic img{
+        transform:scale(1.1) rotate(-2deg);
+    }
+
+    .stackly-shop-prod h3{
+        font-size:14px;
+        font-weight:700;
+        line-height:1.2;
+    }
+
+    .stackly-shop-stars{
+        display:flex;
+        align-items:center;
+        gap:6px;
+        font-size:11px;
+        font-weight:500;
+        color:#333;
+        margin-top:6px;
+    }
+
+    .stackly-shop-stars i{
+        display:flex;
+        gap:1px;
+    }
+
+    .stackly-shop-stars svg{
+        width:11px;
+        height:11px;
+        fill:#e5e5e5;
+    }
+
+    .stackly-shop-stars svg.stackly-shop-f{
+        fill:var(--hot);
+    }
+
+    .stackly-shop-price{
+        font-size:12px;
+        font-weight:700;
+        margin:6px 0 10px;
+    }
+
+    .stackly-shop-add{
+        margin-top:auto;
+        display:block;
+        width:100%;
+        height:31px;
+        border-radius:3px;
+        background:var(--amber);
+        color:#fff;
+        font-size:11.5px;
+        font-weight:700;
+        position:relative;
+        overflow:hidden;
+        transition:background .25s,transform .15s;
+    }
+
+    .stackly-shop-add:hover{
+        background:var(--amber-dark);
+    }
+
+    .stackly-shop-add:active{
+        transform:scale(.97);
+    }
+
+    .stackly-shop-add.stackly-shop-done{
+        background:#2e8b3d;
+    }
+
+    .stackly-shop-prod.stackly-shop-hide{
+        display:none;
+    }
+
+    .stackly-shop-empty{
+        display:none;
+        grid-column:1/-1;
+        text-align:center;
+        padding:40px 10px;
+        font-size:14px;
+        font-weight:600;
+        color:var(--muted);
+        border:1px dashed #cfcfcf;
+        border-radius:8px;
+    }
+
+    .stackly-shop-empty.stackly-shop-show{
+        display:block;
+    }
+
+    .stackly-shop-cat{
+        background:#fff;
+        border:1px solid #d0d0d0;
+        border-radius:8px;
+        height:188px;
+        padding:16px 10px 0;
+        text-align:center;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        transition:box-shadow .3s,transform .3s;
+    }
+
+    .stackly-shop-cat:hover{
+        box-shadow:0 14px 30px rgba(0,0,0,.14);
+        transform:translateY(-6px);
+    }
+
+    .stackly-shop-cat .stackly-shop-pic{
+        height:102px;
+        display:grid;
+        place-items:center;
+        margin-bottom:10px;
+    }
+
+    .stackly-shop-cat .stackly-shop-pic img{
+        max-height:100px;
+        max-width:110px;
+        object-fit:contain;
+        transition:transform .5s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .stackly-shop-cat:hover .stackly-shop-pic img{
+        transform:scale(1.12);
+    }
+
+    .stackly-shop-cat h3{
+        font-size:14px;
+        font-weight:700;
+        margin-bottom:4px;
+    }
+
+    .stackly-shop-cat .stackly-shop-va{
+        display:inline-flex;
+        align-items:center;
+        gap:9px;
+        font-size:13px;
+        font-weight:700;
+        color:var(--amber);
+    }
+
+    .stackly-shop-cat .stackly-shop-va img{
+        width:18px;
+        height:11px;
+        transition:transform .3s;
+    }
+
+    .stackly-shop-cat:hover .stackly-shop-va img{
+        transform:translateX(6px);
+    }
+
+    .stackly-shop-grid4.stackly-shop-cats{
+        row-gap:28px;
+    }
+
+    .stackly-shop-brands{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:18px;
+        margin-top:6px;
+        margin-bottom:0;
+        height:90px;
+    }
+
+    .stackly-shop-brands a{
+        display:grid;
+        place-items:center;
+        transition:transform .3s,filter .3s;
+    }
+
+    .stackly-shop-brands a:hover{
+        transform:translateY(-5px) scale(1.06);
+    }
+
+    .stackly-shop-brands img{
+        height:36px;
+        width:auto;
+        max-width:100%;
+        object-fit:contain;
+    }
+
+    .stackly-shop-brands a.stackly-shop-tall img{
+        height:48px;
+    }
+
+    .stackly-shop-brands.stackly-shop-is-hover a:not(:hover){
+        filter:grayscale(.9) opacity(.55);
+    }
+
+    .stackly-shop-deals{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:20px;
+        margin-top:35px;
+        margin-left:-2px;
+        margin-right:-2px;
+    }
+
+    .stackly-shop-deal{
+        position:relative;
+        height:111px;
+        border-radius:5px;
+        overflow:hidden;
+        color:#fff;
+        padding:14px 17px;
+    }
+
+    .stackly-shop-deal>img{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        transition:transform .8s ease;
+    }
+
+    .stackly-shop-deal:hover>img{
+        transform:scale(1.07);
+    }
+
+    .stackly-shop-deal.stackly-shop-red{
+        background:#bb080b;
+    }
+
+    .stackly-shop-deal.stackly-shop-red>img{
+        object-position:right center;
+    }
+
+    .stackly-shop-deal.stackly-shop-blue{
+        background:var(--navy-2);
+    }
+
+    .stackly-shop-deal.stackly-shop-blue>img{
+        filter:hue-rotate(195deg) saturate(.75) brightness(.8);
+    }
+
+    .stackly-shop-deal::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:linear-gradient(90deg,rgba(0,0,0,.35),transparent 60%);
+    }
+
+    .stackly-shop-deal.stackly-shop-blue::after{
+        background:linear-gradient(90deg,rgba(9,34,56,.95) 0,rgba(9,34,56,.75) 40%,rgba(9,34,56,0) 80%);
+    }
+
+    .stackly-shop-deal.stackly-shop-red::after{
+        background:linear-gradient(90deg,rgba(187,8,11,.95) 0,rgba(187,8,11,.7) 32%,rgba(187,8,11,0) 62%);
+    }
+
+    .stackly-shop-deal-body{
+        position:relative;
+        z-index:2;
+    }
+
+    .stackly-shop-deal h3{
+        font-size:15px;
+        font-weight:700;
+        margin-bottom:6px;
+    }
+
+    .stackly-shop-deal .stackly-shop-big{
+        font-size:14px;
+        font-weight:700;
+        color:#ffb27d;
+        line-height:1.1;
+    }
+
+    .stackly-shop-deal .stackly-shop-sm{
+        font-size:10px;
+        font-weight:500;
+        margin-bottom:6px;
+    }
+
+    .stackly-shop-deal .stackly-shop-txt{
+        font-size:11.5px;
+        font-weight:500;
+        line-height:1.25;
+        margin-bottom:12px;
+        max-width:190px;
+    }
+
+    .stackly-shop-pill{
+        display:inline-grid;
+        place-items:center;
+        background:#fff;
+        color:#111;
+        font-size:8px;
+        font-weight:700;
+        height:17px;
+        padding:0 18px;
+        border-radius:9px;
+        transition:background .25s,color .25s,transform .25s;
+    }
+
+    .stackly-shop-pill:hover{
+        background:var(--hot);
+        color:#fff;
+    }
+
+    .stackly-shop-why{
+        margin-top:30px;
+        border:1px solid #cfcfcf;
+        border-radius:8px;
+        padding:10px 36px 20px;
+        margin-left:-2px;
+        margin-right:-2px;
+    }
+
+    .stackly-shop-why h2{
+        text-align:center;
+        font-size:24px;
+        font-weight:700;
+        margin-bottom:12px;
+    }
+
+    .stackly-shop-why-grid{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        gap:10px;
+        text-align:center;
+    }
+
+    .stackly-shop-why-item{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .stackly-shop-why-item img{
+        width:55px;
+        height:55px;
+        object-fit:contain;
+        margin-bottom:8px;
+        transition:transform .5s;
+    }
+
+    .stackly-shop-why-item:hover img{
+        transform:rotate(360deg);
+    }
+
+    .stackly-shop-why-item h3{
+        font-size:13px;
+        font-weight:700;
+        margin-bottom:6px;
+    }
+
+    .stackly-shop-why-item p{
+        font-size:12px;
+        font-weight:500;
+        color:#333;
+        line-height:1.3;
+        max-width:150px;
+    }
+
+    /* ---------- NEWSLETTER ---------- */
+
+    .stackly-shop-news{
+        position:relative;
+        background:#101a22;
+        color:#fff;
+        overflow:hidden;
+    }
+
+    .stackly-shop-news>img{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        opacity:.28;
+    }
+
+    .stackly-shop-news::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:linear-gradient(90deg,rgba(8,12,16,.9),rgba(8,12,16,.55));
+    }
+
+    .stackly-shop-news .stackly-shop-wrap{
+        position:relative;
+        z-index:2;
+        display:flex;
+        align-items:center;
+        gap:28px;
+        height:104px;
+    }
+
+    .stackly-shop-news .stackly-shop-env{
+        width:52px;
+        height:auto;
+        filter:invert(1);
+        margin-left:4px;
+    }
+
+    .stackly-shop-news-txt{
+        flex:1;
+    }
+
+    .stackly-shop-news-txt h2{
+        font-size:19px;
+        font-weight:700;
+        margin-bottom:3px;
+    }
+
+    .stackly-shop-news-txt p{
+        font-size:13px;
+        font-weight:500;
+    }
+
+    .stackly-shop-news-form{
+        display:flex;
+        width:360px;
+        max-width:100%;
+        height:36px;
+        border-radius:2px;
+        overflow:hidden;
+        margin-right:2px;
+    }
+
+    .stackly-shop-news-form input{
+        flex:1;
+        min-width:0;
+        border:0;
+        outline:0;
+        padding:0 14px;
+        font:500 11px 'Montserrat',sans-serif;
+        background:#fff;
+        color:#111;
+    }
+
+    .stackly-shop-news-form button{
+        width:120px;
+        background:var(--hot);
+        color:#fff;
+        font-size:13px;
+        font-weight:700;
+        transition:background .25s;
+    }
+
+    .stackly-shop-news-form button:hover{
+        background:#e65400;
+    }
+
+    .stackly-shop-news-msg{
+        position:absolute;
+        right:20px;
+        bottom:10px;
+        font-size:12px;
+        font-weight:600;
+        color:#ffb27d;
+        opacity:0;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    .stackly-shop-footer{
+        background:#000;
+        color:#fff;
+        padding:14px 0 0;
+    }
+
+    .stackly-shop-foot-grid{
+        display:grid;
+        grid-template-columns:1.9fr .85fr 1.2fr 1.4fr 1.5fr;
+        gap:20px;
+        padding-top:6px;
+    }
+
+    .stackly-shop-foot-brand img.stackly-shop-flogo{
+        height:72px;
+        width:auto;
+        filter:brightness(0) invert(1) sepia(1) saturate(7) hue-rotate(-32deg) brightness(.95);
+        margin-bottom:6px;
+    }
+
+    .stackly-shop-foot-brand p{
+        font-size:14px;
+        font-weight:500;
+        line-height:1.35;
+        max-width:270px;
+    }
+
+    .stackly-shop-socials{
+        display:flex;
+        gap:23px;
+        margin-top:20px;
+    }
+
+    .stackly-shop-socials a{
+        width:35px;
+        height:35px;
+        display:block;
+        transition:transform .3s;
+    }
+
+    .stackly-shop-socials a:hover{
+        transform:translateY(-5px) rotate(-6deg);
+    }
+
+    .stackly-shop-socials img{
+        width:35px;
+        height:35px;
+        border-radius:5px;
+        object-fit:cover;
+    }
+
+    .stackly-shop-foot-col h4{
+        font-size:11px;
+        font-weight:700;
+        margin-bottom:12px;
+        margin-top:2px;
+    }
+
+    .stackly-shop-foot-col li{
+        font-size:10px;
+        font-weight:600;
+        line-height:1;
+        margin-bottom:11px;
+    }
+
+    .stackly-shop-foot-col li a{
+        display:inline-block;
+        transition:color .25s,transform .25s;
+    }
+
+    .stackly-shop-foot-col li a:hover{
+        color:var(--hot);
+        transform:translateX(4px);
+    }
+
+    .stackly-shop-contact li{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        margin-bottom:12px;
+    }
+
+    .stackly-shop-contact li.stackly-shop-addr{
+        align-items:flex-start;
+        line-height:1.35;
+    }
+
+    .stackly-shop-contact .stackly-shop-ci{
+        width:18px;
+        height:18px;
+        border-radius:50%;
+        background:var(--hot);
+        display:grid;
+        place-items:center;
+        flex:0 0 auto;
+    }
+
+    .stackly-shop-contact .stackly-shop-ci svg{
+        width:10px;
+        height:10px;
+        fill:#fff;
+    }
+
+    .stackly-shop-stores{
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        align-items:flex-start;
+    }
+
+    .stackly-shop-store{
+        display:flex;
+        align-items:center;
+        gap:9px;
+        border:1px solid #8d8d8d;
+        border-radius:8px;
+        padding:0 12px;
+        height:42px;
+        min-width:123px;
+        transition:border-color .3s,transform .3s,background .3s;
+    }
+
+    .stackly-shop-store:hover{
+        border-color:#fff;
+        transform:translateY(-3px);
+        background:#111;
+    }
+
+    .stackly-shop-store svg{
+        width:20px;
+        height:20px;
+        flex:0 0 auto;
+    }
+
+    .stackly-shop-store small{
+        display:block;
+        font-size:6.5px;
+        font-weight:500;
+        line-height:1;
+    }
+
+    .stackly-shop-store b{
+        display:block;
+        font-size:14px;
+        font-weight:600;
+        line-height:1.1;
+    }
+
+    .stackly-shop-store.stackly-shop-ios small{
+        font-size:7.5px;
+    }
+
+    .stackly-shop-foot-bottom{
+        margin-top:26px;
+        border-top:1px solid #333;
+        height:38px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        font-size:6.5px;
+        font-weight:500;
+    }
+
+    .stackly-shop-foot-bottom div{
+        display:flex;
+        gap:28px;
+    }
+
+    .stackly-shop-foot-bottom a:hover{
+        color:var(--hot);
+    }
+
+    /* ---------- TOAST ---------- */
+
+    .stackly-shop-toast{
+        position:fixed;
+        left:50%;
+        bottom:28px;
+        transform:translate(-50%,40px);
+        background:#111;
+        color:#fff;
+        font-size:13px;
+        font-weight:600;
+        padding:12px 20px;
+        border-radius:8px;
+        opacity:0;
+        pointer-events:none;
+        z-index:200;
+        display:flex;
+        gap:10px;
+        align-items:center;
+    }
+
+    .stackly-shop-toast i{
+        width:8px;
+        height:8px;
+        border-radius:50%;
+        background:#4cc35f;
+    }
+
+    .stackly-shop-fly{
+        position:fixed;
+        z-index:300;
+        width:14px;
+        height:14px;
+        border-radius:50%;
+        background:var(--hot);
+        pointer-events:none;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (max-width:1180px){
+        .stackly-shop-nav a{
+            margin:0 14px;
+        }
+
+        .stackly-shop-search{
+            width:150px;
+            margin-left:12px;
+        }
+
+        .stackly-shop-trust{
+            grid-template-columns:repeat(2,1fr);
+            height:auto;
+            padding:14px 18px;
+            row-gap:16px;
+        }
+
+        .stackly-shop-grid4{
+            grid-template-columns:repeat(2,1fr);
+        }
+
+        .stackly-shop-foot-grid{
+            grid-template-columns:1.5fr 1fr 1fr;
+            row-gap:30px;
+        }
+    }
+
+    @media (max-width:980px){
+        .stackly-shop-site-header{
+            height:76px;
+        }
+
+        .stackly-shop-logo img{
+            height:54px;
+        }
+
+        .stackly-shop-burger{
+            display:flex;
+        }
+
+        .stackly-shop-nav{
+            position:absolute;
+            left:0;
+            right:0;
+            top:100%;
+            background:#fff;
+            flex-direction:column;
+            align-items:flex-start;
+            padding:6px 24px 20px;
+            box-shadow:0 14px 24px rgba(0,0,0,.14);
+            clip-path:inset(0 0 100% 0);
+            visibility:hidden;
+            transition:clip-path .45s ease,visibility .45s;
+        }
+
+        .stackly-shop-nav.stackly-shop-open{
+            clip-path:inset(0 0 0 0);
+            visibility:visible;
+        }
+
+        .stackly-shop-nav a{
+            margin:0;
+            padding:13px 0;
+            font-size:14px;
+            width:100%;
+            border-bottom:1px solid #eee;
+        }
+
+        .stackly-shop-search{
+            display:none;
+        }
+
+        .stackly-shop-shop{
+            grid-template-columns:1fr;
+        }
+
+        .stackly-shop-sidebar{
+            position:static;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:16px;
+            align-items:start;
+        }
+
+        .stackly-shop-filter-card{
+            margin-top:0;
+        }
+
+        .stackly-shop-apply{
+            grid-column:1/-1;
+        }
+
+        .stackly-shop-deals{
+            grid-template-columns:1fr;
+        }
+
+        .stackly-shop-why-grid{
+            grid-template-columns:repeat(2,1fr);
+            row-gap:22px;
+        }
+
+        .stackly-shop-news .stackly-shop-wrap{
+            flex-direction:column;
+            align-items:flex-start;
+            justify-content:center;
+            height:auto;
+            padding-top:22px;
+            padding-bottom:22px;
+            gap:12px;
+        }
+
+        .stackly-shop-brands{
+            flex-wrap:wrap;
+            justify-content:center;
+            height:auto;
+            gap:22px 34px;
+            padding:6px 0;
+        }
+    }
+
+    @media (max-width:640px){
+        .stackly-shop-hero{
+            height:auto;
+            padding:22px 0;
+        }
+
+        .stackly-shop-hero h1{
+            font-size:36px;
+        }
+
+        .stackly-shop-crumbs{
+            font-size:16px;
+        }
+
+        .stackly-shop-sidebar{
+            grid-template-columns:1fr;
+        }
+
+        .stackly-shop-grid4{
+            grid-template-columns:repeat(2,1fr);
+            gap:10px;
+        }
+
+        .stackly-shop-prod{
+            padding:12px;
+            height:auto;
+            min-height:300px;
+        }
+
+        .stackly-shop-trust{
+            grid-template-columns:1fr;
+        }
+
+        .stackly-shop-sec-title{
+            font-size:23px;
+        }
+
+        .stackly-shop-promo{
+            height:210px;
+        }
+
+        .stackly-shop-news-form{
+            width:100%;
+        }
+
+        .stackly-shop-news-txt h2{
+            font-size:17px;
+        }
+
+        .stackly-shop-news-txt p{
+            font-size:12px;
+        }
+
+        .stackly-shop-news .stackly-shop-env{
+            display:none;
+        }
+
+        .stackly-shop-foot-grid{
+            grid-template-columns:1fr 1fr;
+        }
+
+        .stackly-shop-foot-brand{
+            grid-column:1/-1;
+        }
+
+        .stackly-shop-why{
+            padding:10px 16px 20px;
+        }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+        *{
+            transition-duration:.01ms!important;
+            animation-duration:.01ms!important;
+            scroll-behavior:auto!important;
+        }
+    }
+
+    /* ---------- REFERENCE ALIGNMENT ---------- */
+    /* header icons, newsletter envelope, black footer, SVG socials */
+
+    .stackly-shop-sx-ico{
+        width:32px;
+        height:32px;
+        display:block;
+        flex:none;
+        transition:transform .25s;
+    }
+
+    a:hover>.stackly-shop-sx-ico,
+    button:hover>.stackly-shop-sx-ico{
+        transform:translateY(-2px);
+    }
+
+    .stackly-shop-news svg.stackly-shop-env,
+    .stackly-shop-news svg.stackly-shop-mail,
+    .stackly-shop-news #mailIco,
+    .stackly-shop-news-in>svg{
+        filter:none!important;
+    }
+
+    .stackly-shop-news-mail{
+        background:none!important;
+        border-radius:0!important;
+    }
+
+    .stackly-shop-news-mail svg{
+        width:100%;
+        height:100%;
+        display:block;
+    }
+
+    body>footer,
+    .stackly-shop-site-footer,
+    footer.stackly-shop-footer,
+    footer.stackly-shop-ft{
+        background:#000!important;
+    }
+
+    .stackly-shop-foot-logo,
+    .stackly-shop-foot-logo img{
+        opacity:1!important;
+    }
+
+    .stackly-shop-socials,
+    .stackly-shop-social{
+        display:flex;
+        gap:20px;
+        margin-top:22px;
+    }
+
+    .stackly-shop-socials a,
+    .stackly-shop-social a{
+        width:35px;
+        height:35px;
+        border-radius:7px;
+        background:#fff;
+        color:#000;
+        display:grid!important;
+        place-items:center;
+        overflow:hidden;
+        flex:none;
+        transition:transform .3s cubic-bezier(.3,1.6,.5,1),box-shadow .3s;
+    }
+
+    .stackly-shop-socials a:hover,
+    .stackly-shop-social a:hover{
+        transform:translateY(-4px) scale(1.1);
+        box-shadow:0 8px 16px rgba(255,90,0,.45);
+    }
+
+    .stackly-shop-sx-soc{
+        width:27px;
+        height:27px;
+        display:block;
+    }
+
+    .stackly-shop-ct-dot{
+        flex:none;
+        width:19px;
+        height:19px;
+        border-radius:50%;
+        background:#ff5a00;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-shop-ct-dot svg{
+        width:10px;
+        height:10px;
+        fill:#fff;
+    }
+
+    /* ---------- HIDE CART BADGE UNTIL IT HAS A COUNT ---------- */
+
+    .stackly-shop-cart-count:empty,
+    .stackly-shop-cart-badge:empty{
+        display:none!important;
+    }
+
+    /* ---------- NEWSLETTER BAND ---------- */
+    /* matches reference: full-width, fixed outline envelope, Montserrat */
+
+    .stackly-shop-nlx{
+        position:relative;
+        overflow:hidden;
+        background:#0b0d10;
+        color:#fff;
+        font-family:'Montserrat','Inter','Poppins',Arial,sans-serif;
+        isolation:isolate;
+    }
+
+    .stackly-shop-nlx-bg{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:center 45%;
+        opacity:.3;
+        z-index:-2;
+        pointer-events:none;
+    }
+
+    .stackly-shop-nlx::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        z-index:-1;
+        background:linear-gradient(90deg,rgba(8,10,13,.92) 0,rgba(8,10,13,.7) 45%,rgba(8,10,13,.78) 100%);
+    }
+
+    .stackly-shop-nlx-in{
+        display:flex;
+        align-items:center;
+        min-height:clamp(120px,8.4vw,158px);
+        padding:18px clamp(20px,1.86vw,36px);
+    }
+
+    .stackly-shop-nlx-ico{
+        flex:none;
+        display:block;
+        width:clamp(46px,3.95vw,76px);
+        margin-right:clamp(16px,2.3vw,43px);
+        transform:none!important;
+        animation:none!important;
+    }
+
+    .stackly-shop-nlx-ico svg{
+        display:block;
+        width:100%;
+        height:auto;
+        filter:none!important;
+        transform:none!important;
+        animation:none!important;
+    }
+
+    .stackly-shop-nlx-copy{
+        min-width:0;
+    }
+
+    .stackly-shop-nlx-copy h3{
+        margin:0;
+        font-size:clamp(18px,1.6vw,30px);
+        line-height:1.2;
+        font-weight:700;
+        letter-spacing:0;
+        color:#fff;
+    }
+
+    .stackly-shop-nlx-copy p{
+        margin:clamp(1px,.2vw,4px) 0 0;
+        font-size:clamp(13px,1.04vw,20px);
+        line-height:1.3;
+        font-weight:500;
+        color:#fff;
+    }
+
+    .stackly-shop-nlx-form{
+        position:relative;
+        flex:none;
+        display:flex;
+        margin-left:auto;
+        width:clamp(340px,28.7vw,540px);
+        height:clamp(42px,2.88vw,54px);
+    }
+
+    .stackly-shop-nlx-form input{
+        flex:1;
+        min-width:0;
+        height:100%;
+        border:0;
+        outline:0;
+        background:#fff;
+        color:#222;
+        padding:0 clamp(14px,1.1vw,21px);
+        font:500 clamp(12px,.9vw,17px) 'Montserrat','Inter',Arial,sans-serif;
+        border-radius:3px 0 0 3px;
+    }
+
+    .stackly-shop-nlx-form input::placeholder{
+        color:#8a8a8a;
+        opacity:1;
+    }
+
+    .stackly-shop-nlx-form input:focus-visible{
+        box-shadow:inset 0 0 0 2px #ff6a10;
+    }
+
+    .stackly-shop-nlx-form button{
+        flex:none;
+        width:33.4%;
+        height:100%;
+        border:0;
+        background:#ff6a10;
+        color:#fff;
+        font:700 clamp(14px,1.15vw,22px) 'Montserrat','Inter',Arial,sans-serif;
+        border-radius:0 3px 3px 0;
+        cursor:pointer;
+        transition:background .25s;
+    }
+
+    .stackly-shop-nlx-form button:hover{
+        background:#e85a05;
+    }
+
+    .stackly-shop-nlx-form button:focus-visible{
+        outline:2px solid #fff;
+        outline-offset:-4px;
+    }
+
+    .stackly-shop-nlx-msg,
+    .stackly-shop-nlx-form .stackly-shop-news-msg{
+        position:absolute;
+        left:0;
+        top:calc(100% + 6px);
+        font-size:12px;
+        font-weight:600;
+        color:#9be7a8;
+        white-space:nowrap;
+    }
+
+    .stackly-shop-nlx-form.stackly-shop-err input{
+        animation:shake .4s;
+    }
+
+    @media (max-width:860px){
+        .stackly-shop-nlx-in{
+            flex-wrap:wrap;
+            gap:16px 0;
+            padding:26px 20px 34px;
+        }
+
+        .stackly-shop-nlx-copy{
+            flex:1;
+            min-width:200px;
+        }
+
+        .stackly-shop-nlx-form{
+            width:100%;
+            margin-left:0;
+            height:46px;
+        }
+
+        .stackly-shop-nlx-form input{
+            font-size:14px;
+        }
+
+        .stackly-shop-nlx-form button{
+            font-size:15px;
+        }
+    }
+
+    /* ---------- FOOTER ---------- */
+    /* matches reference: black, Poppins, 5-column grid, orange back-to-top */
+
+    .stackly-shop-sf{
+        position:relative;
+        margin:0;
+        padding:0;
+        border:0;
+        background:#000!important;
+        color:#fff;
+        font-family:'Poppins','Inter',Arial,sans-serif;
+        -webkit-font-smoothing:antialiased;
+    }
+
+    .stackly-shop-sf *,
+    .stackly-shop-sf *::before,
+    .stackly-shop-sf *::after{
+        box-sizing:border-box;
+    }
+
+    .stackly-shop-sf a{
+        color:#fff;
+        text-decoration:none;
+        transition:color .25s;
+    }
+
+    .stackly-shop-sf ul{
+        list-style:none;
+        margin:0;
+        padding:0;
+    }
+
+    .stackly-shop-sf-main{
+        display:grid;
+        grid-template-columns:461fr 290fr 321fr 383fr 310fr;
+        padding:clamp(28px,2.1vw,40px) 3.2vw clamp(32px,2.3vw,44px);
+        align-items:start;
+    }
+
+    .stackly-shop-sf-logo{
+        display:block;
+        width:clamp(170px,13.5vw,255px);
+    }
+
+    .stackly-shop-sf-logo img{
+        display:block;
+        width:100%;
+        height:auto;
+        opacity:1!important;
+    }
+
+    .stackly-shop-sf-brand p{
+        margin:clamp(14px,1.2vw,22px) 0 0;
+        max-width:19.2vw;
+        min-width:260px;
+        font-size:clamp(15px,1.12vw,21px);
+        line-height:1.48;
+        font-weight:400;
+        color:#fff;
+    }
+
+    .stackly-shop-sf-socials{
+        display:flex;
+        gap:clamp(14px,1.6vw,30px);
+        margin-top:clamp(20px,1.95vw,37px);
+    }
+
+    .stackly-shop-sf-socials a{
+        flex:none;
+        width:clamp(38px,2.8vw,53px);
+        height:clamp(38px,2.8vw,53px);
+        border-radius:clamp(6px,.45vw,9px);
+        background:#fff;
+        color:#000;
+        display:grid;
+        place-items:center;
+        transition:transform .3s cubic-bezier(.3,1.6,.5,1),box-shadow .3s;
+    }
+
+    .stackly-shop-sf-socials a:hover{
+        transform:translateY(-4px) scale(1.08);
+        box-shadow:0 8px 18px rgba(255,106,16,.45);
+        color:#000;
+    }
+
+    .stackly-shop-sf-soc{
+        width:92%;
+        height:92%;
+        display:block;
+    }
+
+    .stackly-shop-sf-col h4{
+        margin:0;
+        font-size:clamp(15px,1vw,19px);
+        line-height:1.5;
+        font-weight:700;
+        color:#fff;
+    }
+
+    .stackly-shop-sf-col>ul{
+        margin-top:clamp(16px,1.5vw,28px);
+        display:flex;
+        flex-direction:column;
+        gap:clamp(14px,1.43vw,27px);
+    }
+
+    .stackly-shop-sf-col>ul li{
+        font-size:clamp(13px,.85vw,16px);
+        line-height:1.5;
+        font-weight:600;
+    }
+
+    .stackly-shop-sf-col>ul li a:hover{
+        color:#ff6a10;
+    }
+
+    .stackly-shop-sf-contact>ul{
+        margin-top:clamp(10px,.9vw,17px);
+        gap:clamp(10px,.9vw,17px);
+    }
+
+    .stackly-shop-sf-contact>ul li{
+        display:flex;
+        align-items:center;
+        gap:clamp(10px,.75vw,14px);
+        min-height:clamp(28px,1.8vw,34px);
+        line-height:1.38;
+    }
+
+    .stackly-shop-sf-dot{
+        flex:none;
+        width:clamp(28px,1.8vw,34px);
+        height:clamp(28px,1.8vw,34px);
+        border-radius:50%;
+        background:#ff6a10;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-shop-sf-dot svg{
+        width:48%;
+        height:48%;
+        fill:#fff;
+        display:block;
+    }
+
+    .stackly-shop-sf-badges{
+        margin-top:clamp(12px,1vw,19px);
+        display:flex;
+        flex-direction:column;
+        gap:clamp(10px,.8vw,15px);
+    }
+
+    .stackly-shop-sf-badge{
+        display:flex;
+        align-items:center;
+        gap:clamp(8px,.7vw,13px);
+        width:clamp(176px,11.94vw,225px);
+        height:clamp(42px,2.65vw,50px);
+        padding:0 clamp(12px,1.1vw,21px);
+        border:1px solid rgba(255,255,255,.7);
+        border-radius:8px;
+        background:#000;
+        transition:background .25s,transform .25s,border-color .25s;
+    }
+
+    .stackly-shop-sf-badge:hover{
+        background:#111;
+        border-color:#fff;
+        transform:translateY(-2px);
+        color:#fff;
+    }
+
+    .stackly-shop-sf-bico{
+        flex:none;
+        width:clamp(22px,1.55vw,29px);
+        height:auto;
+    }
+
+    .stackly-shop-sf-badge span{
+        display:block;
+    }
+
+    .stackly-shop-sf-badge small{
+        display:block;
+        font-size:clamp(8px,.58vw,11px);
+        line-height:1.1;
+        font-weight:600;
+        letter-spacing:.02em;
+        text-transform:uppercase;
+    }
+
+    .stackly-shop-sf-badge b{
+        display:block;
+        font-size:clamp(14px,1.15vw,22px);
+        line-height:1.1;
+        font-weight:500;
+    }
+
+    .stackly-shop-sf-bar{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        margin:0 3.2vw;
+        padding:0;
+        height:clamp(38px,2.35vw,44px);
+        border-top:1px solid rgba(255,255,255,.13);
+        font-size:clamp(10.5px,.64vw,12px);
+        font-weight:400;
+        color:#fff;
+    }
+
+    .stackly-shop-sf-bar nav{
+        display:flex;
+        gap:clamp(18px,1.9vw,36px);
+    }
+
+    .stackly-shop-sf-bar a:hover{
+        color:#ff6a10;
+    }
+
+    .stackly-shop-sf-top,
+    #top.stackly-shop-sf-top{
+        position:fixed;
+        right:clamp(16px,1.75vw,33px);
+        bottom:clamp(16px,1.6vw,30px);
+        left:auto;
+        top:auto;
+        width:clamp(46px,3.7vw,70px);
+        height:clamp(46px,3.7vw,70px);
+        border-radius:50%;
+        background:#ff6a10;
+        border:0;
+        padding:0;
+        cursor:pointer;
+        display:grid;
+        place-items:center;
+        opacity:0;
+        transform:translateY(20px);
+        pointer-events:none;
+        transition:opacity .35s,transform .35s,background .25s;
+        z-index:90;
+        box-shadow:0 8px 24px rgba(255,106,16,.45);
+    }
+
+    .stackly-shop-sf-top.stackly-shop-show,
+    #top.stackly-shop-sf-top.stackly-shop-show{
+        opacity:1;
+        transform:none;
+        pointer-events:auto;
+    }
+
+    .stackly-shop-sf-top:hover,
+    #top.stackly-shop-sf-top:hover{
+        background:#e85a05;
+        transform:translateY(-4px);
+    }
+
+    .stackly-shop-sf-top svg{
+        width:42%;
+        height:42%;
+        stroke:#fff;
+        fill:none;
+        stroke-width:2.6;
+        stroke-linecap:round;
+        stroke-linejoin:round;
+    }
+
+    @media (max-width:980px){
+        .stackly-shop-sf-main{
+            grid-template-columns:1fr 1fr;
+            gap:34px 24px;
+            padding:36px 24px 34px;
+        }
+
+        .stackly-shop-sf-brand{
+            grid-column:1/-1;
+        }
+
+        .stackly-shop-sf-brand p{
+            max-width:420px;
+        }
+
+        .stackly-shop-sf-col>ul li{
+            font-size:14px;
+        }
+
+        .stackly-shop-sf-col h4{
+            font-size:16px;
+        }
+
+        .stackly-shop-sf-contact,
+        .stackly-shop-sf-app{
+            grid-column:1/-1;
+        }
+
+        .stackly-shop-sf-bar{
+            margin:0 24px;
+            height:auto;
+            padding:14px 0;
+            flex-wrap:wrap;
+        }
+    }
+
+    .stackly-shop-sf-logo img{
+        filter:url(#sfOrange)!important;
+        opacity:1!important;
+    }
+
+    /* ---------- UTILITIES ---------- */
+
+    /* replaces the former inline style="" attributes */
+
+    .stackly-shop-sprite{
+        position:absolute;
+    }
+
+    h4.stackly-shop-h4-flush{
+        margin-top:0;
+    }
+
+    h4.stackly-shop-h4-tight{
+        margin-top:8px;
+    }
+
+    .stackly-shop-sec-title.stackly-shop-sec-title-cats{
+        margin-top:20px;
+    }
+
+    .stackly-shop-sec-title.stackly-shop-sec-title-brands{
+        margin-top:22px;
+        margin-bottom:6px;
+    }
+</style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+
+    <header
+        class="stackly-shop-site-header"
+        id="header"
+    >
+
+        <div class="stackly-shop-wrap">
+
+            <a
+                href="index.html"
+                class="stackly-shop-logo"
+                aria-label="Stackly home"
+            ><img src="assets/Home_53.webp" alt="Stackly" /></a>
+
+            <nav
+                class="stackly-shop-nav"
+                id="nav"
+                aria-label="Main"
+            >
+
+                <a href="index.html">Home</a>
+
+                <a
+                    href="shop.html"
+                    class="stackly-shop-active"
+                >Shop</a>
+
+                <a href="categories.html">Categories</a>
+
+                <a href="brands.html">Brands</a>
+
+                <a href="about.html">About Us</a>
+
+                <a href="blog.html">Blog</a>
+
+                <a href="contact.html">Contact Us</a>
+
+            </nav>
+
+            <label class="stackly-shop-search"><input type="search" placeholder="Search..." aria-label="Search parts" id="searchInput" /> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 1 0 4.9 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/></svg></label>
+
+            <a
+                href="login.html"
+                class="stackly-shop-icon-btn"
+                aria-label="Account"
+            ><svg class="stackly-shop-sx-ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="7.500" r="4"/><path d="M4 21c0-4.200 3.500-6.800 8-6.800s8 2.600 8 6.800"/></svg></a>
+
+            <a
+                href="cart.html"
+                class="stackly-shop-icon-btn"
+                aria-label="Cart"
+                id="cartBtn"
+            ><svg class="stackly-shop-sx-ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M1.500 3h3.200l2.600 12.200h11.300l2.200-8.700H5.800"/><circle cx="9.200" cy="19.800" r="1.400"/><circle cx="17.500" cy="19.800" r="1.400"/></svg><span class="stackly-shop-cart-count" id="cartCount"></span></a>
+
+            <button
+                class="stackly-shop-burger"
+                id="burger"
+                aria-label="Menu"
+                aria-expanded="false"
+            ><span></span><span></span><span></span></button>
+
+        </div>
+
+    </header>
+
+    <!-- ===== HERO ===== -->
+
+    <section class="stackly-shop-hero">
+
+        <img
+            class="stackly-shop-hero-img"
+            src="assets/img_59.webp"
+            alt=""
+            id="heroImg"
+        />
+
+        <div class="stackly-shop-wrap">
+
+            <div
+                class="stackly-shop-crumbs"
+                id="crumbs"
+            >
+                <a href="index.html">Home</a><svg viewBox="0 0 10 14"><path d="M2 1l6 6-6 6"/></svg><span>Shop</span>
+            </div>
+
+            <h1 id="heroTitle">
+
+                <span>Shop</span>
+
+            </h1>
+
+            <p id="heroSub">
+                Find the right spare parts for your vehicle.High quality,genuine and affordable auto parts all in one.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ===== SHOP ===== -->
+
+    <div class="stackly-shop-wrap stackly-shop-shop">
+
+        <!-- Sidebar -->
+
+        <aside
+            class="stackly-shop-sidebar"
+            id="sidebar"
+        >
+
+            <div class="stackly-shop-side-top">
+
+                <div
+                    class="stackly-shop-cat-card"
+                    id="catCard"
+                >
+
+                    <div class="stackly-shop-cat-head">
+
+                        <span>All Categories</span>
+
+                        <svg viewBox="0 0 18 14" aria-hidden="true"><path d="M1 1.5h16M1 7h16M1 12.5h16"/></svg>
+
+                    </div>
+
+                    <ul class="stackly-shop-cat-list">
+
+                        <li>
+
+                            <a
+                                href="#"
+                                data-cat="engine"
+                            ><img src="assets/img_60.webp" alt="" />Engine Parts<b data-count="124">(124)</b></a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                href="#"
+                                data-cat="brake"
+                            ><img src="assets/img_62.webp" alt="" />Brake System<b data-count="120">(120)</b></a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                href="#"
+                                data-cat="susp"
+                            ><img src="assets/img_63.webp" alt="" />Suspension &amp; Streering<b data-count="98">(98)</b></a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                href="#"
+                                data-cat="elec"
+                            ><img src="assets/img_64.webp" alt="" />Electrical Parts<b data-count="76">(76)</b></a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                href="#"
+                                data-cat="filters"
+                            ><img src="assets/img_65.webp" alt="" />Filters<b data-count="63">(63)</b></a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                href="#"
+                                data-cat="cool"
+                            ><img src="assets/img_66.webp" alt="" />Cooling System<b data-count="56">(56)</b></a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                href="#"
+                                data-cat="trans"
+                            ><img src="assets/img_67.webp" alt="" />Transmission<b data-count="52">(52)</b></a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                href="#"
+                                data-cat="body"
+                            ><img src="assets/img_68.webp" alt="" />Body Parts<b data-count="48">(48)</b></a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                href="#"
+                                data-cat="acc"
+                            ><img src="assets/img_69.webp" alt="" />Accessories<b data-count="32">(32)</b></a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                href="#"
+                                data-cat="tools"
+                            ><img src="assets/img_61.webp" alt="" />Tools &amp; Maintenance<b data-count="21">(21)</b></a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="stackly-shop-side-filters">
+
+                <form
+                    class="stackly-shop-filter-card"
+                    id="filterForm"
+                    onsubmit="return false"
+                >
+
+                    <h3>Filter By</h3>
+
+                    <h4 class="stackly-shop-h4-flush">Brand</h4>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="brand" value="Bosch" />Bosch</label>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="brand" value="Mahle" />Mahle</label>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="brand" value="NGK" />NGK</label>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="brand" value="Denso" />Denso</label>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="brand" value="Valeo" />Valeo</label>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="brand" value="Others" />Others</label>
+
+                    <h4>Vehicle Make</h4>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="make" value="Toyota" />Toyota</label>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="make" value="Honda" />Honda</label>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="make" value="BMW" />BMW</label>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="make" value="Ford" />Ford</label>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="make" value="Merceds" />Merceds</label>
+
+                    <label class="stackly-shop-chk"><input type="checkbox" name="make" value="Hyundai" />Hyundai</label>
+
+                    <h4 class="stackly-shop-h4-tight">Price Range</h4>
+
+                    <div
+                        class="stackly-shop-range"
+                        id="range"
+                    >
+
+                        <div class="stackly-shop-track"></div>
+
+                        <div
+                            class="stackly-shop-fill"
+                            id="rangeFill"
+                        ></div>
+
+                        <input
+                            type="range"
+                            id="minR"
+                            min="100"
+                            max="7000"
+                            step="50"
+                            value="100"
+                            aria-label="Minimum price"
+                        />
+
+                        <input
+                            type="range"
+                            id="maxR"
+                            min="100"
+                            max="7000"
+                            step="50"
+                            value="7000"
+                            aria-label="Maximum price"
+                        />
+
+                    </div>
+
+                    <div class="stackly-shop-range-vals">
+                        <span id="minV">₹100</span><span id="maxV">₹7000</span>
+                    </div>
+
+                </form>
+
+                <button
+                    class="stackly-shop-apply stackly-shop-btn-shine"
+                    id="applyBtn"
+                    type="button"
+                >Apply Filters</button>
+
+            </div>
+
+        </aside>
+
+        <!-- Main -->
+
+        <main class="stackly-shop-main">
+
+            <div
+                class="stackly-shop-trust"
+                id="trust"
+            >
+
+                <div class="stackly-shop-trust-item">
+                    <img src="assets/Home_2.webp" alt="" /><div><strong>100% Genuine Parts</strong><span>Orginal &amp; Trusted brands</span></div>
+                </div>
+
+                <div class="stackly-shop-trust-item">
+                    <img src="assets/Home_4.webp" alt="" /><div><strong>Fast &amp; Reliable Delivery</strong><span>Across India</span></div>
+                </div>
+
+                <div class="stackly-shop-trust-item">
+                    <img src="assets/Home_19.webp" alt="" /><div><strong>Expert Support</strong><span>Get help anytime</span></div>
+                </div>
+
+                <div class="stackly-shop-trust-item">
+                    <img src="assets/Home_38.webp" alt="" /><div><strong>Best Prices</strong><span>Save more,Drive more</span></div>
+                </div>
+
+            </div>
+
+            <section
+                class="stackly-shop-promo"
+                id="promo"
+            >
+
+                <img
+                    src="assets/img_54.webp"
+                    alt=""
+                    id="promoImg"
+                />
+
+                <div class="stackly-shop-promo-body">
+
+                    <small>Genuine Auto Parts</small>
+
+                    <h2>Keep Your Vehicle<br />Running Smoothly</h2>
+
+                    <p>Better parts,Better performance.</p>
+
+                    <a
+                        href="#featured"
+                        class="stackly-shop-btn-orange stackly-shop-btn-shine stackly-shop-magnetic"
+                    >Shop Now <img class="stackly-shop-arr" src="assets/Home_1.webp" alt="" /></a>
+
+                </div>
+
+            </section>
+
+            <h2
+                class="stackly-shop-sec-title stackly-shop-reveal-t"
+                id="featured"
+            >
+                Featured Products
+            </h2>
+
+            <div
+                class="stackly-shop-grid4"
+                id="prodGrid"
+            >
+
+                <article
+                    class="stackly-shop-prod"
+                    data-brand="Bosch"
+                    data-price="2499"
+                    data-name="Broke Pad Set brake"
+                    data-cat="brake"
+                >
+
+                    <div class="stackly-shop-pic">
+
+                        <img
+                            src="assets/Home_31.webp"
+                            alt="Brake pad set"
+                        />
+
+                    </div>
+
+                    <h3>Broke Pad Set</h3>
+
+                    <div
+                        class="stackly-shop-stars"
+                        data-r="5"
+                    >
+                        <i></i>(120)
+                    </div>
+
+                    <div class="stackly-shop-price">₹2,499</div>
+
+                    <button
+                        class="stackly-shop-add stackly-shop-btn-shine"
+                        type="button"
+                    >Add to Cart</button>
+
+                </article>
+
+                <article
+                    class="stackly-shop-prod"
+                    data-brand="Mahle"
+                    data-price="799"
+                    data-name="Oil Filter"
+                    data-cat="filters"
+                >
+
+                    <div class="stackly-shop-pic">
+
+                        <img
+                            src="assets/Home_35.webp"
+                            alt="Oil filter"
+                        />
+
+                    </div>
+
+                    <h3>Oil Filter</h3>
+
+                    <div
+                        class="stackly-shop-stars"
+                        data-r="5"
+                    >
+                        <i></i>(80)
+                    </div>
+
+                    <div class="stackly-shop-price">₹799</div>
+
+                    <button
+                        class="stackly-shop-add stackly-shop-btn-shine"
+                        type="button"
+                    >Add to Cart</button>
+
+                </article>
+
+                <article
+                    class="stackly-shop-prod"
+                    data-brand="Valeo"
+                    data-price="3499"
+                    data-name="Shock Absorber suspension"
+                    data-cat="susp"
+                >
+
+                    <div class="stackly-shop-pic">
+
+                        <img
+                            src="assets/Home_40.webp"
+                            alt="Shock absorber"
+                        />
+
+                    </div>
+
+                    <h3>Shock Absorber</h3>
+
+                    <div
+                        class="stackly-shop-stars"
+                        data-r="5"
+                    >
+                        <i></i>(70)
+                    </div>
+
+                    <div class="stackly-shop-price">₹3,499</div>
+
+                    <button
+                        class="stackly-shop-add stackly-shop-btn-shine"
+                        type="button"
+                    >Add to Cart</button>
+
+                </article>
+
+                <article
+                    class="stackly-shop-prod"
+                    data-brand="Mahle"
+                    data-price="1299"
+                    data-name="Air Filter"
+                    data-cat="filters"
+                >
+
+                    <div class="stackly-shop-pic">
+
+                        <img
+                            src="assets/Home_43.webp"
+                            alt="Air filter"
+                        />
+
+                    </div>
+
+                    <h3>Air Filter</h3>
+
+                    <div
+                        class="stackly-shop-stars"
+                        data-r="5"
+                    >
+                        <i></i>(85)
+                    </div>
+
+                    <div class="stackly-shop-price">₹1,299</div>
+
+                    <button
+                        class="stackly-shop-add stackly-shop-btn-shine"
+                        type="button"
+                    >Add to Cart</button>
+
+                </article>
+
+                <article
+                    class="stackly-shop-prod"
+                    data-brand="Bosch"
+                    data-price="6999"
+                    data-name="Battery (12V) electrical"
+                    data-cat="elec"
+                >
+
+                    <div class="stackly-shop-pic">
+
+                        <img
+                            src="assets/Home_46.webp"
+                            alt="12V battery"
+                        />
+
+                    </div>
+
+                    <h3>Battery (12V)</h3>
+
+                    <div
+                        class="stackly-shop-stars"
+                        data-r="5"
+                    >
+                        <i></i>(200)
+                    </div>
+
+                    <div class="stackly-shop-price">₹6,999</div>
+
+                    <button
+                        class="stackly-shop-add stackly-shop-btn-shine"
+                        type="button"
+                    >Add to Cart</button>
+
+                </article>
+
+                <article
+                    class="stackly-shop-prod"
+                    data-brand="Denso"
+                    data-price="2999"
+                    data-name="Timing Belt Kit engine"
+                    data-cat="engine"
+                >
+
+                    <div class="stackly-shop-pic">
+
+                        <img
+                            src="assets/img_56.webp"
+                            alt="Timing belt kit"
+                        />
+
+                    </div>
+
+                    <h3>Timing Belt Kit</h3>
+
+                    <div
+                        class="stackly-shop-stars"
+                        data-r="4"
+                    >
+                        <i></i>(20)
+                    </div>
+
+                    <div class="stackly-shop-price">₹2,999</div>
+
+                    <button
+                        class="stackly-shop-add stackly-shop-btn-shine"
+                        type="button"
+                    >Add to Cart</button>
+
+                </article>
+
+                <article
+                    class="stackly-shop-prod"
+                    data-brand="Others"
+                    data-price="1299"
+                    data-name="Engine Mounting engine"
+                    data-cat="engine"
+                >
+
+                    <div class="stackly-shop-pic">
+
+                        <img
+                            src="assets/img_57.webp"
+                            alt="Engine mounting"
+                        />
+
+                    </div>
+
+                    <h3>Engine Mounting</h3>
+
+                    <div
+                        class="stackly-shop-stars"
+                        data-r="3"
+                    >
+                        <i></i>(14)
+                    </div>
+
+                    <div class="stackly-shop-price">₹1,299</div>
+
+                    <button
+                        class="stackly-shop-add stackly-shop-btn-shine"
+                        type="button"
+                    >Add to Cart</button>
+
+                </article>
+
+                <article
+                    class="stackly-shop-prod"
+                    data-brand="NGK"
+                    data-price="399"
+                    data-name="Spark Plug engine"
+                    data-cat="engine"
+                >
+
+                    <div class="stackly-shop-pic">
+
+                        <img
+                            src="assets/img_58.webp"
+                            alt="Spark plug"
+                        />
+
+                    </div>
+
+                    <h3>Spark Plug</h3>
+
+                    <div
+                        class="stackly-shop-stars"
+                        data-r="3"
+                    >
+                        <i></i>(22)
+                    </div>
+
+                    <div class="stackly-shop-price">₹399</div>
+
+                    <button
+                        class="stackly-shop-add stackly-shop-btn-shine"
+                        type="button"
+                    >Add to Cart</button>
+
+                </article>
+
+                <div
+                    class="stackly-shop-empty"
+                    id="empty"
+                >
+                    No parts match these filters. Widen the price range or clear a brand.
+                </div>
+
+            </div>
+
+            <h2
+                class="stackly-shop-sec-title stackly-shop-reveal-t stackly-shop-sec-title-cats"
+                id="categories"
+            >
+                Shop By Category
+            </h2>
+
+            <div class="stackly-shop-grid4 stackly-shop-cats">
+
+                <a
+                    href="#"
+                    class="stackly-shop-cat"
+                ><div class="stackly-shop-pic"><img src="assets/Home_5.webp" alt="" /></div><h3>Engine Parts</h3><span class="stackly-shop-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                <a
+                    href="#"
+                    class="stackly-shop-cat"
+                ><div class="stackly-shop-pic"><img src="assets/Home_21.webp" alt="" /></div><h3>Brokes &amp; Clutch</h3><span class="stackly-shop-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                <a
+                    href="#"
+                    class="stackly-shop-cat"
+                ><div class="stackly-shop-pic"><img src="assets/Home_34.webp" alt="" /></div><h3>Suspension &amp; Steering</h3><span class="stackly-shop-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                <a
+                    href="#"
+                    class="stackly-shop-cat"
+                ><div class="stackly-shop-pic"><img src="assets/Home_37.webp" alt="" /></div><h3>Filters</h3><span class="stackly-shop-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                <a
+                    href="#"
+                    class="stackly-shop-cat"
+                ><div class="stackly-shop-pic"><img src="assets/Home_26.webp" alt="" /></div><h3>Belts &amp; Hoses</h3><span class="stackly-shop-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                <a
+                    href="#"
+                    class="stackly-shop-cat"
+                ><div class="stackly-shop-pic"><img src="assets/Home_27.webp" alt="" /></div><h3>Body Parts</h3><span class="stackly-shop-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                <a
+                    href="#"
+                    class="stackly-shop-cat"
+                ><div class="stackly-shop-pic"><img src="assets/Home_28.webp" alt="" /></div><h3>Lighting</h3><span class="stackly-shop-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                <a
+                    href="#"
+                    class="stackly-shop-cat"
+                ><div class="stackly-shop-pic"><img src="assets/Home_29.webp" alt="" /></div><h3>Cooling System</h3><span class="stackly-shop-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+            </div>
+
+            <h2
+                class="stackly-shop-sec-title stackly-shop-reveal-t stackly-shop-sec-title-brands"
+                id="brands"
+            >
+                Top Brands
+            </h2>
+
+            <div
+                class="stackly-shop-brands"
+                id="brandRow"
+            >
+
+                <a href="#"><img src="assets/Home_6.webp" alt="Bosch" /></a>
+
+                <a href="#"><img src="assets/Home_22.webp" alt="Denso" /></a>
+
+                <a
+                    href="#"
+                    class="stackly-shop-tall"
+                ><img src="assets/Home_32.webp" alt="Mann Filter" /></a>
+
+                <a
+                    href="#"
+                    class="stackly-shop-tall"
+                ><img src="assets/Home_36.webp" alt="Mobil" /></a>
+
+                <a
+                    href="#"
+                    class="stackly-shop-tall"
+                ><img src="assets/Home_41.webp" alt="Castrol" /></a>
+
+            </div>
+
+            <div
+                class="stackly-shop-deals"
+                id="deals"
+            >
+
+                <div class="stackly-shop-deal stackly-shop-red">
+
+                    <img
+                        src="assets/img_55.webp"
+                        alt=""
+                    />
+
+                    <div class="stackly-shop-deal-body">
+
+                        <h3>Special Deals</h3>
+
+                        <div class="stackly-shop-big">Upto 40% Off</div>
+
+                        <div class="stackly-shop-sm">on Selected Auto Parts.</div>
+
+                        <a
+                            href="#featured"
+                            class="stackly-shop-pill"
+                        >Shop Now</a>
+
+                    </div>
+
+                </div>
+
+                <div class="stackly-shop-deal stackly-shop-blue">
+
+                    <img
+                        src="assets/Home_15.webp"
+                        alt=""
+                    />
+
+                    <div class="stackly-shop-deal-body">
+
+                        <h3>Complete Service Kits</h3>
+
+                        <p class="stackly-shop-txt">Everything You Need for Your Vehicle.</p>
+
+                        <a
+                            href="#featured"
+                            class="stackly-shop-pill"
+                        >Shop Now</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <section
+                class="stackly-shop-why"
+                id="why"
+            >
+
+                <h2>Why Choose Us</h2>
+
+                <div class="stackly-shop-why-grid">
+
+                    <div class="stackly-shop-why-item">
+                        <img src="assets/Home_13.webp" alt="" /><h3>Wide Range</h3><p>1000+ spare parts for all vehicle types</p>
+                    </div>
+
+                    <div class="stackly-shop-why-item">
+                        <img src="assets/Home_23.webp" alt="" /><h3>Quality Assurance</h3><p>Genuine &amp; high-quality products.</p>
+                    </div>
+
+                    <div class="stackly-shop-why-item">
+                        <img src="assets/Home_49.webp" alt="" /><h3>Expert Guidence</h3><p>Get the right part with expert support</p>
+                    </div>
+
+                    <div class="stackly-shop-why-item">
+                        <img src="assets/Home_11.webp" alt="" /><h3>Easy Returns</h3><p>Hassle-free returns &amp; exchanges.</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- ===== NEWSLETTER ===== -->
+
+    <section
+        class="stackly-shop-nlx"
+        aria-label="Newsletter"
+    >
+
+        <img
+            class="stackly-shop-nlx-bg"
+            src="assets/Home_9.webp"
+            alt=""
+            aria-hidden="true"
+        />
+
+        <div class="stackly-shop-nlx-in">
+
+            <span class="stackly-shop-nlx-ico"><svg viewBox="0 0 88 62" fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="82" height="54" rx="2"/><path d="M4 6l40 31L84 6"/></svg></span>
+
+            <div class="stackly-shop-nlx-copy">
+
+                <h3>Subscribe to Our Newsletter</h3>
+
+                <p>Get the latest updates on new arrivals,exclusive offers and more.</p>
+
+            </div>
+
+            <form
+                class="stackly-shop-nlx-form"
+                id="newsForm"
+                novalidate
+            >
+
+                <input
+                    type="email"
+                    id="newsEmail"
+                    placeholder="Enter Your Email Address"
+                    aria-label="Email address"
+                    autocomplete="email"
+                    required
+                />
+
+                <button type="submit">Subscribe</button>
+
+                <span
+                    class="stackly-shop-nlx-msg"
+                    id="newsMsg"
+                    role="status"
+                    aria-live="polite"
+                ></span>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <br />
+
+    <!-- ===== FOOTER ===== -->
+
+    <svg class="stackly-shop-sprite" width="0" height="0" aria-hidden="true" focusable="false"><filter id="sfOrange" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.9922  0 0 0 0 0.3569  0 0 0 0 0.0157  0 0 0 1 0"/></filter></svg>
+
+    <footer class="stackly-shop-sf">
+
+        <div class="stackly-shop-sf-main">
+
+            <div class="stackly-shop-sf-brand">
+
+                <a
+                    class="stackly-shop-sf-logo"
+                    href="index.html"
+                    aria-label="Stackly home"
+                ><img src="assets/logo-footer.webp" onerror="this.onerror=null;this.src='assets/Home_53.webp'" alt="Stackly" width="255" height="75" /></a>
+
+                <p>
+                    Your one-step destination for genuine automative Spare parts. Quality products, trusted brands and services.
+                </p>
+
+                <div class="stackly-shop-sf-socials">
+
+                    <a
+                        href="404.html"
+                        aria-label="Facebook"
+                    ><svg class="stackly-shop-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5 2h14a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3zM13.5 22v-7.600h2.500l.4-3h-2.900V9.500c0-.9.300-1.500 1.500-1.500h1.500V5.300c-.3 0-1.200-.1-2.200-.1-2.200 0-3.700 1.300-3.700 3.800v2.200H8.100v3h2.500V22z"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="Instagram"
+                    ><svg class="stackly-shop-sf-soc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.100"/><circle cx="17.300" cy="6.700" r="1" fill="currentColor" stroke="none"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="YouTube"
+                    ><svg class="stackly-shop-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M21.600 7.200a2.500 2.500 0 0 0-1.800-1.800C18.300 5 12 5 12 5s-6.300 0-7.800.4A2.500 2.500 0 0 0 2.400 7.200C2 8.700 2 12 2 12s0 3.300.4 4.800a2.500 2.500 0 0 0 1.800 1.800C5.700 19 12 19 12 19s6.300 0 7.800-.4a2.500 2.500 0 0 0 1.800-1.800C22 15.300 22 12 22 12s0-3.300-.4-4.800zM10 15V9l5.200 3z"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="WhatsApp"
+                    ><svg class="stackly-shop-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.030-.967-.273-.099-.471-.148-.670.150-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.150-1.255-.463-2.390-1.475-.883-.788-1.480-1.761-1.653-2.059-.173-.297-.018-.458.130-.606.134-.133.298-.347.446-.520.149-.174.198-.298.298-.497.099-.198.050-.371-.025-.520-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.500-.669-.510-.173-.008-.371-.010-.570-.010-.198 0-.520.074-.792.372-.272.297-1.040 1.016-1.040 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.200 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.360.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.870 9.870 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.860 9.860 0 01-1.510-5.260c.001-5.450 4.436-9.884 9.888-9.884 2.640 0 5.122 1.030 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.450-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.050 0C5.495 0 .160 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.480-8.413z"/></svg></a>
+
+                </div>
+
+            </div>
+
+            <div class="stackly-shop-sf-col">
+
+                <h4>Quick Links</h4>
+
+                <ul>
+
+                    <li>
+
+                        <a href="index.html">Home</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="shop.html">Shop</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="brands.html">Brands</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="about.html">About Us</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="blog.html">Blog</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="contact.html">Contact Us</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-shop-sf-col">
+
+                <h4>Customer Services</h4>
+
+                <ul>
+
+                    <li>
+
+                        <a href="404.html">Help Center</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Track Order</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Shipping Policy</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Return Policy</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">FAQs</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-shop-sf-col stackly-shop-sf-contact">
+
+                <h4>Contact Us</h4>
+
+                <ul>
+
+                    <li>
+                        <span class="stackly-shop-sf-dot"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.250.2 2.450.6 3.600a1 1 0 0 1-.25 1z"/></svg></span><a href="tel:+917010792745">+91 7010792745</a>
+                    </li>
+
+                    <li>
+                        <span class="stackly-shop-sf-dot"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 011 1v1.200l-10 6.300L2 7.200V6a1 1 0 011-1zm-1 4.500l10 6.300 10-6.300V18a1 1 0 01-1 1H3a1 1 0 01-1-1z"/></svg></span><a href="mailto:info@stackly.com">info@stackly.com</a>
+                    </li>
+
+                    <li>
+                        <span class="stackly-shop-sf-dot"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.500A2.500 2.500 0 1112 6.500a2.500 2.500 0 010 5z"/></svg></span><span>Tamilnadu<br />Salem - 636008</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-shop-sf-col stackly-shop-sf-app">
+
+                <h4>Download Our App</h4>
+
+                <div class="stackly-shop-sf-badges">
+
+                    <a
+                        class="stackly-shop-sf-badge"
+                        href="404.html"
+                        aria-label="Get it on Google Play"
+                    ><svg class="stackly-shop-sf-bico" width="22" height="24" viewBox="0 0 24 26" aria-hidden="true"><path fill="#00a0ff" d="M1.500 1.200L13 13 1.500 24.800C1.100 24.500 1 24 1 23.400V2.600C1 2 1.100 1.500 1.500 1.200z"/><path fill="#00f076" d="M1.500 1.200L18 9.800 13 13z"/><path fill="#ff3a44" d="M1.500 24.800L18 16.200 13 13z"/><path fill="#ffd500" d="M18 9.800l4.500 2.400c.9.500.9 1.600 0 2.100L18 16.200 13 13z"/></svg> <span><small>GET IT ON</small><b>Google Play</b></span></a>
+
+                    <a
+                        class="stackly-shop-sf-badge"
+                        href="404.html"
+                        aria-label="Download on the App Store"
+                    ><svg class="stackly-shop-sf-bico" width="22" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.365 1.430c0 1.140-.493 2.270-1.177 3.080-.744.900-1.990 1.570-2.987 1.570-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.150.572-2.270 1.206-2.980.804-.940 2.142-1.640 3.248-1.680.03.130.05.280.05.430zm4.565 15.710c-.03.07-.463 1.580-1.518 3.120-.945 1.340-1.940 2.710-3.430 2.710-1.517 0-1.900-.88-3.630-.88-1.698 0-2.302.91-3.670.91-1.377 0-2.332-1.260-3.428-2.800-1.287-1.820-2.323-4.630-2.323-7.280 0-4.280 2.797-6.550 5.552-6.550 1.448 0 2.675.95 3.600.95.865 0 2.222-1.010 3.902-1.010.613 0 2.886.06 4.374 2.190-.13.09-2.383 1.370-2.383 4.190 0 3.260 2.854 4.420 2.955 4.450z"/></svg> <span><small>Download on the</small><b>App Store</b></span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="stackly-shop-sf-bar">
+            <span>&copy; 2026 STACKLY. All rights reserved.</span><nav><a href="404.html">Privacy Policy</a><a href="404.html">Terms &amp; Conditions</a></nav>
+        </div>
+
+    </footer>
+
+    <div
+        class="stackly-shop-toast"
+        id="toast"
+    >
+        <i></i><span id="toastTxt"></span>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+(function(){
+  var $ = function(s,c){return (c||document).querySelector(s)};
+  var $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- star ratings ---------- */
+  var star = '<svg viewBox="0 0 24 24"><path d="M12 2l3 6.800 7.400.7-5.600 4.900 1.700 7.200L12 17.800 5.500 21.600l1.700-7.200L1.600 9.500 9 8.800z"/></svg>';
+  $$('.stackly-shop-stars').forEach(function(el){
+    var r = +el.dataset.r, h = '';
+    for(var i=0;i<5;i++) h += star.replace('<svg','<svg class="'+(i<r?'stackly-shop-f':'')+'"');
+    el.querySelector('i').innerHTML = h;
+  });
+
+  /* ---------- header ---------- */
+  var header = $('#header');
+  window.addEventListener('scroll', function(){ header.classList.toggle('stackly-shop-scrolled', window.scrollY > 10); }, {passive:true});
+  var burger = $('#burger'), nav = $('#nav');
+  burger.addEventListener('click', function(){
+    var o = nav.classList.toggle('stackly-shop-open');
+    burger.classList.toggle('stackly-shop-open', o);
+    burger.setAttribute('aria-expanded', o);
+  });
+  $$('#nav a').forEach(function(a){ a.addEventListener('click', function(){ nav.classList.remove('stackly-shop-open'); burger.classList.remove('stackly-shop-open'); }); });
+
+  /* ---------- sidebar categories ---------- */
+  var activeCat = null;
+  $$('.stackly-shop-cat-list a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var same = a.classList.contains('stackly-shop-on');
+      $$('.stackly-shop-cat-list a').forEach(function(x){ x.classList.remove('stackly-shop-on'); });
+      activeCat = same ? null : a.dataset.cat;
+      if(!same) a.classList.add('stackly-shop-on');
+      applyFilters();
+      $('#featured').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+    });
+  });
+
+  /* ---------- price range ---------- */
+  var minR = $('#minR'), maxR = $('#maxR'), fill = $('#rangeFill');
+  function fmt(n){ return '₹' + n; }
+  function syncRange(e){
+    var a = +minR.value, b = +maxR.value;
+    if(a > b - 100){
+      if(e && e.target === minR){ minR.value = b - 100; a = b - 100; }
+      else { maxR.value = a + 100; b = a + 100; }
+    }
+    var lo = +minR.min, hi = +minR.max, w = $('#range').clientWidth - 20;
+    fill.style.left = (10 + (a - lo)/(hi - lo) * w) + 'px';
+    fill.style.width = ((b - a)/(hi - lo) * w) + 'px';
+    $('#minV').textContent = fmt(a); $('#maxV').textContent = fmt(b);
+  }
+  minR.addEventListener('input', syncRange); maxR.addEventListener('input', syncRange);
+  window.addEventListener('resize', syncRange); syncRange();
+
+  /* ---------- filtering ---------- */
+  var prods = $$('.stackly-shop-prod'), empty = $('#empty');
+  function applyFilters(){
+    var brands = $$('input[name=brand]:checked').map(function(i){ return i.value; });
+    var lo = +minR.value, hi = +maxR.value;
+    var q = $('#searchInput').value.trim().toLowerCase();
+    var shown = [], hidden = [];
+    prods.forEach(function(p){
+      var ok = (!brands.length || brands.indexOf(p.dataset.brand) > -1)
+            && (+p.dataset.price >= lo && +p.dataset.price <= hi)
+            && (!activeCat || p.dataset.cat === activeCat)
+            && (!q || p.dataset.name.toLowerCase().indexOf(q) > -1);
+      (ok ? shown : hidden).push(p);
+    });
+    hidden.forEach(function(p){ p.classList.add('stackly-shop-hide'); });
+    shown.forEach(function(p){ p.classList.remove('stackly-shop-hide'); });
+    empty.classList.toggle('stackly-shop-show', !shown.length);
+    if(window.gsap && !reduce && shown.length){
+      gsap.fromTo(shown, {y:24, opacity:0, scale:.96}, {y:0, opacity:1, scale:1, duration:.5, stagger:.06, ease:'power3.out', overwrite:true, clearProps:'transform,opacity'});
+    }
+  }
+  $('#applyBtn').addEventListener('click', function(){
+    applyFilters();
+    $('#featured').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+  });
+  $('#searchInput').addEventListener('input', applyFilters);
+  $('#filterForm').addEventListener('change', function(e){ if(e.target.type === 'checkbox') applyFilters(); });
+
+  /* ---------- cart ---------- */
+  var count = 0, cartCount = $('#cartCount'), toast = $('#toast'), toastTxt = $('#toastTxt'), toastTween;
+  function showToast(msg){
+    toastTxt.textContent = msg;
+    if(!window.gsap){ toast.style.opacity = 1; toast.style.transform = 'translate(-50%,0)'; return; }
+    if(toastTween) toastTween.kill();
+    toastTween = gsap.timeline()
+      .to(toast, {y:0, x:'-50%', opacity:1, duration:.35, ease:'power3.out'})
+      .to(toast, {y:40, opacity:0, duration:.3, ease:'power2.in'}, '+=1.6');
+  }
+  $$('.stackly-shop-add').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var card = btn.closest('.stackly-shop-prod'), name = $('h3', card).textContent;
+      count++; cartCount.textContent = count;
+      btn.textContent = 'Added ✓'; btn.classList.add('stackly-shop-done');
+      setTimeout(function(){ btn.textContent = 'Add to Cart'; btn.classList.remove('stackly-shop-done'); }, 1400);
+      showToast(name + ' added to cart');
+      if(window.gsap && !reduce){
+        var img = $('.stackly-shop-pic img', card).getBoundingClientRect(), cb = $('#cartBtn').getBoundingClientRect();
+        var dot = document.createElement('div'); dot.className = 'stackly-shop-fly';
+        dot.style.left = (img.left + img.width/2 - 7) + 'px'; dot.style.top = (img.top + img.height/2 - 7) + 'px';
+        document.body.appendChild(dot);
+        gsap.to(dot, {x: cb.left + cb.width/2 - img.left - img.width/2, y: cb.top + cb.height/2 - img.top - img.height/2, scale:.4, duration:.8, ease:'power2.in', onComplete:function(){
+          dot.remove();
+          gsap.fromTo('#cartBtn', {scale:1}, {scale:1.25, duration:.15, yoyo:true, repeat:1, ease:'power2.out'});
+        }});
+      }
+    });
+  });
+
+  /* ---------- newsletter ---------- */
+  $('#newsForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = $('#newsEmail').value.trim(), msg = $('#newsMsg');
+    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    msg.textContent = ok ? 'Thanks! You are subscribed.' : 'Enter a valid email address.';
+    msg.style.color = ok ? '#7de08c' : '#ffb27d';
+    if(ok) $('#newsEmail').value = '';
+    if(window.gsap) gsap.fromTo(msg, {opacity:0, y:6}, {opacity:1, y:0, duration:.35});
+    else msg.style.opacity = 1;
+  });
+
+  /* ---------- brand row dimming ---------- */
+  var br = $('#brandRow');
+  br.addEventListener('mouseover', function(e){ if(e.target.closest('a')) br.classList.add('stackly-shop-is-hover'); });
+  br.addEventListener('mouseleave', function(){ br.classList.remove('stackly-shop-is-hover'); });
+
+  /* ---------- animations ---------- */
+  if(!window.gsap || reduce){ return; }
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Page-load sequence
+  var tl = gsap.timeline({defaults:{ease:'power3.out'}});
+  tl.from('#header', {yPercent:-100, duration:.7})
+    .from('#heroImg', {xPercent:12, opacity:0, duration:1.2, ease:'power2.out'}, 0.1)
+    .from('#crumbs', {x:-30, opacity:0, duration:.6}, 0.35)
+    .from('#heroTitle span', {yPercent:110, duration:.8}, 0.45)
+    .from('#heroSub', {y:16, opacity:0, duration:.6}, 0.65)
+    .from('#catCard', {x:-50, opacity:0, duration:.7}, 0.6)
+    .from('.stackly-shop-cat-list li', {x:-20, opacity:0, duration:.4, stagger:.045}, 0.8)
+    .from('#trust', {y:24, opacity:0, duration:.6}, 0.75)
+    .from('.stackly-shop-trust-item', {y:14, opacity:0, duration:.45, stagger:.08}, 0.9)
+    .from('#promo', {clipPath:'inset(0 100% 0 0 round 10px)', duration:1, ease:'power3.inOut'}, 0.9)
+    .from('.stackly-shop-promo-body > *', {y:20, opacity:0, duration:.5, stagger:.09}, 1.3);
+
+  // Category counts tick up
+  $$('.stackly-shop-cat-list b').forEach(function(b){
+    var n = +b.dataset.count, o = {v:0};
+    gsap.to(o, {v:n, duration:1.4, delay:1, ease:'power2.out', onUpdate:function(){ b.textContent = '(' + Math.round(o.v) + ')'; }});
+  });
+
+  // Hero + promo parallax
+  gsap.to('#heroImg', {yPercent:12, ease:'none', scrollTrigger:{trigger:'.stackly-shop-hero', start:'top top', end:'bottom top', scrub:true}});
+  gsap.to('#promoImg', {yPercent:-8, scale:1.12, ease:'none', scrollTrigger:{trigger:'#promo', start:'top bottom', end:'bottom top', scrub:true}});
+
+  // Section headings: text wipes in
+  $$('.stackly-shop-reveal-t').forEach(function(h){
+    gsap.from(h, {clipPath:'inset(0 100% 0 0)', x:-16, duration:.8, ease:'power3.out', scrollTrigger:{trigger:h, start:'top 88%'}});
+  });
+
+  // Cards enter in batches as they scroll into view
+  function batch(sel, opts){
+    gsap.set(sel, {opacity:0, y:opts.y || 40});
+    ScrollTrigger.batch(sel, {
+      start:'top 90%', once:true,
+      onEnter:function(els){ gsap.to(els, {opacity:1, y:0, scale:1, duration:.7, stagger:.1, ease:'power3.out', overwrite:true, clearProps:'transform,opacity'}); }
+    });
+  }
+  batch('.stackly-shop-prod', {y:40});
+  batch('.stackly-shop-cat', {y:40});
+  batch('.stackly-shop-brands a', {y:24});
+  batch('.stackly-shop-why-item', {y:30});
+  batch('.stackly-shop-foot-col, .stackly-shop-foot-brand', {y:24});
+
+  // Deals slide in from opposite sides
+  gsap.from('.stackly-shop-deal.stackly-shop-red', {x:-60, opacity:0, duration:.9, ease:'power3.out', scrollTrigger:{trigger:'#deals', start:'top 85%'}});
+  gsap.from('.stackly-shop-deal.stackly-shop-blue', {x:60, opacity:0, duration:.9, ease:'power3.out', scrollTrigger:{trigger:'#deals', start:'top 85%'}});
+
+  // Why box + newsletter
+  gsap.from('#why', {y:40, opacity:0, duration:.8, ease:'power3.out', scrollTrigger:{trigger:'#why', start:'top 90%'}});
+  gsap.from('.stackly-shop-nlx-copy,.stackly-shop-nlx-form', {y:24, opacity:0, duration:.7, stagger:.12, ease:'power3.out', scrollTrigger:{trigger:'.stackly-shop-nlx', start:'top 85%'}});
+
+  // Magnetic Shop Now button
+  $$('.stackly-shop-magnetic').forEach(function(m){
+    m.addEventListener('mousemove', function(e){
+      var r = m.getBoundingClientRect();
+      gsap.to(m, {x:(e.clientX - r.left - r.width/2) * .3, y:(e.clientY - r.top - r.height/2) * .4, duration:.3, ease:'power2.out'});
+    });
+    m.addEventListener('mouseleave', function(){ gsap.to(m, {x:0, y:0, duration:.6, ease:'elastic.out(1,.4)'}); });
+  });
+
+  window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+})();
+</script>
+
+    <button
+        class="stackly-shop-sf-top"
+        id="sfTop"
+        aria-label="Back to top"
+    ><svg viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg></button>
+
+<script>(function(){var b=document.getElementById('sfTop');if(!b)return;function f(){b.classList.toggle('stackly-shop-show',(window.scrollY||document.documentElement.scrollTop)>400)}window.addEventListener('scroll',f,{passive:true});f();b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})})();</script>
+
+</body>
+</html>

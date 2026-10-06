@@ -1,0 +1,2983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top Automotive Brands | Stackly</title>
+<meta name="description" content="Genuine spare parts from the world's most trusted automotive brands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    /* ==========================================================
+       Stackly Auto Parts - brands.html styles
+       class prefix: stackly-brands-
+       ========================================================== */
+
+    :root{
+        --orange:#f26a1b;
+        --orange-d:#d9570c;
+        --navy:#0e2a47;
+        --navy-d:#0a2038;
+        --ink:#111;
+        --muted:#444;
+        --line:#dcdcdc;
+        --soft:#f2f7fa;
+        --dark:#262a2c;
+        --darker:#1b1b1b;
+        --wrap:1200px;
+    }
+
+    *,
+    *::before,
+    *::after{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+    }
+
+    html{
+        scroll-behavior:smooth;
+    }
+
+    body{
+        font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+        color:var(--ink);
+        background:#fff;
+        overflow-x:hidden;
+        -webkit-font-smoothing:antialiased;
+    }
+
+    img{
+        display:block;
+        max-width:100%;
+    }
+
+    a{
+        color:inherit;
+        text-decoration:none;
+    }
+
+    ul{
+        list-style:none;
+    }
+
+    button,
+    input{
+        font:inherit;
+    }
+
+    .stackly-brands-wrap{
+        width:100%;
+        max-width:var(--wrap);
+        margin:0 auto;
+        padding:0 20px;
+    }
+
+    /* ---------- SCROLL PROGRESS ---------- */
+
+    .stackly-brands-progress{
+        position:fixed;
+        top:0;
+        left:0;
+        height:3px;
+        width:100%;
+        background:var(--orange);
+        transform-origin:0 50%;
+        transform:scaleX(0);
+        z-index:200;
+    }
+
+    /* ---------- HEADER ---------- */
+
+    .stackly-brands-header{
+        position:sticky;
+        top:0;
+        z-index:100;
+        background:#fff;
+        height:90px;
+        transition:box-shadow .3s;
+    }
+
+    .stackly-brands-header.stackly-brands-scrolled{
+        box-shadow:0 6px 24px rgba(0,0,0,.12);
+    }
+
+    .stackly-brands-header .stackly-brands-wrap{
+        height:100%;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:24px;
+    }
+
+    .stackly-brands-logo img{
+        width:223px;
+        height:auto;
+    }
+
+    .stackly-brands-nav{
+        display:flex;
+        align-items:center;
+        gap:30px;
+    }
+
+    .stackly-brands-nav a{
+        position:relative;
+        white-space:nowrap;
+        font-size:13px;
+        font-weight:600;
+        padding:6px 0;
+        transition:color .25s;
+    }
+
+    .stackly-brands-nav a::after{
+        content:"";
+        position:absolute;
+        left:0;
+        bottom:-2px;
+        height:2px;
+        width:100%;
+        background:var(--orange);
+        transform:scaleX(0);
+        transform-origin:0 50%;
+        transition:transform .35s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .stackly-brands-nav a:hover,
+    .stackly-brands-nav a.stackly-brands-active{
+        color:var(--orange);
+    }
+
+    .stackly-brands-nav a:hover::after,
+    .stackly-brands-nav a.stackly-brands-active::after{
+        transform:scaleX(1);
+    }
+
+    .stackly-brands-tools{
+        display:flex;
+        align-items:center;
+        gap:26px;
+    }
+
+    .stackly-brands-search{
+        position:relative;
+        width:205px;
+    }
+
+    .stackly-brands-search input{
+        width:100%;
+        height:38px;
+        border:1.5px solid #777;
+        border-radius:8px;
+        padding:0 40px 0 14px;
+        font-size:12px;
+        outline:none;
+        color:#333;
+        background:#fff;
+        transition:border-color .25s,box-shadow .25s,width .3s;
+    }
+
+    .stackly-brands-search input:focus{
+        border-color:var(--orange);
+        box-shadow:0 0 0 3px rgba(242,106,27,.18);
+    }
+
+    .stackly-brands-search button{
+        position:absolute;
+        right:8px;
+        top:50%;
+        transform:translateY(-50%);
+        background:none;
+        border:0;
+        cursor:pointer;
+        display:grid;
+        place-items:center;
+        color:#555;
+    }
+
+    .stackly-brands-icon-btn{
+        position:relative;
+        display:grid;
+        place-items:center;
+        width:36px;
+        height:36px;
+        border:0;
+        background:none;
+        cursor:pointer;
+    }
+
+    .stackly-brands-icon-btn img{
+        width:32px;
+        height:32px;
+        object-fit:contain;
+        transition:transform .3s;
+    }
+
+    .stackly-brands-icon-btn:hover img{
+        transform:translateY(-3px) scale(1.1);
+    }
+
+    .stackly-brands-burger{
+        display:none;
+        width:42px;
+        height:42px;
+        border:0;
+        background:none;
+        cursor:pointer;
+        position:relative;
+    }
+
+    .stackly-brands-burger span{
+        position:absolute;
+        left:9px;
+        right:9px;
+        height:2px;
+        background:#111;
+        border-radius:2px;
+        transition:transform .3s,opacity .3s,top .3s;
+    }
+
+    .stackly-brands-burger span:nth-child(1){
+        top:14px;
+    }
+
+    .stackly-brands-burger span:nth-child(2){
+        top:20px;
+    }
+
+    .stackly-brands-burger span:nth-child(3){
+        top:26px;
+    }
+
+    .stackly-brands-burger.stackly-brands-open span:nth-child(1){
+        top:20px;
+        transform:rotate(45deg);
+    }
+
+    .stackly-brands-burger.stackly-brands-open span:nth-child(2){
+        opacity:0;
+    }
+
+    .stackly-brands-burger.stackly-brands-open span:nth-child(3){
+        top:20px;
+        transform:rotate(-45deg);
+    }
+
+    /* ---------- HERO ---------- */
+
+    .stackly-brands-hero{
+        position:relative;
+        height:294px;
+        overflow:hidden;
+        background:var(--navy-d);
+        color:#fff;
+    }
+
+    .stackly-brands-hero-bg{
+        position:absolute;
+        inset:-6% 0;
+        background:url('assets/img_80.webp') right center/cover no-repeat;
+        will-change:transform;
+    }
+
+    .stackly-brands-hero::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        z-index:1;
+        background:linear-gradient(90deg,#0d2640 0%,#0d2640 46%,rgba(13,38,64,.88) 56%,rgba(13,38,64,.35) 68%,rgba(13,38,64,0) 80%);
+    }
+
+    .stackly-brands-hero .stackly-brands-wrap{
+        position:relative;
+        z-index:2;
+        height:100%;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        padding-top:6px;
+    }
+
+    .stackly-brands-crumbs{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        font-size:18px;
+        font-weight:500;
+        margin-bottom:12px;
+    }
+
+    .stackly-brands-crumbs svg{
+        opacity:.85;
+    }
+
+    .stackly-brands-hero h1{
+        font-size:42px;
+        line-height:1.15;
+        font-weight:700;
+        letter-spacing:-.2px;
+        margin-bottom:14px;
+    }
+
+    .stackly-brands-hero h1 .stackly-brands-w{
+        display:inline-block;
+        overflow:hidden;
+        vertical-align:top;
+        padding-bottom:4px;
+    }
+
+    .stackly-brands-hero h1 .stackly-brands-w i{
+        display:inline-block;
+        font-style:normal;
+    }
+
+    .stackly-brands-hero p{
+        max-width:540px;
+        font-size:16px;
+        line-height:1.35;
+        font-weight:400;
+    }
+
+    /* ---------- TRUST STRIP ---------- */
+
+    .stackly-brands-trust{
+        padding:34px 0 0;
+    }
+
+    .stackly-brands-trust .stackly-brands-wrap{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        align-items:center;
+    }
+
+    .stackly-brands-trust-item{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:14px;
+    }
+
+    .stackly-brands-trust-item .stackly-brands-ic{
+        width:46px;
+        height:46px;
+        display:grid;
+        place-items:center;
+        flex:none;
+    }
+
+    .stackly-brands-trust-item .stackly-brands-ic img{
+        max-height:46px;
+        width:auto;
+        max-width:46px;
+        object-fit:contain;
+    }
+
+    .stackly-brands-trust-item b{
+        display:block;
+        font-size:12.5px;
+        font-weight:600;
+        line-height:1.35;
+    }
+
+    .stackly-brands-trust-item span{
+        display:block;
+        font-size:12.5px;
+        font-weight:400;
+        color:#222;
+        line-height:1.35;
+    }
+
+    /* ---------- SECTION HEADS ---------- */
+
+    .stackly-brands-sec-head h2{
+        font-size:40px;
+        line-height:1.2;
+        font-weight:700;
+        letter-spacing:-.4px;
+    }
+
+    .stackly-brands-sec-head p{
+        font-size:16px;
+        margin-top:8px;
+        color:#222;
+    }
+
+    /* ---------- OUR BRANDS ---------- */
+
+    .stackly-brands-brands{
+        padding:42px 0 64px;
+    }
+
+    .stackly-brands-brands .stackly-brands-sec-head{
+        padding:0 4px;
+    }
+
+    .stackly-brands-brand-grid{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        gap:24px 62px;
+        margin-top:38px;
+        padding:0 4px;
+    }
+
+    .stackly-brands-brand-card{
+        position:relative;
+        height:202px;
+        border:1.2px solid var(--line);
+        border-radius:8px;
+        background:#fff;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:flex-end;
+        padding:0 12px 14px;
+        overflow:hidden;
+        cursor:pointer;
+        transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;
+    }
+
+    .stackly-brands-brand-card .stackly-brands-logo-box{
+        position:absolute;
+        top:24px;
+        left:0;
+        right:0;
+        height:112px;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-brands-brand-card .stackly-brands-logo-box img{
+        max-height:112px;
+        max-width:150px;
+        width:auto;
+        height:auto;
+        object-fit:contain;
+        transition:transform .45s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .stackly-brands-brand-card span{
+        position:relative;
+        font-size:17px;
+        font-weight:500;
+        line-height:1.2;
+        z-index:1;
+    }
+
+    .stackly-brands-brand-card::after{
+        content:"";
+        position:absolute;
+        top:0;
+        left:-70%;
+        width:45%;
+        height:100%;
+        background:linear-gradient(100deg,transparent,rgba(242,106,27,.14),transparent);
+        transform:skewX(-18deg);
+        transition:left .7s;
+    }
+
+    .stackly-brands-brand-card:hover{
+        transform:translateY(-8px);
+        border-color:var(--orange);
+        box-shadow:0 18px 34px rgba(14,42,71,.16);
+    }
+
+    .stackly-brands-brand-card:hover::after{
+        left:130%;
+    }
+
+    .stackly-brands-brand-card:hover .stackly-brands-logo-box img{
+        transform:scale(1.1);
+    }
+
+    /* ---------- FEATURED ---------- */
+
+    .stackly-brands-featured{
+        position:relative;
+        background:radial-gradient(120% 140% at 15% 0%,#14395f 0%,var(--navy) 45%,#0a2038 100%);
+        color:#fff;
+        overflow:hidden;
+    }
+
+    .stackly-brands-featured::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.4px);
+        background-size:22px 22px;
+        opacity:.55;
+    }
+
+    .stackly-brands-featured .stackly-brands-wrap{
+        position:relative;
+        display:grid;
+        grid-template-columns:1fr auto;
+        align-items:center;
+        gap:40px;
+        min-height:303px;
+        padding-top:27px;
+        padding-bottom:27px;
+    }
+
+    .stackly-brands-f-copy .stackly-brands-bar{
+        display:block;
+        width:62px;
+        height:4px;
+        background:var(--orange);
+        margin-bottom:14px;
+        transform-origin:0 50%;
+    }
+
+    .stackly-brands-f-copy h2{
+        font-size:38px;
+        font-weight:700;
+        line-height:1.15;
+        margin-bottom:22px;
+    }
+
+    .stackly-brands-f-copy p{
+        font-size:15px;
+        line-height:1.75;
+        max-width:520px;
+        color:#e9eef5;
+    }
+
+    .stackly-brands-btn{
+        display:inline-flex;
+        align-items:center;
+        gap:14px;
+        background:var(--orange);
+        color:#fff;
+        font-weight:600;
+        font-size:12.5px;
+        border:0;
+        border-radius:4px;
+        padding:0 20px;
+        height:40px;
+        cursor:pointer;
+        transition:background .3s,box-shadow .3s;
+        will-change:transform;
+    }
+
+    .stackly-brands-btn img{
+        width:24px;
+        height:auto;
+        transition:transform .3s;
+    }
+
+    .stackly-brands-btn:hover{
+        background:var(--orange-d);
+        box-shadow:0 10px 24px rgba(242,106,27,.4);
+    }
+
+    .stackly-brands-btn:hover img{
+        transform:translateX(5px);
+    }
+
+    .stackly-brands-f-copy .stackly-brands-btn{
+        margin-top:20px;
+    }
+
+    .stackly-brands-f-cards{
+        display:flex;
+        gap:22px;
+        padding-right:2px;
+        perspective:900px;
+    }
+
+    .stackly-brands-f-card{
+        width:200px;
+        height:250px;
+        background:#fff;
+        color:#111;
+        border-radius:3px;
+        text-align:center;
+        padding:14px 8px 0;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        transform-style:preserve-3d;
+        transition:box-shadow .3s;
+        will-change:transform;
+    }
+
+    .stackly-brands-f-card:hover{
+        box-shadow:0 24px 40px rgba(0,0,0,.4);
+    }
+
+    .stackly-brands-f-card .stackly-brands-lg{
+        height:36px;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-brands-f-card .stackly-brands-lg img{
+        max-height:34px;
+        max-width:70px;
+        width:auto;
+        object-fit:contain;
+    }
+
+    .stackly-brands-f-card .stackly-brands-car{
+        height:92px;
+        margin-top:6px;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-brands-f-card .stackly-brands-car img{
+        max-height:90px;
+        width:auto;
+        max-width:168px;
+        object-fit:contain;
+    }
+
+    .stackly-brands-f-card h3{
+        font-size:16.5px;
+        font-weight:600;
+        margin-top:12px;
+    }
+
+    .stackly-brands-f-card p{
+        font-size:11.5px;
+        color:#333;
+        margin-top:4px;
+        line-height:1.35;
+    }
+
+    /* ---------- CATEGORIES ---------- */
+
+    .stackly-brands-cats{
+        padding:34px 0 38px;
+    }
+
+    .stackly-brands-cat-grid{
+        display:grid;
+        grid-template-columns:repeat(5,1fr);
+        gap:12px;
+        margin-top:30px;
+    }
+
+    .stackly-brands-cat-card{
+        height:202px;
+        border:1.2px solid var(--line);
+        border-radius:6px;
+        background:#fff;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        padding:16px 8px 0;
+        cursor:pointer;
+        transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;
+    }
+
+    .stackly-brands-cat-card .stackly-brands-im{
+        height:112px;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-brands-cat-card .stackly-brands-im img{
+        max-height:112px;
+        max-width:150px;
+        width:auto;
+        object-fit:contain;
+        transition:transform .5s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .stackly-brands-cat-card .stackly-brands-im img.stackly-brands-round{
+        border-radius:6px;
+    }
+
+    .stackly-brands-cat-card h3{
+        font-size:14.5px;
+        font-weight:600;
+        margin-top:10px;
+        text-align:center;
+        line-height:1.2;
+    }
+
+    .stackly-brands-cat-card .stackly-brands-va{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        font-size:12px;
+        font-weight:500;
+        color:var(--orange);
+        margin-top:6px;
+    }
+
+    .stackly-brands-cat-card .stackly-brands-va img{
+        width:17px;
+        height:auto;
+        transition:transform .3s;
+    }
+
+    .stackly-brands-cat-card:hover{
+        transform:translateY(-8px);
+        box-shadow:0 18px 34px rgba(14,42,71,.14);
+        border-color:var(--orange);
+    }
+
+    .stackly-brands-cat-card:hover .stackly-brands-im img{
+        transform:scale(1.12) rotate(-3deg);
+    }
+
+    .stackly-brands-cat-card:hover .stackly-brands-va img{
+        transform:translateX(6px);
+    }
+
+    /* ---------- WHY ---------- */
+
+    .stackly-brands-why{
+        background:var(--soft);
+        overflow:hidden;
+    }
+
+    .stackly-brands-why .stackly-brands-wrap{
+        display:grid;
+        grid-template-columns:1fr 410px 1fr;
+        align-items:center;
+        gap:6px;
+        min-height:311px;
+        padding-top:14px;
+        padding-bottom:14px;
+    }
+
+    .stackly-brands-why h2{
+        font-size:40px;
+        line-height:1.12;
+        font-weight:700;
+        letter-spacing:-.4px;
+    }
+
+    .stackly-brands-why .stackly-brands-copy p{
+        font-size:17.5px;
+        line-height:1.3;
+        margin-top:16px;
+        color:#111;
+        max-width:420px;
+    }
+
+    .stackly-brands-why .stackly-brands-copy .stackly-brands-btn{
+        margin-top:24px;
+        height:41px;
+    }
+
+    .stackly-brands-why .stackly-brands-pic{
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-brands-why .stackly-brands-pic img{
+        width:100%;
+        height:auto;
+        will-change:transform;
+    }
+
+    .stackly-brands-perks{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:18px 14px;
+        padding-left:14px;
+    }
+
+    .stackly-brands-perk{
+        text-align:center;
+        padding:0 4px;
+    }
+
+    .stackly-brands-perk img{
+        width:42px;
+        height:42px;
+        margin:0 auto 6px;
+        object-fit:contain;
+    }
+
+    .stackly-brands-perk b{
+        display:block;
+        font-size:12.5px;
+        font-weight:600;
+        line-height:1.35;
+    }
+
+    .stackly-brands-perk span{
+        display:block;
+        font-size:12.5px;
+        line-height:1.35;
+        color:#222;
+    }
+
+    /* ---------- STORIES ---------- */
+
+    .stackly-brands-stories{
+        padding:34px 0 44px;
+    }
+
+    .stackly-brands-story-grid{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:22px;
+        margin-top:30px;
+    }
+
+    .stackly-brands-story{
+        border:1.2px solid var(--line);
+        border-radius:6px;
+        overflow:hidden;
+        background:#fff;
+        transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
+    }
+
+    .stackly-brands-story .stackly-brands-ph{
+        height:109px;
+        overflow:hidden;
+        background:#222;
+    }
+
+    .stackly-brands-story .stackly-brands-ph img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        transition:transform .8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .stackly-brands-story .stackly-brands-tx{
+        padding:11px 16px 14px;
+    }
+
+    .stackly-brands-story small{
+        display:block;
+        font-size:11px;
+        color:#222;
+    }
+
+    .stackly-brands-story h3{
+        font-size:14.5px;
+        font-weight:600;
+        line-height:1.35;
+        margin-top:8px;
+    }
+
+    .stackly-brands-story .stackly-brands-rm{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        font-size:11.5px;
+        font-weight:500;
+        color:var(--orange);
+        margin-top:6px;
+    }
+
+    .stackly-brands-story .stackly-brands-rm img{
+        width:17px;
+        height:auto;
+        transition:transform .3s;
+    }
+
+    .stackly-brands-story:hover{
+        transform:translateY(-8px);
+        box-shadow:0 18px 34px rgba(14,42,71,.16);
+    }
+
+    .stackly-brands-story:hover .stackly-brands-ph img{
+        transform:scale(1.1);
+    }
+
+    .stackly-brands-story:hover .stackly-brands-rm img{
+        transform:translateX(6px);
+    }
+
+    /* ---------- NEWSLETTER ---------- */
+
+    .stackly-brands-news{
+        background:var(--dark);
+        color:#fff;
+        height:159px;
+    }
+
+    .stackly-brands-news .stackly-brands-wrap{
+        height:100%;
+        display:grid;
+        grid-template-columns:auto 1fr 468px;
+        align-items:center;
+        gap:26px;
+    }
+
+    .stackly-brands-news .stackly-brands-env{
+        width:82px;
+        filter:invert(1);
+        transform-origin:50% 60%;
+    }
+
+    .stackly-brands-news h3{
+        font-size:25px;
+        font-weight:700;
+        line-height:1.2;
+    }
+
+    .stackly-brands-news p{
+        font-size:16px;
+        margin-top:4px;
+        font-weight:500;
+    }
+
+    .stackly-brands-sub{
+        display:flex;
+        height:40px;
+        position:relative;
+    }
+
+    .stackly-brands-sub input{
+        flex:1;
+        min-width:0;
+        border:0;
+        padding:0 14px;
+        font-size:11.5px;
+        color:#222;
+        outline:none;
+        background:#fff;
+    }
+
+    .stackly-brands-sub input::placeholder{
+        color:#999;
+    }
+
+    .stackly-brands-sub button{
+        width:149px;
+        border:0;
+        background:var(--orange);
+        color:#fff;
+        font-weight:600;
+        font-size:14px;
+        cursor:pointer;
+        transition:background .3s;
+    }
+
+    .stackly-brands-sub button:hover{
+        background:var(--orange-d);
+    }
+
+    .stackly-brands-sub-msg{
+        position:absolute;
+        left:0;
+        top:46px;
+        font-size:12px;
+        color:#ffd7bf;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    .stackly-brands-footer{
+        background:var(--darker);
+        color:#fff;
+    }
+
+    .stackly-brands-f-top{
+        display:grid;
+        grid-template-columns:1.9fr .95fr 1.15fr 1.2fr 1fr;
+        gap:20px;
+        padding-top:26px;
+        padding-bottom:24px;
+        min-height:210px;
+    }
+
+    .stackly-brands-f-brand img.stackly-brands-fl{
+        width:225px;
+        margin-bottom:6px;
+    }
+
+    .stackly-brands-f-brand p{
+        font-size:13.5px;
+        line-height:1.35;
+        max-width:300px;
+        color:#eee;
+    }
+
+    .stackly-brands-socials{
+        display:flex;
+        gap:14px;
+        margin-top:20px;
+    }
+
+    .stackly-brands-socials a{
+        width:35px;
+        height:35px;
+        display:block;
+        border-radius:6px;
+        overflow:hidden;
+        transition:transform .3s;
+    }
+
+    .stackly-brands-socials a:hover{
+        transform:translateY(-5px) rotate(-6deg);
+    }
+
+    .stackly-brands-socials img{
+        width:35px;
+        height:35px;
+    }
+
+    .stackly-brands-f-col h4{
+        font-size:11.5px;
+        font-weight:700;
+        margin-bottom:12px;
+    }
+
+    .stackly-brands-f-col li{
+        font-size:10px;
+        margin-bottom:9px;
+    }
+
+    .stackly-brands-f-col li a{
+        position:relative;
+        display:inline-block;
+        transition:color .25s,transform .25s;
+    }
+
+    .stackly-brands-f-col li a:hover{
+        color:var(--orange);
+        transform:translateX(4px);
+    }
+
+    .stackly-brands-contact li{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        font-size:10px;
+        margin-bottom:10px;
+        line-height:1.3;
+    }
+
+    .stackly-brands-contact .stackly-brands-ci{
+        width:22px;
+        height:22px;
+        border-radius:50%;
+        background:var(--orange);
+        display:grid;
+        place-items:center;
+        flex:none;
+    }
+
+    .stackly-brands-store{
+        display:flex;
+        align-items:center;
+        gap:9px;
+        width:132px;
+        height:44px;
+        border:1.2px solid #8a8a8a;
+        border-radius:8px;
+        background:#000;
+        padding:0 10px;
+        margin-bottom:12px;
+        transition:transform .3s,border-color .3s;
+    }
+
+    .stackly-brands-store:hover{
+        transform:translateY(-4px);
+        border-color:var(--orange);
+    }
+
+    .stackly-brands-store small{
+        display:block;
+        font-size:6.5px;
+        letter-spacing:.4px;
+        line-height:1.1;
+        color:#ddd;
+    }
+
+    .stackly-brands-store b{
+        display:block;
+        font-size:13.5px;
+        font-weight:500;
+        line-height:1.1;
+    }
+
+    .stackly-brands-copy-bar{
+        border-top:1px solid #444;
+    }
+
+    .stackly-brands-copy-bar .stackly-brands-wrap{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        height:30px;
+        font-size:8.5px;
+        color:#ddd;
+    }
+
+    .stackly-brands-copy-bar .stackly-brands-wrap span:last-child{
+        display:flex;
+        gap:34px;
+    }
+
+    .stackly-brands-copy-bar a:hover{
+        color:var(--orange);
+    }
+
+    .stackly-brands-to-top{
+        position:fixed;
+        right:22px;
+        bottom:22px;
+        width:46px;
+        height:46px;
+        border-radius:50%;
+        border:0;
+        background:var(--orange);
+        color:#fff;
+        cursor:pointer;
+        display:grid;
+        place-items:center;
+        box-shadow:0 10px 24px rgba(0,0,0,.3);
+        opacity:0;
+        pointer-events:none;
+        transform:translateY(16px);
+        transition:opacity .3s,transform .3s,background .3s;
+        z-index:150;
+    }
+
+    .stackly-brands-to-top.stackly-brands-show{
+        opacity:1;
+        pointer-events:auto;
+        transform:none;
+    }
+
+    .stackly-brands-to-top:hover{
+        background:var(--orange-d);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (max-width:1180px){
+        .stackly-brands-nav{
+            gap:22px;
+        }
+
+        .stackly-brands-search{
+            width:170px;
+        }
+
+        .stackly-brands-brand-grid{
+            gap:22px 28px;
+        }
+
+        .stackly-brands-f-cards{
+            gap:14px;
+        }
+
+        .stackly-brands-f-card{
+            width:176px;
+        }
+
+        .stackly-brands-why .stackly-brands-wrap{
+            grid-template-columns:1fr 330px 1fr;
+        }
+
+        .stackly-brands-why h2{
+            font-size:34px;
+        }
+
+        .stackly-brands-news .stackly-brands-wrap{
+            grid-template-columns:auto 1fr 400px;
+        }
+    }
+
+    @media (max-width:980px){
+        .stackly-brands-burger{
+            display:block;
+        }
+
+        .stackly-brands-header{
+            height:76px;
+        }
+
+        .stackly-brands-logo img{
+            width:180px;
+        }
+
+        .stackly-brands-nav{
+            position:absolute;
+            top:76px;
+            left:0;
+            right:0;
+            background:#fff;
+            flex-direction:column;
+            align-items:flex-start;
+            gap:0;
+            padding:6px 20px 16px;
+            box-shadow:0 14px 24px rgba(0,0,0,.12);
+            clip-path:inset(0 0 100% 0);
+            visibility:hidden;
+            transition:clip-path .45s cubic-bezier(.2,.8,.2,1),visibility .45s;
+        }
+
+        .stackly-brands-nav.stackly-brands-open{
+            clip-path:inset(0 0 0 0);
+            visibility:visible;
+        }
+
+        .stackly-brands-nav a{
+            width:100%;
+            padding:13px 0;
+            font-size:14px;
+            border-bottom:1px solid #eee;
+        }
+
+        .stackly-brands-nav a::after{
+            display:none;
+        }
+
+        .stackly-brands-search{
+            display:none;
+        }
+
+        .stackly-brands-tools{
+            gap:6px;
+        }
+
+        .stackly-brands-hero{
+            height:auto;
+            min-height:280px;
+        }
+
+        .stackly-brands-hero::before{
+            background:linear-gradient(90deg,#0d2640 0%,rgba(13,38,64,.94) 60%,rgba(13,38,64,.55) 100%);
+        }
+
+        .stackly-brands-hero .stackly-brands-wrap{
+            padding-top:36px;
+            padding-bottom:36px;
+        }
+
+        .stackly-brands-hero h1{
+            font-size:34px;
+        }
+
+        .stackly-brands-trust .stackly-brands-wrap{
+            grid-template-columns:1fr 1fr;
+            gap:22px 10px;
+        }
+
+        .stackly-brands-brand-grid{
+            grid-template-columns:repeat(2,1fr);
+        }
+
+        .stackly-brands-featured .stackly-brands-wrap{
+            grid-template-columns:1fr;
+            padding-top:44px;
+            padding-bottom:44px;
+        }
+
+        .stackly-brands-f-cards{
+            justify-content:flex-start;
+            flex-wrap:wrap;
+        }
+
+        .stackly-brands-cat-grid{
+            grid-template-columns:repeat(3,1fr);
+        }
+
+        .stackly-brands-why .stackly-brands-wrap{
+            grid-template-columns:1fr;
+            gap:20px;
+            padding-top:36px;
+            padding-bottom:36px;
+        }
+
+        .stackly-brands-why .stackly-brands-pic{
+            max-width:420px;
+            margin:0 auto;
+        }
+
+        .stackly-brands-perks{
+            padding-left:0;
+        }
+
+        .stackly-brands-story-grid{
+            grid-template-columns:1fr 1fr;
+        }
+
+        .stackly-brands-news{
+            height:auto;
+            padding:30px 0;
+        }
+
+        .stackly-brands-news .stackly-brands-wrap{
+            grid-template-columns:auto 1fr;
+            gap:16px 20px;
+        }
+
+        .stackly-brands-sub{
+            grid-column:1/-1;
+        }
+
+        .stackly-brands-f-top{
+            grid-template-columns:1fr 1fr;
+            gap:28px;
+        }
+
+        .stackly-brands-f-brand{
+            grid-column:1/-1;
+        }
+    }
+
+    @media (max-width:620px){
+        .stackly-brands-sec-head h2,
+        .stackly-brands-why h2{
+            font-size:30px;
+        }
+
+        .stackly-brands-hero h1{
+            font-size:28px;
+        }
+
+        .stackly-brands-crumbs{
+            font-size:15px;
+        }
+
+        .stackly-brands-brand-grid{
+            gap:14px;
+        }
+
+        .stackly-brands-brand-card{
+            height:170px;
+        }
+
+        .stackly-brands-brand-card .stackly-brands-logo-box{
+            top:16px;
+            height:90px;
+        }
+
+        .stackly-brands-brand-card .stackly-brands-logo-box img{
+            max-height:84px;
+            max-width:110px;
+        }
+
+        .stackly-brands-brand-card span{
+            font-size:14px;
+        }
+
+        .stackly-brands-cat-grid{
+            grid-template-columns:1fr 1fr;
+        }
+
+        .stackly-brands-story-grid{
+            grid-template-columns:1fr;
+        }
+
+        .stackly-brands-f-card{
+            width:calc(50% - 7px);
+            height:auto;
+            padding-bottom:14px;
+        }
+
+        .stackly-brands-f-card .stackly-brands-car img{
+            max-width:100%;
+        }
+
+        .stackly-brands-news h3{
+            font-size:19px;
+        }
+
+        .stackly-brands-news p{
+            font-size:13px;
+        }
+
+        .stackly-brands-news .stackly-brands-env{
+            width:56px;
+        }
+
+        .stackly-brands-copy-bar .stackly-brands-wrap{
+            flex-direction:column;
+            height:auto;
+            gap:6px;
+            padding:10px 20px;
+        }
+
+        .stackly-brands-perks{
+            gap:16px 6px;
+        }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+        *{
+            animation:none!important;
+            transition:none!important;
+        }
+
+        html{
+            scroll-behavior:auto;
+        }
+    }
+
+    /* ---------- REFERENCE ALIGNMENT ---------- */
+    /* header icons, newsletter envelope, black footer, SVG socials */
+
+    .stackly-brands-sx-ico{
+        width:32px;
+        height:32px;
+        display:block;
+        flex:none;
+        transition:transform .25s;
+    }
+
+    a:hover>.stackly-brands-sx-ico,
+    button:hover>.stackly-brands-sx-ico{
+        transform:translateY(-2px);
+    }
+
+    .stackly-brands-news svg.stackly-brands-env,
+    .stackly-brands-news svg.stackly-brands-mail,
+    .stackly-brands-news #mailIco,
+    .stackly-brands-news-in>svg{
+        filter:none!important;
+    }
+
+    .stackly-brands-news-mail{
+        background:none!important;
+        border-radius:0!important;
+    }
+
+    .stackly-brands-news-mail svg{
+        width:100%;
+        height:100%;
+        display:block;
+    }
+
+    body>footer,
+    .stackly-brands-site-footer,
+    footer.stackly-brands-footer,
+    footer.stackly-brands-ft{
+        background:#000!important;
+    }
+
+    .stackly-brands-foot-logo,
+    .stackly-brands-foot-logo img{
+        opacity:1!important;
+    }
+
+    .stackly-brands-socials,
+    .stackly-brands-social{
+        display:flex;
+        gap:20px;
+        margin-top:22px;
+    }
+
+    .stackly-brands-socials a,
+    .stackly-brands-social a{
+        width:35px;
+        height:35px;
+        border-radius:7px;
+        background:#fff;
+        color:#000;
+        display:grid!important;
+        place-items:center;
+        overflow:hidden;
+        flex:none;
+        transition:transform .3s cubic-bezier(.3,1.6,.5,1),box-shadow .3s;
+    }
+
+    .stackly-brands-socials a:hover,
+    .stackly-brands-social a:hover{
+        transform:translateY(-4px) scale(1.1);
+        box-shadow:0 8px 16px rgba(255,90,0,.45);
+    }
+
+    .stackly-brands-sx-soc{
+        width:27px;
+        height:27px;
+        display:block;
+    }
+
+    .stackly-brands-ct-dot{
+        flex:none;
+        width:19px;
+        height:19px;
+        border-radius:50%;
+        background:#ff5a00;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-brands-ct-dot svg{
+        width:10px;
+        height:10px;
+        fill:#fff;
+    }
+
+    /* ---------- NEWSLETTER BAND ---------- */
+    /* matches reference: full-width, fixed outline envelope, Montserrat */
+
+    .stackly-brands-nlx{
+        position:relative;
+        overflow:hidden;
+        background:#0b0d10;
+        color:#fff;
+        font-family:'Montserrat','Inter','Poppins',Arial,sans-serif;
+        isolation:isolate;
+    }
+
+    .stackly-brands-nlx-bg{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:center 45%;
+        opacity:.3;
+        z-index:-2;
+        pointer-events:none;
+    }
+
+    .stackly-brands-nlx::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        z-index:-1;
+        background:linear-gradient(90deg,rgba(8,10,13,.92) 0,rgba(8,10,13,.7) 45%,rgba(8,10,13,.78) 100%);
+    }
+
+    .stackly-brands-nlx-in{
+        display:flex;
+        align-items:center;
+        min-height:clamp(120px,8.4vw,158px);
+        padding:18px clamp(20px,1.86vw,36px);
+    }
+
+    .stackly-brands-nlx-ico{
+        flex:none;
+        display:block;
+        width:clamp(46px,3.95vw,76px);
+        margin-right:clamp(16px,2.3vw,43px);
+        transform:none!important;
+        animation:none!important;
+    }
+
+    .stackly-brands-nlx-ico svg{
+        display:block;
+        width:100%;
+        height:auto;
+        filter:none!important;
+        transform:none!important;
+        animation:none!important;
+    }
+
+    .stackly-brands-nlx-copy{
+        min-width:0;
+    }
+
+    .stackly-brands-nlx-copy h3{
+        margin:0;
+        font-size:clamp(18px,1.6vw,30px);
+        line-height:1.2;
+        font-weight:700;
+        letter-spacing:0;
+        color:#fff;
+    }
+
+    .stackly-brands-nlx-copy p{
+        margin:clamp(1px,.2vw,4px) 0 0;
+        font-size:clamp(13px,1.04vw,20px);
+        line-height:1.3;
+        font-weight:500;
+        color:#fff;
+    }
+
+    .stackly-brands-nlx-form{
+        position:relative;
+        flex:none;
+        display:flex;
+        margin-left:auto;
+        width:clamp(340px,28.7vw,540px);
+        height:clamp(42px,2.88vw,54px);
+    }
+
+    .stackly-brands-nlx-form input{
+        flex:1;
+        min-width:0;
+        height:100%;
+        border:0;
+        outline:0;
+        background:#fff;
+        color:#222;
+        padding:0 clamp(14px,1.1vw,21px);
+        font:500 clamp(12px,.9vw,17px) 'Montserrat','Inter',Arial,sans-serif;
+        border-radius:3px 0 0 3px;
+    }
+
+    .stackly-brands-nlx-form input::placeholder{
+        color:#8a8a8a;
+        opacity:1;
+    }
+
+    .stackly-brands-nlx-form input:focus-visible{
+        box-shadow:inset 0 0 0 2px #ff6a10;
+    }
+
+    .stackly-brands-nlx-form button{
+        flex:none;
+        width:33.4%;
+        height:100%;
+        border:0;
+        background:#ff6a10;
+        color:#fff;
+        font:700 clamp(14px,1.15vw,22px) 'Montserrat','Inter',Arial,sans-serif;
+        border-radius:0 3px 3px 0;
+        cursor:pointer;
+        transition:background .25s;
+    }
+
+    .stackly-brands-nlx-form button:hover{
+        background:#e85a05;
+    }
+
+    .stackly-brands-nlx-form button:focus-visible{
+        outline:2px solid #fff;
+        outline-offset:-4px;
+    }
+
+    .stackly-brands-nlx-msg,
+    .stackly-brands-nlx-form .stackly-brands-news-msg{
+        position:absolute;
+        left:0;
+        top:calc(100% + 6px);
+        font-size:12px;
+        font-weight:600;
+        color:#9be7a8;
+        white-space:nowrap;
+    }
+
+    .stackly-brands-nlx-form.stackly-brands-err input{
+        animation:shake .4s;
+    }
+
+    @media (max-width:860px){
+        .stackly-brands-nlx-in{
+            flex-wrap:wrap;
+            gap:16px 0;
+            padding:26px 20px 34px;
+        }
+
+        .stackly-brands-nlx-copy{
+            flex:1;
+            min-width:200px;
+        }
+
+        .stackly-brands-nlx-form{
+            width:100%;
+            margin-left:0;
+            height:46px;
+        }
+
+        .stackly-brands-nlx-form input{
+            font-size:14px;
+        }
+
+        .stackly-brands-nlx-form button{
+            font-size:15px;
+        }
+    }
+
+    /* ---------- FOOTER ---------- */
+    /* matches reference: black, Poppins, 5-column grid, orange back-to-top */
+
+    .stackly-brands-sf{
+        position:relative;
+        margin:0;
+        padding:0;
+        border:0;
+        background:#000!important;
+        color:#fff;
+        font-family:'Poppins','Inter',Arial,sans-serif;
+        -webkit-font-smoothing:antialiased;
+    }
+
+    .stackly-brands-sf *,
+    .stackly-brands-sf *::before,
+    .stackly-brands-sf *::after{
+        box-sizing:border-box;
+    }
+
+    .stackly-brands-sf a{
+        color:#fff;
+        text-decoration:none;
+        transition:color .25s;
+    }
+
+    .stackly-brands-sf ul{
+        list-style:none;
+        margin:0;
+        padding:0;
+    }
+
+    .stackly-brands-sf-main{
+        display:grid;
+        grid-template-columns:461fr 290fr 321fr 383fr 310fr;
+        padding:clamp(28px,2.1vw,40px) 3.2vw clamp(32px,2.3vw,44px);
+        align-items:start;
+    }
+
+    .stackly-brands-sf-logo{
+        display:block;
+        width:clamp(170px,13.5vw,255px);
+    }
+
+    .stackly-brands-sf-logo img{
+        display:block;
+        width:100%;
+        height:auto;
+        opacity:1!important;
+    }
+
+    .stackly-brands-sf-brand p{
+        margin:clamp(14px,1.2vw,22px) 0 0;
+        max-width:19.2vw;
+        min-width:260px;
+        font-size:clamp(15px,1.12vw,21px);
+        line-height:1.48;
+        font-weight:400;
+        color:#fff;
+    }
+
+    .stackly-brands-sf-socials{
+        display:flex;
+        gap:clamp(14px,1.6vw,30px);
+        margin-top:clamp(20px,1.95vw,37px);
+    }
+
+    .stackly-brands-sf-socials a{
+        flex:none;
+        width:clamp(38px,2.8vw,53px);
+        height:clamp(38px,2.8vw,53px);
+        border-radius:clamp(6px,.45vw,9px);
+        background:#fff;
+        color:#000;
+        display:grid;
+        place-items:center;
+        transition:transform .3s cubic-bezier(.3,1.6,.5,1),box-shadow .3s;
+    }
+
+    .stackly-brands-sf-socials a:hover{
+        transform:translateY(-4px) scale(1.08);
+        box-shadow:0 8px 18px rgba(255,106,16,.45);
+        color:#000;
+    }
+
+    .stackly-brands-sf-soc{
+        width:92%;
+        height:92%;
+        display:block;
+    }
+
+    .stackly-brands-sf-col h4{
+        margin:0;
+        font-size:clamp(15px,1vw,19px);
+        line-height:1.5;
+        font-weight:700;
+        color:#fff;
+    }
+
+    .stackly-brands-sf-col>ul{
+        margin-top:clamp(16px,1.5vw,28px);
+        display:flex;
+        flex-direction:column;
+        gap:clamp(14px,1.43vw,27px);
+    }
+
+    .stackly-brands-sf-col>ul li{
+        font-size:clamp(13px,.85vw,16px);
+        line-height:1.5;
+        font-weight:600;
+    }
+
+    .stackly-brands-sf-col>ul li a:hover{
+        color:#ff6a10;
+    }
+
+    .stackly-brands-sf-contact>ul{
+        margin-top:clamp(10px,.9vw,17px);
+        gap:clamp(10px,.9vw,17px);
+    }
+
+    .stackly-brands-sf-contact>ul li{
+        display:flex;
+        align-items:center;
+        gap:clamp(10px,.75vw,14px);
+        min-height:clamp(28px,1.8vw,34px);
+        line-height:1.38;
+    }
+
+    .stackly-brands-sf-dot{
+        flex:none;
+        width:clamp(28px,1.8vw,34px);
+        height:clamp(28px,1.8vw,34px);
+        border-radius:50%;
+        background:#ff6a10;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-brands-sf-dot svg{
+        width:48%;
+        height:48%;
+        fill:#fff;
+        display:block;
+    }
+
+    .stackly-brands-sf-badges{
+        margin-top:clamp(12px,1vw,19px);
+        display:flex;
+        flex-direction:column;
+        gap:clamp(10px,.8vw,15px);
+    }
+
+    .stackly-brands-sf-badge{
+        display:flex;
+        align-items:center;
+        gap:clamp(8px,.7vw,13px);
+        width:clamp(176px,11.94vw,225px);
+        height:clamp(42px,2.65vw,50px);
+        padding:0 clamp(12px,1.1vw,21px);
+        border:1px solid rgba(255,255,255,.7);
+        border-radius:8px;
+        background:#000;
+        transition:background .25s,transform .25s,border-color .25s;
+    }
+
+    .stackly-brands-sf-badge:hover{
+        background:#111;
+        border-color:#fff;
+        transform:translateY(-2px);
+        color:#fff;
+    }
+
+    .stackly-brands-sf-bico{
+        flex:none;
+        width:clamp(22px,1.55vw,29px);
+        height:auto;
+    }
+
+    .stackly-brands-sf-badge span{
+        display:block;
+    }
+
+    .stackly-brands-sf-badge small{
+        display:block;
+        font-size:clamp(8px,.58vw,11px);
+        line-height:1.1;
+        font-weight:600;
+        letter-spacing:.02em;
+        text-transform:uppercase;
+    }
+
+    .stackly-brands-sf-badge b{
+        display:block;
+        font-size:clamp(14px,1.15vw,22px);
+        line-height:1.1;
+        font-weight:500;
+    }
+
+    .stackly-brands-sf-bar{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        margin:0 3.2vw;
+        padding:0;
+        height:clamp(38px,2.35vw,44px);
+        border-top:1px solid rgba(255,255,255,.13);
+        font-size:clamp(10.5px,.64vw,12px);
+        font-weight:400;
+        color:#fff;
+    }
+
+    .stackly-brands-sf-bar nav{
+        display:flex;
+        gap:clamp(18px,1.9vw,36px);
+    }
+
+    .stackly-brands-sf-bar a:hover{
+        color:#ff6a10;
+    }
+
+    .stackly-brands-sf-top,
+    #top.stackly-brands-sf-top{
+        position:fixed;
+        right:clamp(16px,1.75vw,33px);
+        bottom:clamp(16px,1.6vw,30px);
+        left:auto;
+        top:auto;
+        width:clamp(46px,3.7vw,70px);
+        height:clamp(46px,3.7vw,70px);
+        border-radius:50%;
+        background:#ff6a10;
+        border:0;
+        padding:0;
+        cursor:pointer;
+        display:grid;
+        place-items:center;
+        opacity:0;
+        transform:translateY(20px);
+        pointer-events:none;
+        transition:opacity .35s,transform .35s,background .25s;
+        z-index:90;
+        box-shadow:0 8px 24px rgba(255,106,16,.45);
+    }
+
+    .stackly-brands-sf-top.stackly-brands-show,
+    #top.stackly-brands-sf-top.stackly-brands-show{
+        opacity:1;
+        transform:none;
+        pointer-events:auto;
+    }
+
+    .stackly-brands-sf-top:hover,
+    #top.stackly-brands-sf-top:hover{
+        background:#e85a05;
+        transform:translateY(-4px);
+    }
+
+    .stackly-brands-sf-top svg{
+        width:42%;
+        height:42%;
+        stroke:#fff;
+        fill:none;
+        stroke-width:2.6;
+        stroke-linecap:round;
+        stroke-linejoin:round;
+    }
+
+    @media (max-width:980px){
+        .stackly-brands-sf-main{
+            grid-template-columns:1fr 1fr;
+            gap:34px 24px;
+            padding:36px 24px 34px;
+        }
+
+        .stackly-brands-sf-brand{
+            grid-column:1/-1;
+        }
+
+        .stackly-brands-sf-brand p{
+            max-width:420px;
+        }
+
+        .stackly-brands-sf-col>ul li{
+            font-size:14px;
+        }
+
+        .stackly-brands-sf-col h4{
+            font-size:16px;
+        }
+
+        .stackly-brands-sf-contact,
+        .stackly-brands-sf-app{
+            grid-column:1/-1;
+        }
+
+        .stackly-brands-sf-bar{
+            margin:0 24px;
+            height:auto;
+            padding:14px 0;
+            flex-wrap:wrap;
+        }
+    }
+
+    .stackly-brands-sf-logo img{
+        filter:url(#sfOrange)!important;
+        opacity:1!important;
+    }
+
+    /* ---------- UTILITIES ---------- */
+
+    /* replaces the former inline style="" attributes */
+
+    .stackly-brands-sprite{
+        position:absolute;
+    }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div
+        class="stackly-brands-progress"
+        id="progress"
+    ></div>
+
+    <!-- ================= HEADER ================= -->
+
+    <header
+        class="stackly-brands-header"
+        id="header"
+    >
+
+        <div class="stackly-brands-wrap">
+
+            <a
+                href="index.html"
+                class="stackly-brands-logo"
+                aria-label="Stackly home"
+            ><img src="assets/Home_53.webp" alt="Stackly" width="223" height="65" /></a>
+
+            <nav
+                class="stackly-brands-nav"
+                id="nav"
+                aria-label="Main"
+            >
+
+                <a href="index.html">Home</a>
+
+                <a href="shop.html">Shop</a>
+
+                <a href="categories.html">Categories</a>
+
+                <a
+                    href="brands.html"
+                    class="stackly-brands-active"
+                >Brands</a>
+
+                <a href="about.html">About Us</a>
+
+                <a href="blog.html">Blog</a>
+
+                <a href="contact.html">Contact Us</a>
+
+            </nav>
+
+            <div class="stackly-brands-tools">
+
+                <form
+                    class="stackly-brands-search"
+                    role="search"
+                    onsubmit="return false"
+                >
+
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        aria-label="Search"
+                    />
+
+                    <button
+                        type="submit"
+                        aria-label="Search"
+                    ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></button>
+
+                </form>
+
+                <a
+                    href="login.html"
+                    class="stackly-brands-icon-btn"
+                    aria-label="Account"
+                ><svg class="stackly-brands-sx-ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="7.500" r="4"/><path d="M4 21c0-4.200 3.500-6.800 8-6.800s8 2.600 8 6.800"/></svg></a>
+
+                <button
+                    class="stackly-brands-icon-btn"
+                    aria-label="Cart"
+                ><svg class="stackly-brands-sx-ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M1.500 3h3.200l2.600 12.200h11.300l2.200-8.700H5.800"/><circle cx="9.200" cy="19.800" r="1.400"/><circle cx="17.500" cy="19.800" r="1.400"/></svg></button>
+
+                <button
+                    class="stackly-brands-burger"
+                    id="burger"
+                    aria-label="Menu"
+                    aria-expanded="false"
+                ><span></span><span></span><span></span></button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+
+        <section
+            class="stackly-brands-hero"
+            id="hero"
+        >
+
+            <div
+                class="stackly-brands-hero-bg"
+                id="heroBg"
+            ></div>
+
+            <div class="stackly-brands-wrap">
+
+                <div
+                    class="stackly-brands-crumbs"
+                    data-hero
+                >
+
+                    <a href="index.html">Home</a>
+
+                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 1.5 5 5-5 5"/></svg>
+
+                    <span>Brands</span>
+
+                </div>
+
+                <h1 id="heroTitle">Top Automotive Brands</h1>
+
+                <p data-hero>
+                    We bring you genuine spare parts from the world’s most trusted automotive brands. Keep your vehicle running with quality, reliability and performance.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- ================= TRUST STRIP ================= -->
+
+        <section class="stackly-brands-trust">
+
+            <div class="stackly-brands-wrap">
+
+                <div
+                    class="stackly-brands-trust-item"
+                    data-trust
+                >
+
+                    <div class="stackly-brands-ic">
+
+                        <img
+                            src="assets/Home_2.webp"
+                            alt=""
+                        />
+
+                    </div>
+
+                    <div><b>100% Genuine Parts</b><span>Original &amp; Trusted brands</span></div>
+
+                </div>
+
+                <div
+                    class="stackly-brands-trust-item"
+                    data-trust
+                >
+
+                    <div class="stackly-brands-ic">
+
+                        <img
+                            src="assets/Home_4.webp"
+                            alt=""
+                        />
+
+                    </div>
+
+                    <div><b>Fast &amp; Reliable Delivery</b><span>Across India</span></div>
+
+                </div>
+
+                <div
+                    class="stackly-brands-trust-item"
+                    data-trust
+                >
+
+                    <div class="stackly-brands-ic">
+
+                        <svg width="46" height="46" viewBox="0 0 64 64" fill="none" stroke="#111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="32" cy="14" r="4.5" fill="#111"/>
+          <path d="M32 3v4M20 7l2.5 3M44 7l-2.5 3M14 16h4M46 16h4"/>
+          <circle cx="32" cy="32" r="9" fill="#111"/>
+          <path d="M14 58c0-10 8-16 18-16s18 6 18 16z" fill="#111"/>
+          <path d="M23 31a9 9 0 0 1 18 0"/><path d="M41 31v4a4 4 0 0 1-4 4h-3"/>
+        </svg>
+
+                    </div>
+
+                    <div><b>Expert Support</b><span>Get help anytime</span></div>
+
+                </div>
+
+                <div
+                    class="stackly-brands-trust-item"
+                    data-trust
+                >
+
+                    <div class="stackly-brands-ic">
+
+                        <img
+                            src="assets/Home_38.webp"
+                            alt=""
+                        />
+
+                    </div>
+
+                    <div><b>Best Prices</b><span>Save more,Drive more</span></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= OUR BRANDS ================= -->
+
+        <section class="stackly-brands-brands">
+
+            <div class="stackly-brands-wrap">
+
+                <div
+                    class="stackly-brands-sec-head"
+                    data-reveal
+                >
+
+                    <h2>Our Brands</h2>
+
+                    <p>Choose from a wide range of trusted brands for your vehicle’s needs.</p>
+
+                </div>
+
+                <div
+                    class="stackly-brands-brand-grid"
+                    id="brandGrid"
+                >
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_96.webp" alt="Toyota" /></div><span>Toyota</span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_97.webp" alt="Honda" /></div><span>Honda</span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_98.webp" alt="Ford" /></div><span>Ford</span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_99.webp" alt="Chevrolet" /></div><span>Chevrolet</span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_81.webp" alt="BMW" /></div><span>BMW</span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_82.webp" alt="Mercedes-Benz" /></div><span>Mercedes-Benz</span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_83.webp" alt="Hyundai" /></div><span>Hyundai</span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_84.webp" alt="Nissan" /></div><span>Nissan</span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_85.webp" alt="Volkswagen" /></div><span>Volkswagen</span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_91.webp" alt="Audi" /></div><span>Audi</span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_86.webp" alt="Mitsubishi" /></div><span>Mitsubishi</span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-brand-card"
+                    ><div class="stackly-brands-logo-box"><img src="assets/img_90.webp" alt="Mahindra" /></div><span>Mahindra</span></a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= FEATURED ================= -->
+
+        <section
+            class="stackly-brands-featured"
+            id="featured"
+        >
+
+            <div class="stackly-brands-wrap">
+
+                <div class="stackly-brands-f-copy">
+
+                    <span
+                        class="stackly-brands-bar"
+                        id="fBar"
+                    ></span>
+
+                    <h2 data-f>Featured Brands</h2>
+
+                    <p data-f>
+                        Premium quality parts from the world’s leading automotive brands.<br />Built for performance,safety and durability.
+                    </p>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-btn stackly-brands-magnetic"
+                        data-f
+                    >Explore All Brands <img src="assets/Home_3.webp" alt="" /></a>
+
+                </div>
+
+                <div
+                    class="stackly-brands-f-cards"
+                    id="fCards"
+                >
+
+                    <article class="stackly-brands-f-card">
+
+                        <div class="stackly-brands-lg">
+
+                            <img
+                                src="assets/img_96.webp"
+                                alt="Toyota"
+                            />
+
+                        </div>
+
+                        <div class="stackly-brands-car">
+
+                            <img
+                                src="assets/img_87.webp"
+                                alt="Toyota car"
+                            />
+
+                        </div>
+
+                        <h3>Toyota</h3>
+
+                        <p>Reliable,Durable,Always</p>
+
+                    </article>
+
+                    <article class="stackly-brands-f-card">
+
+                        <div class="stackly-brands-lg">
+
+                            <img
+                                src="assets/img_97.webp"
+                                alt="Honda"
+                            />
+
+                        </div>
+
+                        <div class="stackly-brands-car">
+
+                            <img
+                                src="assets/img_88.webp"
+                                alt="Honda car"
+                            />
+
+                        </div>
+
+                        <h3>Honda</h3>
+
+                        <p>Innovation for better tomorrow</p>
+
+                    </article>
+
+                    <article class="stackly-brands-f-card">
+
+                        <div class="stackly-brands-lg">
+
+                            <img
+                                src="assets/img_98.webp"
+                                alt="Ford"
+                            />
+
+                        </div>
+
+                        <div class="stackly-brands-car">
+
+                            <img
+                                src="assets/img_89.webp"
+                                alt="Ford truck"
+                            />
+
+                        </div>
+
+                        <h3>Ford</h3>
+
+                        <p>Built for what’s next</p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= SHOP BY CATEGORY ================= -->
+
+        <section class="stackly-brands-cats">
+
+            <div class="stackly-brands-wrap">
+
+                <div
+                    class="stackly-brands-sec-head"
+                    data-reveal
+                >
+
+                    <h2>Shop By Category</h2>
+
+                    <p>Find genuine spare parts for every system in your vehicle.</p>
+
+                </div>
+
+                <div
+                    class="stackly-brands-cat-grid"
+                    id="catGrid"
+                >
+
+                    <a
+                        href="#"
+                        class="stackly-brands-cat-card"
+                    ><div class="stackly-brands-im"><img src="assets/Home_5.webp" alt="Engine Parts" /></div><h3>Engine Parts</h3><span class="stackly-brands-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-cat-card"
+                    ><div class="stackly-brands-im"><img src="assets/Home_21.webp" alt="Brakes &amp; Clutch" /></div><h3>Brakes &amp; Clutch</h3><span class="stackly-brands-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-cat-card"
+                    ><div class="stackly-brands-im"><img src="assets/Home_34.webp" alt="Suspension &amp; Steering" /></div><h3>Suspension &amp; Steering</h3><span class="stackly-brands-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-cat-card"
+                    ><div class="stackly-brands-im"><img src="assets/Home_37.webp" alt="Filters" /></div><h3>Filters</h3><span class="stackly-brands-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-cat-card"
+                    ><div class="stackly-brands-im"><img class="stackly-brands-round" src="assets/img_75.webp" alt="Interior Accessories" /></div><h3>Interior Accessories</h3><span class="stackly-brands-va">View Products <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-cat-card"
+                    ><div class="stackly-brands-im"><img src="assets/Home_26.webp" alt="Belts &amp; Hoses" /></div><h3>Belts &amp; Hoses</h3><span class="stackly-brands-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-cat-card"
+                    ><div class="stackly-brands-im"><img src="assets/Home_27.webp" alt="Body Parts" /></div><h3>Body Parts</h3><span class="stackly-brands-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-cat-card"
+                    ><div class="stackly-brands-im"><img src="assets/Home_28.webp" alt="Lighting" /></div><h3>Lighting</h3><span class="stackly-brands-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-cat-card"
+                    ><div class="stackly-brands-im"><img src="assets/Home_29.webp" alt="Cooling System" /></div><h3>Cooling System</h3><span class="stackly-brands-va">View All <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-cat-card"
+                    ><div class="stackly-brands-im"><img src="assets/img_72.webp" alt="Lubricants &amp; Fluids" /></div><h3>Lubricants &amp; Fluids</h3><span class="stackly-brands-va">View Products <img src="assets/Home_1.webp" alt="" /></span></a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= WHY CHOOSE ================= -->
+
+        <section
+            class="stackly-brands-why"
+            id="why"
+        >
+
+            <div class="stackly-brands-wrap">
+
+                <div class="stackly-brands-copy">
+
+                    <h2 data-w>Why Choose Our Brand Partners?</h2>
+
+                    <p data-w>
+                        We work with the most trusted automotive brands to ensure you get the best quality spare parts for your vehicles.
+                    </p>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-btn stackly-brands-magnetic"
+                        data-w
+                    >Learn More <img src="assets/Home_3.webp" alt="" /></a>
+
+                </div>
+
+                <div class="stackly-brands-pic">
+
+                    <img
+                        id="whyImg"
+                        src="assets/img_92_cut.webp"
+                        alt="Genuine automotive spare parts"
+                    />
+
+                </div>
+
+                <div
+                    class="stackly-brands-perks"
+                    id="perks"
+                >
+
+                    <div class="stackly-brands-perk">
+                        <img src="assets/Home_13.webp" alt="" /><b>Wide Range</b><span>1000+ spare parts for all vehicle types</span>
+                    </div>
+
+                    <div class="stackly-brands-perk">
+                        <img src="assets/Home_23.webp" alt="" /><b>Quality Assurance</b><span>Genuine &amp; high-quality products.</span>
+                    </div>
+
+                    <div class="stackly-brands-perk">
+                        <img src="assets/Home_49.webp" alt="" /><b>Expert Guidance</b><span>Get the right part with expert support</span>
+                    </div>
+
+                    <div class="stackly-brands-perk">
+                        <img src="assets/Home_11.webp" alt="" /><b>Easy Returns</b><span>Hassle-free returns &amp; exchanges.</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= BRAND STORIES ================= -->
+
+        <section class="stackly-brands-stories">
+
+            <div class="stackly-brands-wrap">
+
+                <div
+                    class="stackly-brands-sec-head"
+                    data-reveal
+                >
+
+                    <h2>Brand Stories</h2>
+
+                    <p>Learn more about the brands we carry and what makes them special.</p>
+
+                </div>
+
+                <div
+                    class="stackly-brands-story-grid"
+                    id="storyGrid"
+                >
+
+                    <a
+                        href="#"
+                        class="stackly-brands-story"
+                    ><div class="stackly-brands-ph"><img src="assets/img_93.webp" alt="Toyota" /></div><div class="stackly-brands-tx"><small>Toyota</small><h3>The Legacy of Toyota-<br />Quality That Lasts</h3><span class="stackly-brands-rm">Read More <img src="assets/Home_1.webp" alt="" /></span></div></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-story"
+                    ><div class="stackly-brands-ph"><img src="assets/img_94.webp" alt="Ford" /></div><div class="stackly-brands-tx"><small>Ford</small><h3>Built For Toughness-<br />The Ford Story</h3><span class="stackly-brands-rm">Read More <img src="assets/Home_1.webp" alt="" /></span></div></a>
+
+                    <a
+                        href="#"
+                        class="stackly-brands-story"
+                    ><div class="stackly-brands-ph"><img src="assets/img_95.webp" alt="Honda" /></div><div class="stackly-brands-tx"><small>Honda</small><h3>Innovation in Every Drive-<br />Honda’s Journey</h3><span class="stackly-brands-rm">Read More <img src="assets/Home_1.webp" alt="" /></span></div></a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= NEWSLETTER ================= -->
+
+        <section
+            class="stackly-brands-nlx"
+            aria-label="Newsletter"
+        >
+
+            <img
+                class="stackly-brands-nlx-bg"
+                src="assets/Home_9.webp"
+                alt=""
+                aria-hidden="true"
+            />
+
+            <div class="stackly-brands-nlx-in">
+
+                <span class="stackly-brands-nlx-ico"><svg viewBox="0 0 88 62" fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="82" height="54" rx="2"/><path d="M4 6l40 31L84 6"/></svg></span>
+
+                <div class="stackly-brands-nlx-copy">
+
+                    <h3>Subscribe to Our Newsletter</h3>
+
+                    <p>Get the latest updates on new arrivals,exclusive offers and more.</p>
+
+                </div>
+
+                <form
+                    class="stackly-brands-nlx-form"
+                    id="subForm"
+                    novalidate
+                >
+
+                    <input
+                        type="email"
+                        id="subEmail"
+                        placeholder="Enter Your Email Address"
+                        aria-label="Email address"
+                        autocomplete="email"
+                    />
+
+                    <button type="submit">Subscribe</button>
+
+                    <span
+                        class="stackly-brands-nlx-msg"
+                        id="subMsg"
+                        role="status"
+                        aria-live="polite"
+                    ></span>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <svg class="stackly-brands-sprite" width="0" height="0" aria-hidden="true" focusable="false"><filter id="sfOrange" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.9922  0 0 0 0 0.3569  0 0 0 0 0.0157  0 0 0 1 0"/></filter></svg>
+
+    <footer class="stackly-brands-sf">
+
+        <div class="stackly-brands-sf-main">
+
+            <div class="stackly-brands-sf-brand">
+
+                <a
+                    class="stackly-brands-sf-logo"
+                    href="index.html"
+                    aria-label="Stackly home"
+                ><img src="assets/logo-footer.webp" onerror="this.onerror=null;this.src='assets/Home_53.webp'" alt="Stackly" width="255" height="75" /></a>
+
+                <p>
+                    Your one-step destination for genuine automative Spare parts. Quality products, trusted brands and services.
+                </p>
+
+                <div class="stackly-brands-sf-socials">
+
+                    <a
+                        href="404.html"
+                        aria-label="Facebook"
+                    ><svg class="stackly-brands-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5 2h14a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3zM13.5 22v-7.600h2.500l.4-3h-2.900V9.500c0-.9.300-1.500 1.500-1.500h1.500V5.300c-.3 0-1.200-.1-2.200-.1-2.200 0-3.700 1.300-3.700 3.800v2.200H8.100v3h2.500V22z"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="Instagram"
+                    ><svg class="stackly-brands-sf-soc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.100"/><circle cx="17.300" cy="6.700" r="1" fill="currentColor" stroke="none"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="YouTube"
+                    ><svg class="stackly-brands-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M21.600 7.200a2.500 2.500 0 0 0-1.800-1.800C18.300 5 12 5 12 5s-6.300 0-7.800.4A2.500 2.500 0 0 0 2.400 7.200C2 8.700 2 12 2 12s0 3.300.4 4.800a2.500 2.500 0 0 0 1.800 1.800C5.700 19 12 19 12 19s6.300 0 7.800-.4a2.500 2.500 0 0 0 1.800-1.800C22 15.300 22 12 22 12s0-3.300-.4-4.800zM10 15V9l5.200 3z"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="WhatsApp"
+                    ><svg class="stackly-brands-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.030-.967-.273-.099-.471-.148-.670.150-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.150-1.255-.463-2.390-1.475-.883-.788-1.480-1.761-1.653-2.059-.173-.297-.018-.458.130-.606.134-.133.298-.347.446-.520.149-.174.198-.298.298-.497.099-.198.050-.371-.025-.520-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.500-.669-.510-.173-.008-.371-.010-.570-.010-.198 0-.520.074-.792.372-.272.297-1.040 1.016-1.040 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.200 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.360.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.870 9.870 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.860 9.860 0 01-1.510-5.260c.001-5.450 4.436-9.884 9.888-9.884 2.640 0 5.122 1.030 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.450-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.050 0C5.495 0 .160 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.480-8.413z"/></svg></a>
+
+                </div>
+
+            </div>
+
+            <div class="stackly-brands-sf-col">
+
+                <h4>Quick Links</h4>
+
+                <ul>
+
+                    <li>
+
+                        <a href="index.html">Home</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="shop.html">Shop</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="brands.html">Brands</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="about.html">About Us</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="blog.html">Blog</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="contact.html">Contact Us</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-brands-sf-col">
+
+                <h4>Customer Services</h4>
+
+                <ul>
+
+                    <li>
+
+                        <a href="404.html">Help Center</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Track Order</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Shipping Policy</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Return Policy</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">FAQs</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-brands-sf-col stackly-brands-sf-contact">
+
+                <h4>Contact Us</h4>
+
+                <ul>
+
+                    <li>
+                        <span class="stackly-brands-sf-dot"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.250.2 2.450.6 3.600a1 1 0 0 1-.25 1z"/></svg></span><a href="tel:+917010792745">+91 7010792745</a>
+                    </li>
+
+                    <li>
+                        <span class="stackly-brands-sf-dot"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 011 1v1.200l-10 6.300L2 7.200V6a1 1 0 011-1zm-1 4.500l10 6.300 10-6.300V18a1 1 0 01-1 1H3a1 1 0 01-1-1z"/></svg></span><a href="mailto:info@stackly.com">info@stackly.com</a>
+                    </li>
+
+                    <li>
+                        <span class="stackly-brands-sf-dot"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.500A2.500 2.500 0 1112 6.500a2.500 2.500 0 010 5z"/></svg></span><span>Tamilnadu<br />Salem - 636008</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-brands-sf-col stackly-brands-sf-app">
+
+                <h4>Download Our App</h4>
+
+                <div class="stackly-brands-sf-badges">
+
+                    <a
+                        class="stackly-brands-sf-badge"
+                        href="404.html"
+                        aria-label="Get it on Google Play"
+                    ><svg class="stackly-brands-sf-bico" width="22" height="24" viewBox="0 0 24 26" aria-hidden="true"><path fill="#00a0ff" d="M1.500 1.200L13 13 1.500 24.800C1.100 24.500 1 24 1 23.400V2.600C1 2 1.100 1.500 1.500 1.200z"/><path fill="#00f076" d="M1.500 1.200L18 9.800 13 13z"/><path fill="#ff3a44" d="M1.500 24.800L18 16.200 13 13z"/><path fill="#ffd500" d="M18 9.800l4.500 2.400c.9.500.9 1.600 0 2.100L18 16.200 13 13z"/></svg> <span><small>GET IT ON</small><b>Google Play</b></span></a>
+
+                    <a
+                        class="stackly-brands-sf-badge"
+                        href="404.html"
+                        aria-label="Download on the App Store"
+                    ><svg class="stackly-brands-sf-bico" width="22" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.365 1.430c0 1.140-.493 2.270-1.177 3.080-.744.900-1.990 1.570-2.987 1.570-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.150.572-2.270 1.206-2.980.804-.940 2.142-1.640 3.248-1.680.03.130.05.280.05.430zm4.565 15.710c-.03.07-.463 1.580-1.518 3.120-.945 1.340-1.940 2.710-3.430 2.710-1.517 0-1.900-.88-3.630-.88-1.698 0-2.302.91-3.670.91-1.377 0-2.332-1.260-3.428-2.800-1.287-1.820-2.323-4.630-2.323-7.280 0-4.280 2.797-6.550 5.552-6.550 1.448 0 2.675.95 3.600.95.865 0 2.222-1.010 3.902-1.010.613 0 2.886.06 4.374 2.190-.13.09-2.383 1.370-2.383 4.190 0 3.260 2.854 4.420 2.955 4.450z"/></svg> <span><small>Download on the</small><b>App Store</b></span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="stackly-brands-sf-bar">
+            <span>&copy; 2026 STACKLY. All rights reserved.</span><nav><a href="404.html">Privacy Policy</a><a href="404.html">Terms &amp; Conditions</a></nav>
+        </div>
+
+    </footer>
+
+    <button
+        class="stackly-brands-sf-top"
+        id="toTop"
+        aria-label="Back to top"
+    ><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 15 7-7 7 7"/></svg></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+(function(){
+  /* ---------- UI that works without GSAP ---------- */
+  var header=document.getElementById('header'),
+      toTop=document.getElementById('toTop'),
+      progress=document.getElementById('progress'),
+      burger=document.getElementById('burger'),
+      nav=document.getElementById('nav');
+
+  burger.addEventListener('click',function(){
+    var open=nav.classList.toggle('stackly-brands-open');
+    burger.classList.toggle('stackly-brands-open',open);
+    burger.setAttribute('aria-expanded',open);
+  });
+  nav.addEventListener('click',function(e){ if(e.target.tagName==='A'){ nav.classList.remove('stackly-brands-open'); burger.classList.remove('stackly-brands-open'); } });
+
+  function onScroll(){
+    var y=window.scrollY||document.documentElement.scrollTop,
+        max=document.documentElement.scrollHeight-window.innerHeight;
+    header.classList.toggle('stackly-brands-scrolled',y>10);
+    toTop.classList.toggle('stackly-brands-show',y>600);
+    progress.style.transform='scaleX('+(max>0?y/max:0)+')';
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  toTop.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+
+  /* newsletter */
+  var form=document.getElementById('subForm'),
+      email=document.getElementById('subEmail'),
+      msg=document.getElementById('subMsg');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
+    msg.textContent=ok?'Thanks for subscribing! Check your inbox.':'Please enter a valid email address.';
+    msg.style.color=ok?'#b8f2c8':'#ffd7bf';
+    if(window.gsap){
+      gsap.fromTo(msg,{y:-6,opacity:0},{y:0,opacity:1,duration:.4,ease:'power2.out'});
+      if(!ok) gsap.fromTo(form,{x:-8},{x:0,duration:.5,ease:'elastic.out(1,.3)'});
+    }
+    if(ok) form.reset();
+  });
+
+  /* ---------- animations ---------- */
+  if(!window.gsap || !window.ScrollTrigger || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* header entrance */
+  gsap.from(header.querySelectorAll('.stackly-brands-logo,.stackly-brands-nav a,.stackly-brands-tools > *'),{y:-26,opacity:0,duration:.7,stagger:.05,ease:'power3.out'});
+
+  /* hero title: word mask reveal */
+  var h1=document.getElementById('heroTitle');
+  h1.innerHTML=h1.textContent.trim().split(/\s+/).map(function(w){return '<span class="stackly-brands-w"><i>'+w+'</i></span>';}).join(' ');
+  var tl=gsap.timeline({defaults:{ease:'power3.out'},delay:.15});
+  tl.from('#heroBg',{scale:1.18,duration:2,ease:'power2.out'},0)
+    .from('.stackly-brands-crumbs',{x:-30,opacity:0,duration:.7},.2)
+    .from('#heroTitle .stackly-brands-w i',{yPercent:115,duration:.9,stagger:.12},.3)
+    .from('.stackly-brands-hero p',{y:24,opacity:0,duration:.8},.75);
+  gsap.to('#heroBg',{yPercent:12,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.stackly-brands-hero .stackly-brands-wrap',{y:-30,opacity:.35,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+
+  /* trust strip */
+  gsap.from('[data-trust]',{y:30,opacity:0,duration:.7,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:'.stackly-brands-trust',start:'top 90%'}});
+  gsap.utils.toArray('[data-trust] .stackly-brands-ic img, [data-trust] .stackly-brands-ic svg').forEach(function(el){
+    gsap.from(el,{scale:.4,rotate:-25,opacity:0,duration:.8,ease:'back.out(2)',scrollTrigger:{trigger:el,start:'top 95%'}});
+  });
+
+  /* section headings */
+  gsap.utils.toArray('[data-reveal]').forEach(function(el){
+    gsap.from(el.children,{y:34,opacity:0,duration:.8,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 85%'}});
+  });
+
+  /* grids */
+  function stagger(sel,vars,trig,start){
+    gsap.from(sel,Object.assign({opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:trig,start:start||'top 82%'}},vars));
+  }
+  stagger('#brandGrid .stackly-brands-brand-card',{y:60,scale:.92,stagger:{each:.06,grid:[3,4],from:'start'},clearProps:'transform'},'#brandGrid');
+  stagger('#catGrid .stackly-brands-cat-card',{y:50,scale:.94,stagger:{each:.06,grid:[2,5],from:'start'},clearProps:'transform'},'#catGrid');
+  stagger('#storyGrid .stackly-brands-story',{y:60,duration:.9,stagger:.15,clearProps:'transform'},'#storyGrid');
+
+  /* featured */
+  gsap.from('#fBar',{scaleX:0,duration:.8,ease:'power3.inOut',scrollTrigger:{trigger:'#featured',start:'top 75%'}});
+  gsap.from('[data-f]',{y:30,opacity:0,duration:.8,stagger:.14,ease:'power3.out',scrollTrigger:{trigger:'#featured',start:'top 75%'}});
+  gsap.from('#fCards .stackly-brands-f-card',{y:90,rotateY:-35,opacity:0,duration:1,stagger:.18,ease:'power3.out',clearProps:'transform',scrollTrigger:{trigger:'#featured',start:'top 70%'}});
+  gsap.utils.toArray('#fCards .stackly-brands-car img').forEach(function(img,i){
+    gsap.to(img,{y:-6,duration:2+i*.4,repeat:-1,yoyo:true,ease:'sine.inOut',delay:i*.3});
+  });
+
+  /* featured card 3D tilt */
+  document.querySelectorAll('.stackly-brands-f-card').forEach(function(card){
+    card.addEventListener('mousemove',function(e){
+      var r=card.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+      gsap.to(card,{rotateY:px*14,rotateX:-py*14,y:-8,duration:.4,ease:'power2.out',transformPerspective:700});
+    });
+    card.addEventListener('mouseleave',function(){ gsap.to(card,{rotateY:0,rotateX:0,y:0,duration:.6,ease:'power3.out'}); });
+  });
+
+  /* why choose */
+  gsap.from('[data-w]',{x:-40,opacity:0,duration:.8,stagger:.14,ease:'power3.out',scrollTrigger:{trigger:'#why',start:'top 75%'}});
+  gsap.from('#whyImg',{scale:.85,x:40,opacity:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'#why',start:'top 75%'}});
+  gsap.to('#whyImg',{y:-8,duration:3,repeat:-1,yoyo:true,ease:'sine.inOut'});
+  gsap.from('#perks .stackly-brands-perk',{y:40,opacity:0,duration:.7,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:'#perks',start:'top 85%'}});
+  gsap.from('#perks .stackly-brands-perk img',{scale:0,rotate:-90,duration:.8,stagger:.12,ease:'back.out(2.2)',scrollTrigger:{trigger:'#perks',start:'top 85%'}});
+
+  /* newsletter */
+  gsap.from('.stackly-brands-nlx-copy,.stackly-brands-nlx-form',{y:36,opacity:0,duration:.8,stagger:.15,ease:'power3.out',scrollTrigger:{trigger:'.stackly-brands-nlx',start:'top 90%'}});
+
+  /* footer */
+  gsap.from('.stackly-brands-sf-brand,.stackly-brands-sf-col',{y:34,opacity:0,duration:.8,stagger:.1,ease:'power3.out',scrollTrigger:{trigger:'.stackly-brands-sf',start:'top 92%'}});
+
+  /* magnetic buttons */
+  document.querySelectorAll('.stackly-brands-magnetic').forEach(function(b){
+    b.addEventListener('mousemove',function(e){
+      var r=b.getBoundingClientRect();
+      gsap.to(b,{x:(e.clientX-r.left-r.width/2)*.28,y:(e.clientY-r.top-r.height/2)*.4,duration:.3,ease:'power2.out'});
+    });
+    b.addEventListener('mouseleave',function(){ gsap.to(b,{x:0,y:0,duration:.6,ease:'elastic.out(1,.4)'}); });
+  });
+
+  window.addEventListener('load',function(){ ScrollTrigger.refresh(); });
+})();
+</script>
+
+</body>
+</html>

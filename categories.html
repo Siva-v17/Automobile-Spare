@@ -1,0 +1,2720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Categories | Stackly Auto Spare Parts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    /* ==========================================================
+       Stackly Auto Parts - categories.html styles
+       class prefix: stackly-categories-
+       ========================================================== */
+
+    :root{
+        --orange:#ff5a0a;
+        --amber:#b8650a;
+        --navy:#0c1c2e;
+        --ink:#111;
+        --line:#e2e2e2;
+        --red:#b90808;
+        --max:1280px;
+    }
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    html{
+        scroll-behavior:smooth;
+    }
+
+    body{
+        font-family:'Inter',Arial,sans-serif;
+        color:var(--ink);
+        background:#fff;
+        overflow-x:hidden;
+    }
+
+    a{
+        text-decoration:none;
+        color:inherit;
+    }
+
+    ul{
+        list-style:none;
+    }
+
+    img{
+        display:block;
+        max-width:100%;
+    }
+
+    .stackly-categories-wrap{
+        width:100%;
+        max-width:var(--max);
+        margin:0 auto;
+        padding:0 24px;
+    }
+
+    /* ---------- PROGRESS BAR ---------- */
+
+    #progress{
+        position:fixed;
+        top:0;
+        left:0;
+        height:3px;
+        width:0;
+        background:var(--orange);
+        z-index:200;
+    }
+
+    /* ---------- HEADER ---------- */
+
+    header{
+        position:sticky;
+        top:0;
+        z-index:100;
+        background:#fff;
+        height:92px;
+        transition:box-shadow .3s,height .3s;
+    }
+
+    header.stackly-categories-scrolled{
+        box-shadow:0 4px 20px rgba(0,0,0,.12);
+        height:78px;
+    }
+
+    .stackly-categories-nav{
+        display:flex;
+        align-items:center;
+        height:100%;
+        gap:0;
+    }
+
+    .stackly-categories-logo img{
+        height:64px;
+        width:auto;
+        transition:height .3s;
+    }
+
+    header.stackly-categories-scrolled .stackly-categories-logo img{
+        height:54px;
+    }
+
+    .stackly-categories-menu{
+        display:flex;
+        gap:46px;
+        margin-left:66px;
+        flex:1;
+    }
+
+    .stackly-categories-menu a{
+        font-size:13px;
+        font-weight:600;
+        position:relative;
+        padding:6px 0;
+        transition:color .25s;
+    }
+
+    .stackly-categories-menu a::after{
+        content:"";
+        position:absolute;
+        left:0;
+        bottom:0;
+        height:2px;
+        width:0;
+        background:var(--orange);
+        transition:width .3s;
+    }
+
+    .stackly-categories-menu a:hover{
+        color:var(--orange);
+    }
+
+    .stackly-categories-menu a:hover::after,
+    .stackly-categories-menu a.stackly-categories-active::after{
+        width:100%;
+    }
+
+    .stackly-categories-menu a.stackly-categories-active{
+        color:var(--orange);
+        font-weight:700;
+    }
+
+    .stackly-categories-search{
+        position:relative;
+        width:206px;
+        height:37px;
+        border:1px solid #777;
+        border-radius:6px;
+        display:flex;
+        align-items:center;
+        transition:width .35s,border-color .3s,box-shadow .3s;
+    }
+
+    .stackly-categories-search:focus-within{
+        width:260px;
+        border-color:var(--orange);
+        box-shadow:0 0 0 3px rgba(255,90,10,.15);
+    }
+
+    .stackly-categories-search input{
+        border:0;
+        outline:0;
+        background:transparent;
+        flex:1;
+        padding:0 12px;
+        font:13px 'Inter',sans-serif;
+        height:100%;
+        min-width:0;
+    }
+
+    .stackly-categories-search svg{
+        width:20px;
+        height:20px;
+        margin-right:10px;
+        fill:#555;
+    }
+
+    .stackly-categories-icons{
+        display:flex;
+        gap:24px;
+        margin-left:36px;
+        align-items:center;
+    }
+
+    .stackly-categories-icons a{
+        position:relative;
+        display:block;
+        transition:transform .25s;
+    }
+
+    .stackly-categories-icons a:hover{
+        transform:translateY(-3px) scale(1.08);
+    }
+
+    .stackly-categories-icons img{
+        width:28px;
+        height:28px;
+    }
+
+    .stackly-categories-cart-count{
+        position:absolute;
+        top:-8px;
+        right:-9px;
+        background:var(--orange);
+        color:#fff;
+        font-size:10px;
+        font-weight:700;
+        width:17px;
+        height:17px;
+        border-radius:50%;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-categories-burger{
+        display:none;
+        background:none;
+        border:0;
+        width:36px;
+        height:30px;
+        margin-left:14px;
+        cursor:pointer;
+        position:relative;
+    }
+
+    .stackly-categories-burger span{
+        position:absolute;
+        left:4px;
+        right:4px;
+        height:2px;
+        background:#111;
+        transition:.3s;
+    }
+
+    .stackly-categories-burger span:nth-child(1){
+        top:7px;
+    }
+
+    .stackly-categories-burger span:nth-child(2){
+        top:14px;
+    }
+
+    .stackly-categories-burger span:nth-child(3){
+        top:21px;
+    }
+
+    .stackly-categories-burger.stackly-categories-open span:nth-child(1){
+        top:14px;
+        transform:rotate(45deg);
+    }
+
+    .stackly-categories-burger.stackly-categories-open span:nth-child(2){
+        opacity:0;
+    }
+
+    .stackly-categories-burger.stackly-categories-open span:nth-child(3){
+        top:14px;
+        transform:rotate(-45deg);
+    }
+
+    /* ---------- HERO ---------- */
+
+    .stackly-categories-hero{
+        position:relative;
+        height:281px;
+        background:var(--navy);
+        overflow:hidden;
+        color:#fff;
+    }
+
+    .stackly-categories-hero-bg{
+        position:absolute;
+        top:-30px;
+        bottom:-30px;
+        right:0;
+        width:68%;
+        background:url(assets/hero-car.webp) right center/cover no-repeat;
+        will-change:transform;
+    }
+
+    .stackly-categories-hero::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:linear-gradient(90deg,rgba(12,28,46,1) 0%,rgba(12,28,46,1) 34%,rgba(12,28,46,.35) 62%,rgba(12,28,46,0) 100%);
+    }
+
+    .stackly-categories-hero .stackly-categories-wrap{
+        position:relative;
+        z-index:2;
+        height:100%;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        padding-top:6px;
+    }
+
+    .stackly-categories-eyebrow{
+        color:#f5a21b;
+        font-size:12px;
+        font-weight:600;
+        letter-spacing:2.4px;
+        text-transform:uppercase;
+    }
+
+    .stackly-categories-hero h1{
+        font-size:50px;
+        font-weight:800;
+        margin:24px 0 28px;
+        letter-spacing:-.5px;
+        line-height:1;
+    }
+
+    .stackly-categories-hero p{
+        font-size:17px;
+        line-height:35px;
+        max-width:540px;
+        color:#f1f1f1;
+    }
+
+    .stackly-categories-hero .stackly-categories-eyebrow,
+    .stackly-categories-hero h1,
+    .stackly-categories-hero p{
+        opacity:0;
+        transform:translateY(30px);
+        animation:stackly-categories-rise .8s cubic-bezier(.2,.7,.2,1) forwards;
+    }
+
+    .stackly-categories-hero h1{
+        animation-delay:.15s;
+    }
+
+    .stackly-categories-hero p{
+        animation-delay:.3s;
+    }
+
+    @keyframes stackly-categories-rise{
+        to{
+            opacity:1;
+            transform:none;
+        }
+    }
+
+    .stackly-categories-hero-line{
+        position:absolute;
+        left:0;
+        bottom:0;
+        height:4px;
+        background:var(--orange);
+        width:0;
+        z-index:3;
+        animation:stackly-categories-grow 1.2s .5s ease forwards;
+    }
+
+    @keyframes stackly-categories-grow{
+        to{
+            width:140px;
+        }
+    }
+
+    /* ---------- LAYOUT ---------- */
+
+    .stackly-categories-main{
+        display:grid;
+        grid-template-columns:307px 1fr;
+        gap:14px;
+        padding:18px 0 0;
+        align-items:start;
+    }
+
+    /* ---------- SIDEBAR ---------- */
+
+    .stackly-categories-side-box{
+        border:1px solid #d9d9d9;
+        border-radius:14px;
+        box-shadow:0 2px 8px rgba(0,0,0,.12);
+        overflow:hidden;
+        background:#fff;
+    }
+
+    .stackly-categories-side-title{
+        display:flex;
+        align-items:center;
+        height:65px;
+        font-size:15px;
+        font-weight:700;
+        padding-left:31px;
+        position:relative;
+    }
+
+    .stackly-categories-side-title::before{
+        content:"";
+        position:absolute;
+        left:0;
+        top:20px;
+        width:6px;
+        height:25px;
+        background:var(--orange);
+    }
+
+    .stackly-categories-cat-list{
+        padding-bottom:6px;
+    }
+
+    .stackly-categories-cat-list li a{
+        display:flex;
+        align-items:center;
+        height:35px;
+        margin-bottom:0;
+        padding:0 14px 0 14px;
+        font-size:14.5px;
+        font-weight:500;
+        position:relative;
+        transition:background .25s,padding .25s,color .25s;
+    }
+
+    .stackly-categories-cat-list li{
+        height:35px;
+    }
+
+    .stackly-categories-cat-list li a .stackly-categories-ic{
+        width:18px;
+        height:18px;
+        object-fit:contain;
+        margin-right:18px;
+        flex:none;
+        filter:grayscale(1) contrast(1.2);
+        transition:filter .25s,transform .3s;
+    }
+
+    .stackly-categories-cat-list li a .stackly-categories-chev{
+        margin-left:auto;
+        width:7px;
+        height:7px;
+        border-right:2px solid #222;
+        border-top:2px solid #222;
+        transform:rotate(45deg);
+        margin-right:5px;
+        transition:transform .25s,border-color .25s;
+    }
+
+    .stackly-categories-cat-list li a:hover,
+    .stackly-categories-cat-list li a.stackly-categories-on{
+        background:#f4dccf;
+    }
+
+    .stackly-categories-cat-list li a:hover{
+        padding-left:20px;
+    }
+
+    .stackly-categories-cat-list li a:hover .stackly-categories-ic{
+        transform:scale(1.2) rotate(-8deg);
+    }
+
+    .stackly-categories-cat-list li a:hover .stackly-categories-chev{
+        transform:rotate(45deg) translate(3px,-3px);
+        border-color:var(--orange);
+    }
+
+    .stackly-categories-cat-list li{
+        opacity:0;
+        transform:translateX(-18px);
+        transition:opacity .5s,transform .5s;
+    }
+
+    .stackly-categories-in .stackly-categories-cat-list li{
+        opacity:1;
+        transform:none;
+    }
+
+    /* ---------- PROMO ---------- */
+
+    .stackly-categories-promo{
+        margin-top:16px;
+        height:349px;
+        border-radius:12px;
+        background:var(--red);
+        color:#fff;
+        position:relative;
+        overflow:hidden;
+        padding:36px 24px;
+    }
+
+    .stackly-categories-promo h3{
+        font-size:25px;
+        font-weight:700;
+        line-height:29px;
+        margin-bottom:12px;
+    }
+
+    .stackly-categories-promo p{
+        font-size:19px;
+        line-height:24px;
+        font-weight:400;
+        width:200px;
+    }
+
+    .stackly-categories-promo .stackly-categories-btn{
+        position:absolute;
+        left:24px;
+        top:174px;
+        background:#fff;
+        color:#000;
+        font-size:10px;
+        font-weight:700;
+        padding:0 18px;
+        height:31px;
+        display:flex;
+        align-items:center;
+        border-radius:6px;
+        z-index:2;
+        transition:.3s;
+    }
+
+    .stackly-categories-promo .stackly-categories-btn:hover{
+        background:var(--orange);
+        color:#fff;
+        transform:translateY(-2px);
+        box-shadow:0 8px 18px rgba(0,0,0,.35);
+    }
+
+    .stackly-categories-promo img{
+        position:absolute;
+        right:0;
+        bottom:0;
+        width:236px;
+        height:132px;
+        object-fit:cover;
+        border-top-left-radius:8px;
+        animation:stackly-categories-float 5s ease-in-out infinite;
+    }
+
+    @keyframes stackly-categories-float{
+        50%{
+            transform:translateY(-6px) scale(1.04);
+        }
+    }
+
+    .stackly-categories-promo::before{
+        content:"";
+        position:absolute;
+        width:260px;
+        height:260px;
+        border-radius:50%;
+        background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);
+        top:-90px;
+        right:-80px;
+        animation:stackly-categories-pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes stackly-categories-pulse{
+        50%{
+            transform:scale(1.25);
+            opacity:.6;
+        }
+    }
+
+    /* ---------- SECTION HEAD ---------- */
+
+    .stackly-categories-sec-head{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        height:46px;
+        margin-top:5px;
+    }
+
+    .stackly-categories-sec-head h2,
+    .stackly-categories-brands h2{
+        font-size:24px;
+        font-weight:700;
+        position:relative;
+        padding-left:17px;
+        display:flex;
+        align-items:center;
+    }
+
+    .stackly-categories-sec-head h2::before,
+    .stackly-categories-brands h2::before{
+        content:"";
+        position:absolute;
+        left:0;
+        top:50%;
+        transform:translateY(-50%);
+        width:6px;
+        height:25px;
+        background:var(--orange);
+    }
+
+    .stackly-categories-view-all{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        font-size:15px;
+        font-weight:600;
+        margin-right:20px;
+        transition:color .25s;
+    }
+
+    .stackly-categories-view-all svg{
+        width:22px;
+        height:18px;
+        transition:transform .3s;
+    }
+
+    .stackly-categories-view-all:hover{
+        color:var(--orange);
+    }
+
+    .stackly-categories-view-all:hover svg{
+        transform:translateX(7px);
+    }
+
+    /* ---------- GRID ---------- */
+
+    .stackly-categories-grid{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        column-gap:11px;
+        margin-top:6px;
+    }
+
+    .stackly-categories-card{
+        border:1px solid #d8d8d8;
+        border-radius:10px;
+        height:201px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:flex-start;
+        text-align:center;
+        background:#fff;
+        position:relative;
+        overflow:hidden;
+        transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s;
+        transform-style:preserve-3d;
+    }
+
+    .stackly-categories-card:nth-child(n+5){
+        margin-top:42px;
+    }
+
+    .stackly-categories-card:nth-child(n+9){
+        margin-top:46px;
+    }
+
+    .stackly-categories-card:nth-child(n+13){
+        margin-top:48px;
+    }
+
+    .stackly-categories-card.stackly-categories-r1{
+        height:201px;
+    }
+
+    .stackly-categories-card.stackly-categories-r2{
+        height:201px;
+    }
+
+    .stackly-categories-card.stackly-categories-r3{
+        height:201px;
+    }
+
+    .stackly-categories-card.stackly-categories-r4{
+        height:201px;
+    }
+
+    .stackly-categories-card .stackly-categories-pic{
+        height:130px;
+        margin-top:17px;
+        width:100%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        transition:transform .45s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .stackly-categories-card .stackly-categories-pic img{
+        max-height:112px;
+        max-width:84%;
+        object-fit:contain;
+        mix-blend-mode:multiply;
+    }
+
+    .stackly-categories-card .stackly-categories-pic img.stackly-categories-wide{
+        max-width:196px;
+        max-height:112px;
+    }
+
+    .stackly-categories-card h4{
+        font-size:14.5px;
+        font-weight:700;
+        margin-top:8px;
+        transition:color .25s;
+    }
+
+    .stackly-categories-card .stackly-categories-vp{
+        display:flex;
+        align-items:center;
+        gap:6px;
+        font-size:13px;
+        font-weight:600;
+        color:var(--amber);
+        margin-top:4px;
+    }
+
+    .stackly-categories-card .stackly-categories-vp img{
+        width:19px;
+        height:12px;
+        transition:transform .3s;
+    }
+
+    .stackly-categories-card:hover{
+        transform:translateY(-8px);
+        border-color:var(--orange);
+        box-shadow:0 16px 30px rgba(255,90,10,.18);
+    }
+
+    .stackly-categories-card:hover .stackly-categories-pic{
+        transform:scale(1.1);
+    }
+
+    .stackly-categories-card:hover h4{
+        color:var(--orange);
+    }
+
+    .stackly-categories-card:hover .stackly-categories-vp img{
+        transform:translateX(6px);
+    }
+
+    .stackly-categories-card::before{
+        content:"";
+        position:absolute;
+        left:0;
+        top:0;
+        height:3px;
+        width:0;
+        background:var(--orange);
+        transition:width .4s;
+    }
+
+    .stackly-categories-card:hover::before{
+        width:100%;
+    }
+
+    .stackly-categories-card::after{
+        content:"";
+        position:absolute;
+        top:0;
+        left:-80%;
+        width:50%;
+        height:100%;
+        background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);
+        transform:skewX(-20deg);
+        pointer-events:none;
+    }
+
+    .stackly-categories-card:hover::after{
+        animation:stackly-categories-shine .8s;
+    }
+
+    @keyframes stackly-categories-shine{
+        to{
+            left:140%;
+        }
+    }
+
+    /* ---------- REVEAL ---------- */
+
+    .stackly-categories-reveal{
+        opacity:0;
+        transform:translateY(40px) scale(.97);
+        transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .stackly-categories-reveal.stackly-categories-show{
+        opacity:1;
+        transform:none;
+    }
+
+    .stackly-categories-card.stackly-categories-reveal.stackly-categories-show:hover{
+        transform:translateY(-8px);
+    }
+
+    /* ---------- BRANDS ---------- */
+
+    .stackly-categories-brands{
+        margin-top:72px;
+    }
+
+    .stackly-categories-brand-row{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-top:25px;
+        height:100px;
+        padding-right:10px;
+    }
+
+    .stackly-categories-brand-row img{
+        transition:transform .4s,filter .4s;
+        cursor:pointer;
+    }
+
+    .stackly-categories-brand-row img:hover{
+        transform:scale(1.12) translateY(-4px);
+        filter:drop-shadow(0 10px 12px rgba(0,0,0,.2));
+    }
+
+    .stackly-categories-brand-row img.stackly-categories-bosch{
+        width:163px;
+    }
+
+    .stackly-categories-brand-row img.stackly-categories-denso{
+        width:245px;
+    }
+
+    .stackly-categories-brand-row img.stackly-categories-mann{
+        width:136px;
+    }
+
+    .stackly-categories-brand-row img.stackly-categories-mobil{
+        width:178px;
+    }
+
+    .stackly-categories-brand-row img.stackly-categories-castrol{
+        width:254px;
+    }
+
+    /* ---------- FEATURES ---------- */
+
+    .stackly-categories-features{
+        margin-top:40px;
+        border:1px solid #cfcfcf;
+        border-left:0;
+        border-right:0;
+        background:#fff;
+        height:108px;
+    }
+
+    .stackly-categories-features .stackly-categories-wrap{
+        height:100%;
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        align-items:center;
+        max-width:1280px;
+    }
+
+    .stackly-categories-feat{
+        display:flex;
+        align-items:center;
+        gap:20px;
+        padding-left:36px;
+        transition:transform .3s;
+    }
+
+    .stackly-categories-feat:hover{
+        transform:translateY(-4px);
+    }
+
+    .stackly-categories-feat img{
+        width:46px;
+        height:46px;
+        object-fit:contain;
+        transition:transform .5s;
+    }
+
+    .stackly-categories-feat:hover img{
+        transform:rotateY(360deg);
+    }
+
+    .stackly-categories-feat b{
+        display:block;
+        font-size:13px;
+        font-weight:600;
+    }
+
+    .stackly-categories-feat span{
+        font-size:13px;
+        color:#444;
+        font-weight:400;
+    }
+
+    /* ---------- NEWSLETTER ---------- */
+
+    .stackly-categories-news{
+        position:relative;
+        background:#14161a;
+        height:158px;
+        overflow:hidden;
+        color:#fff;
+    }
+
+    .stackly-categories-news::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:url(assets/img_54.webp) center/cover no-repeat;
+        opacity:.28;
+        animation:stackly-categories-drift 25s linear infinite alternate;
+    }
+
+    @keyframes stackly-categories-drift{
+        from{
+            transform:scale(1.05) translateX(-1%);
+        }
+
+        to{
+            transform:scale(1.12) translateX(1%);
+        }
+    }
+
+    .stackly-categories-news .stackly-categories-wrap{
+        position:relative;
+        height:100%;
+        display:flex;
+        align-items:center;
+    }
+
+    .stackly-categories-news .stackly-categories-mail{
+        width:86px;
+        height:64px;
+        filter:invert(1);
+        margin-right:54px;
+        animation:stackly-categories-bob 3s ease-in-out infinite;
+    }
+
+    @keyframes stackly-categories-bob{
+        50%{
+            transform:translateY(-6px) rotate(-3deg);
+        }
+    }
+
+    .stackly-categories-news h3{
+        font-size:24px;
+        font-weight:700;
+        line-height:1.1;
+    }
+
+    .stackly-categories-news p{
+        font-size:17.5px;
+        margin-top:6px;
+        font-weight:500;
+    }
+
+    .stackly-categories-news form{
+        margin-left:auto;
+        display:flex;
+        margin-right:76px;
+        width:445px;
+        height:40px;
+    }
+
+    .stackly-categories-news input{
+        flex:1;
+        border:0;
+        outline:0;
+        padding:0 17px;
+        font:12px 'Inter',sans-serif;
+        border-radius:3px 0 0 3px;
+        min-width:0;
+    }
+
+    .stackly-categories-news button{
+        background:var(--orange);
+        color:#fff;
+        border:0;
+        font:700 15px 'Inter',sans-serif;
+        width:174px;
+        cursor:pointer;
+        transition:.3s;
+        position:relative;
+        overflow:hidden;
+    }
+
+    .stackly-categories-news button:hover{
+        background:#ff7a30;
+        letter-spacing:.5px;
+    }
+
+    .stackly-categories-news .stackly-categories-ok{
+        position:absolute;
+        right:76px;
+        bottom:12px;
+        font-size:12px;
+        color:#7dff9a;
+        opacity:0;
+        transition:opacity .4s;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer{
+        background:#0d0d0d;
+        color:#fff;
+        padding:18px 0 0;
+    }
+
+    .stackly-categories-f-grid{
+        display:grid;
+        grid-template-columns:357px 166px 253px 219px 1fr;
+        padding-left:0;
+        height:218px;
+    }
+
+    .stackly-categories-f-brand img.stackly-categories-flogo{
+        height:64px;
+        width:auto;
+        margin-bottom:10px;
+        margin-top:-1px;
+        filter:none;
+    }
+
+    .stackly-categories-f-brand p{
+        font-size:14.5px;
+        line-height:21px;
+        color:#eee;
+        width:290px;
+    }
+
+    .stackly-categories-social{
+        display:flex;
+        gap:17px;
+        margin-top:20px;
+    }
+
+    .stackly-categories-social a{
+        width:36px;
+        height:36px;
+        display:block;
+        transition:transform .3s;
+    }
+
+    .stackly-categories-social a:hover{
+        transform:translateY(-5px) rotate(8deg);
+    }
+
+    .stackly-categories-social img{
+        width:36px;
+        height:36px;
+        border-radius:4px;
+        filter:invert(1);
+    }
+
+    .stackly-categories-social a{
+        background:#fff;
+        border-radius:6px;
+    }
+
+    .stackly-categories-social a img{
+        filter:none;
+        padding:0;
+    }
+
+    .stackly-categories-f-col h5{
+        font-size:12px;
+        font-weight:700;
+        margin-bottom:12px;
+        margin-top:7px;
+    }
+
+    .stackly-categories-f-col li{
+        font-size:10.5px;
+        font-weight:500;
+        margin-bottom:10px;
+        color:#fff;
+    }
+
+    .stackly-categories-f-col li a{
+        position:relative;
+        transition:color .25s,padding .25s;
+    }
+
+    .stackly-categories-f-col li a:hover{
+        color:var(--orange);
+        padding-left:6px;
+    }
+
+    .stackly-categories-contact li{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        font-size:11px;
+        margin-bottom:10px;
+    }
+
+    .stackly-categories-contact .stackly-categories-dot{
+        width:20px;
+        height:20px;
+        border-radius:50%;
+        background:var(--orange);
+        display:grid;
+        place-items:center;
+        flex:none;
+    }
+
+    .stackly-categories-contact .stackly-categories-dot svg{
+        width:11px;
+        height:11px;
+        fill:#fff;
+    }
+
+    .stackly-categories-stores{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .stackly-categories-store{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        width:131px;
+        white-space:nowrap;
+        height:45px;
+        border:1px solid #888;
+        border-radius:8px;
+        padding:0 9px;
+        background:#000;
+        transition:.3s;
+    }
+
+    .stackly-categories-store:hover{
+        transform:translateY(-4px);
+        border-color:var(--orange);
+        box-shadow:0 8px 18px rgba(255,90,10,.3);
+    }
+
+    .stackly-categories-store svg{
+        width:22px;
+        height:22px;
+        flex:none;
+    }
+
+    .stackly-categories-store small{
+        display:block;
+        font-size:7px;
+        line-height:8px;
+    }
+
+    .stackly-categories-store b{
+        font-size:13.5px;
+        font-weight:600;
+        line-height:15px;
+    }
+
+    .stackly-categories-f-bottom{
+        border-top:1px solid #333;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        height:43px;
+        font-size:9px;
+        color:#ddd;
+    }
+
+    .stackly-categories-f-bottom .stackly-categories-l{
+        display:flex;
+        gap:8px;
+        align-items:center;
+    }
+
+    .stackly-categories-f-bottom .stackly-categories-r{
+        display:flex;
+        gap:30px;
+        margin-right:4px;
+    }
+
+    .stackly-categories-f-bottom a:hover{
+        color:var(--orange);
+    }
+
+    /* ---------- BACK TO TOP ---------- */
+
+    #top{
+        position:fixed;
+        right:24px;
+        bottom:24px;
+        width:46px;
+        height:46px;
+        border-radius:50%;
+        background:var(--orange);
+        border:0;
+        cursor:pointer;
+        display:grid;
+        place-items:center;
+        opacity:0;
+        transform:translateY(20px);
+        pointer-events:none;
+        transition:.35s;
+        z-index:90;
+        box-shadow:0 8px 20px rgba(255,90,10,.4);
+    }
+
+    #top.stackly-categories-show{
+        opacity:1;
+        transform:none;
+        pointer-events:auto;
+    }
+
+    #top:hover{
+        transform:translateY(-4px);
+    }
+
+    #top svg{
+        width:18px;
+        height:18px;
+        stroke:#fff;
+        fill:none;
+        stroke-width:3;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media(max-width:1200px){
+        .stackly-categories-menu{gap:28px;
+        margin-left:36px} .stackly-categories-search{width:160px} .stackly-categories-brand-row img.stackly-categories-denso{width:190px}.stackly-categories-brand-row img.stackly-categories-castrol{width:200px} .stackly-categories-f-grid{grid-template-columns:1.6fr 1fr 1fr 1fr 1fr};
+    }
+
+    @media(max-width:1020px){
+        .stackly-categories-main{grid-template-columns:1fr} .stackly-categories-side-col{display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:16px} .stackly-categories-promo{margin-top:0;
+        height:auto;
+        min-height:349px} .stackly-categories-grid{grid-template-columns:repeat(3,1fr);
+        row-gap:20px} .stackly-categories-card:nth-child(n){margin-top:0} .stackly-categories-features .stackly-categories-wrap{grid-template-columns:1fr 1fr;
+        row-gap:12px} .stackly-categories-features{height:auto;
+        padding:20px 0} .stackly-categories-f-grid{grid-template-columns:1fr 1fr;
+        row-gap:28px;
+        height:auto;
+        padding-bottom:30px} .stackly-categories-brand-row{flex-wrap:wrap;
+        gap:20px;
+        height:auto;
+        justify-content:center} .stackly-categories-news{height:auto;
+        padding:30px 0} .stackly-categories-news .stackly-categories-wrap{flex-wrap:wrap;
+        gap:18px} .stackly-categories-news form{margin:0;
+        width:100%} .stackly-categories-news .stackly-categories-ok{position:static;
+        margin-top:8px};
+    }
+
+    @media(max-width:860px){
+        .stackly-categories-burger{display:block} .stackly-categories-menu{position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        background:#fff;
+        flex-direction:column;
+        gap:0;
+        margin:0;
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .4s;
+        box-shadow:0 12px 20px rgba(0,0,0,.1)} .stackly-categories-menu.open{max-height:420px} .stackly-categories-menu a{padding:15px 24px;
+        border-bottom:1px solid #eee} .stackly-categories-menu a::after{display:none} .stackly-categories-search{display:none} .stackly-categories-icons{margin-left:auto} header .stackly-categories-wrap{position:relative};
+    }
+
+    @media(max-width:680px){
+        .stackly-categories-hero h1{font-size:36px} .stackly-categories-hero p{font-size:15px;
+        line-height:28px} .stackly-categories-grid{grid-template-columns:repeat(2,1fr);
+        column-gap:10px} .stackly-categories-card{height:190px} .stackly-categories-card .stackly-categories-pic{height:118px} .stackly-categories-card .stackly-categories-pic img{max-height:100px} .stackly-categories-side-col{grid-template-columns:1fr} .stackly-categories-view-all{margin-right:0;
+        font-size:13px} .stackly-categories-sec-head h2{font-size:20px} .stackly-categories-features .stackly-categories-wrap{grid-template-columns:1fr} .stackly-categories-feat{padding-left:10px} .stackly-categories-news .stackly-categories-mail{margin-right:20px;
+        width:60px} .stackly-categories-news h3{font-size:19px}.stackly-categories-news p{font-size:14px} .stackly-categories-f-grid{grid-template-columns:1fr} .stackly-categories-f-bottom{flex-direction:column;
+        height:auto;
+        padding:12px 0;
+        gap:6px};
+    }
+
+    @media(prefers-reduced-motion:reduce){
+        *{animation:none!important;
+        transition:none!important}.stackly-categories-reveal,.stackly-categories-cat-list li,.stackly-categories-hero .stackly-categories-eyebrow,.stackly-categories-hero h1,.stackly-categories-hero p{opacity:1;
+        transform:none};
+    }
+
+    /* ---------- REFERENCE ALIGNMENT ---------- */
+    /* header icons, newsletter envelope, black footer, SVG socials */
+
+    .stackly-categories-sx-ico{
+        width:32px;
+        height:32px;
+        display:block;
+        flex:none;
+        transition:transform .25s;
+    }
+
+    a:hover>.stackly-categories-sx-ico,
+    button:hover>.stackly-categories-sx-ico{
+        transform:translateY(-2px);
+    }
+
+    .stackly-categories-news svg.stackly-categories-env,
+    .stackly-categories-news svg.stackly-categories-mail,
+    .stackly-categories-news #mailIco,
+    .stackly-categories-news-in>svg{
+        filter:none!important;
+    }
+
+    .stackly-categories-news-mail{
+        background:none!important;
+        border-radius:0!important;
+    }
+
+    .stackly-categories-news-mail svg{
+        width:100%;
+        height:100%;
+        display:block;
+    }
+
+    body>footer,
+    .stackly-categories-site-footer,
+    footer.stackly-categories-footer,
+    footer.stackly-categories-ft{
+        background:#000!important;
+    }
+
+    .stackly-categories-foot-logo,
+    .stackly-categories-foot-logo img{
+        opacity:1!important;
+    }
+
+    .stackly-categories-socials,
+    .stackly-categories-social{
+        display:flex;
+        gap:20px;
+        margin-top:22px;
+    }
+
+    .stackly-categories-socials a,
+    .stackly-categories-social a{
+        width:35px;
+        height:35px;
+        border-radius:7px;
+        background:#fff;
+        color:#000;
+        display:grid!important;
+        place-items:center;
+        overflow:hidden;
+        flex:none;
+        transition:transform .3s cubic-bezier(.3,1.6,.5,1),box-shadow .3s;
+    }
+
+    .stackly-categories-socials a:hover,
+    .stackly-categories-social a:hover{
+        transform:translateY(-4px) scale(1.1);
+        box-shadow:0 8px 16px rgba(255,90,0,.45);
+    }
+
+    .stackly-categories-sx-soc{
+        width:27px;
+        height:27px;
+        display:block;
+    }
+
+    .stackly-categories-ct-dot{
+        flex:none;
+        width:19px;
+        height:19px;
+        border-radius:50%;
+        background:#ff5a00;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-categories-ct-dot svg{
+        width:10px;
+        height:10px;
+        fill:#fff;
+    }
+
+    /* ---------- HIDE CART BADGE UNTIL IT HAS A COUNT ---------- */
+
+    .stackly-categories-cart-count:empty,
+    .stackly-categories-cart-badge:empty{
+        display:none!important;
+    }
+
+    /* ---------- NEWSLETTER BAND ---------- */
+    /* matches reference: full-width, fixed outline envelope, Montserrat */
+
+    .stackly-categories-nlx{
+        position:relative;
+        overflow:hidden;
+        background:#0b0d10;
+        color:#fff;
+        font-family:'Montserrat','Inter','Poppins',Arial,sans-serif;
+        isolation:isolate;
+    }
+
+    .stackly-categories-nlx-bg{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:center 45%;
+        opacity:.3;
+        z-index:-2;
+        pointer-events:none;
+    }
+
+    .stackly-categories-nlx::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        z-index:-1;
+        background:linear-gradient(90deg,rgba(8,10,13,.92) 0,rgba(8,10,13,.7) 45%,rgba(8,10,13,.78) 100%);
+    }
+
+    .stackly-categories-nlx-in{
+        display:flex;
+        align-items:center;
+        min-height:clamp(120px,8.4vw,158px);
+        padding:18px clamp(20px,1.86vw,36px);
+    }
+
+    .stackly-categories-nlx-ico{
+        flex:none;
+        display:block;
+        width:clamp(46px,3.95vw,76px);
+        margin-right:clamp(16px,2.3vw,43px);
+        transform:none!important;
+        animation:none!important;
+    }
+
+    .stackly-categories-nlx-ico svg{
+        display:block;
+        width:100%;
+        height:auto;
+        filter:none!important;
+        transform:none!important;
+        animation:none!important;
+    }
+
+    .stackly-categories-nlx-copy{
+        min-width:0;
+    }
+
+    .stackly-categories-nlx-copy h3{
+        margin:0;
+        font-size:clamp(18px,1.6vw,30px);
+        line-height:1.2;
+        font-weight:700;
+        letter-spacing:0;
+        color:#fff;
+    }
+
+    .stackly-categories-nlx-copy p{
+        margin:clamp(1px,.2vw,4px) 0 0;
+        font-size:clamp(13px,1.04vw,20px);
+        line-height:1.3;
+        font-weight:500;
+        color:#fff;
+    }
+
+    .stackly-categories-nlx-form{
+        position:relative;
+        flex:none;
+        display:flex;
+        margin-left:auto;
+        width:clamp(340px,28.7vw,540px);
+        height:clamp(42px,2.88vw,54px);
+    }
+
+    .stackly-categories-nlx-form input{
+        flex:1;
+        min-width:0;
+        height:100%;
+        border:0;
+        outline:0;
+        background:#fff;
+        color:#222;
+        padding:0 clamp(14px,1.1vw,21px);
+        font:500 clamp(12px,.9vw,17px) 'Montserrat','Inter',Arial,sans-serif;
+        border-radius:3px 0 0 3px;
+    }
+
+    .stackly-categories-nlx-form input::placeholder{
+        color:#8a8a8a;
+        opacity:1;
+    }
+
+    .stackly-categories-nlx-form input:focus-visible{
+        box-shadow:inset 0 0 0 2px #ff6a10;
+    }
+
+    .stackly-categories-nlx-form button{
+        flex:none;
+        width:33.4%;
+        height:100%;
+        border:0;
+        background:#ff6a10;
+        color:#fff;
+        font:700 clamp(14px,1.15vw,22px) 'Montserrat','Inter',Arial,sans-serif;
+        border-radius:0 3px 3px 0;
+        cursor:pointer;
+        transition:background .25s;
+    }
+
+    .stackly-categories-nlx-form button:hover{
+        background:#e85a05;
+    }
+
+    .stackly-categories-nlx-form button:focus-visible{
+        outline:2px solid #fff;
+        outline-offset:-4px;
+    }
+
+    .stackly-categories-nlx-msg,
+    .stackly-categories-nlx-form .stackly-categories-news-msg{
+        position:absolute;
+        left:0;
+        top:calc(100% + 6px);
+        font-size:12px;
+        font-weight:600;
+        color:#9be7a8;
+        white-space:nowrap;
+    }
+
+    .stackly-categories-nlx-form.stackly-categories-err input{
+        animation:shake .4s;
+    }
+
+    @media (max-width:860px){
+        .stackly-categories-nlx-in{
+            flex-wrap:wrap;
+            gap:16px 0;
+            padding:26px 20px 34px;
+        }
+
+        .stackly-categories-nlx-copy{
+            flex:1;
+            min-width:200px;
+        }
+
+        .stackly-categories-nlx-form{
+            width:100%;
+            margin-left:0;
+            height:46px;
+        }
+
+        .stackly-categories-nlx-form input{
+            font-size:14px;
+        }
+
+        .stackly-categories-nlx-form button{
+            font-size:15px;
+        }
+    }
+
+    /* ---------- FOOTER ---------- */
+    /* matches reference: black, Poppins, 5-column grid, orange back-to-top */
+
+    .stackly-categories-sf{
+        position:relative;
+        margin:0;
+        padding:0;
+        border:0;
+        background:#000!important;
+        color:#fff;
+        font-family:'Poppins','Inter',Arial,sans-serif;
+        -webkit-font-smoothing:antialiased;
+    }
+
+    .stackly-categories-sf *,
+    .stackly-categories-sf *::before,
+    .stackly-categories-sf *::after{
+        box-sizing:border-box;
+    }
+
+    .stackly-categories-sf a{
+        color:#fff;
+        text-decoration:none;
+        transition:color .25s;
+    }
+
+    .stackly-categories-sf ul{
+        list-style:none;
+        margin:0;
+        padding:0;
+    }
+
+    .stackly-categories-sf-main{
+        display:grid;
+        grid-template-columns:461fr 290fr 321fr 383fr 310fr;
+        padding:clamp(28px,2.1vw,40px) 3.2vw clamp(32px,2.3vw,44px);
+        align-items:start;
+    }
+
+    .stackly-categories-sf-logo{
+        display:block;
+        width:clamp(170px,13.5vw,255px);
+    }
+
+    .stackly-categories-sf-logo img{
+        display:block;
+        width:100%;
+        height:auto;
+        opacity:1!important;
+    }
+
+    .stackly-categories-sf-brand p{
+        margin:clamp(14px,1.2vw,22px) 0 0;
+        max-width:19.2vw;
+        min-width:260px;
+        font-size:clamp(15px,1.12vw,21px);
+        line-height:1.48;
+        font-weight:400;
+        color:#fff;
+    }
+
+    .stackly-categories-sf-socials{
+        display:flex;
+        gap:clamp(14px,1.6vw,30px);
+        margin-top:clamp(20px,1.95vw,37px);
+    }
+
+    .stackly-categories-sf-socials a{
+        flex:none;
+        width:clamp(38px,2.8vw,53px);
+        height:clamp(38px,2.8vw,53px);
+        border-radius:clamp(6px,.45vw,9px);
+        background:#fff;
+        color:#000;
+        display:grid;
+        place-items:center;
+        transition:transform .3s cubic-bezier(.3,1.6,.5,1),box-shadow .3s;
+    }
+
+    .stackly-categories-sf-socials a:hover{
+        transform:translateY(-4px) scale(1.08);
+        box-shadow:0 8px 18px rgba(255,106,16,.45);
+        color:#000;
+    }
+
+    .stackly-categories-sf-soc{
+        width:92%;
+        height:92%;
+        display:block;
+    }
+
+    .stackly-categories-sf-col h4{
+        margin:0;
+        font-size:clamp(15px,1vw,19px);
+        line-height:1.5;
+        font-weight:700;
+        color:#fff;
+    }
+
+    .stackly-categories-sf-col>ul{
+        margin-top:clamp(16px,1.5vw,28px);
+        display:flex;
+        flex-direction:column;
+        gap:clamp(14px,1.43vw,27px);
+    }
+
+    .stackly-categories-sf-col>ul li{
+        font-size:clamp(13px,.85vw,16px);
+        line-height:1.5;
+        font-weight:600;
+    }
+
+    .stackly-categories-sf-col>ul li a:hover{
+        color:#ff6a10;
+    }
+
+    .stackly-categories-sf-contact>ul{
+        margin-top:clamp(10px,.9vw,17px);
+        gap:clamp(10px,.9vw,17px);
+    }
+
+    .stackly-categories-sf-contact>ul li{
+        display:flex;
+        align-items:center;
+        gap:clamp(10px,.75vw,14px);
+        min-height:clamp(28px,1.8vw,34px);
+        line-height:1.38;
+    }
+
+    .stackly-categories-sf-dot{
+        flex:none;
+        width:clamp(28px,1.8vw,34px);
+        height:clamp(28px,1.8vw,34px);
+        border-radius:50%;
+        background:#ff6a10;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-categories-sf-dot svg{
+        width:48%;
+        height:48%;
+        fill:#fff;
+        display:block;
+    }
+
+    .stackly-categories-sf-badges{
+        margin-top:clamp(12px,1vw,19px);
+        display:flex;
+        flex-direction:column;
+        gap:clamp(10px,.8vw,15px);
+    }
+
+    .stackly-categories-sf-badge{
+        display:flex;
+        align-items:center;
+        gap:clamp(8px,.7vw,13px);
+        width:clamp(176px,11.94vw,225px);
+        height:clamp(42px,2.65vw,50px);
+        padding:0 clamp(12px,1.1vw,21px);
+        border:1px solid rgba(255,255,255,.7);
+        border-radius:8px;
+        background:#000;
+        transition:background .25s,transform .25s,border-color .25s;
+    }
+
+    .stackly-categories-sf-badge:hover{
+        background:#111;
+        border-color:#fff;
+        transform:translateY(-2px);
+        color:#fff;
+    }
+
+    .stackly-categories-sf-bico{
+        flex:none;
+        width:clamp(22px,1.55vw,29px);
+        height:auto;
+    }
+
+    .stackly-categories-sf-badge span{
+        display:block;
+    }
+
+    .stackly-categories-sf-badge small{
+        display:block;
+        font-size:clamp(8px,.58vw,11px);
+        line-height:1.1;
+        font-weight:600;
+        letter-spacing:.02em;
+        text-transform:uppercase;
+    }
+
+    .stackly-categories-sf-badge b{
+        display:block;
+        font-size:clamp(14px,1.15vw,22px);
+        line-height:1.1;
+        font-weight:500;
+    }
+
+    .stackly-categories-sf-bar{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        margin:0 3.2vw;
+        padding:0;
+        height:clamp(38px,2.35vw,44px);
+        border-top:1px solid rgba(255,255,255,.13);
+        font-size:clamp(10.5px,.64vw,12px);
+        font-weight:400;
+        color:#fff;
+    }
+
+    .stackly-categories-sf-bar nav{
+        display:flex;
+        gap:clamp(18px,1.9vw,36px);
+    }
+
+    .stackly-categories-sf-bar a:hover{
+        color:#ff6a10;
+    }
+
+    .stackly-categories-sf-top,
+    #top.stackly-categories-sf-top{
+        position:fixed;
+        right:clamp(16px,1.75vw,33px);
+        bottom:clamp(16px,1.6vw,30px);
+        left:auto;
+        top:auto;
+        width:clamp(46px,3.7vw,70px);
+        height:clamp(46px,3.7vw,70px);
+        border-radius:50%;
+        background:#ff6a10;
+        border:0;
+        padding:0;
+        cursor:pointer;
+        display:grid;
+        place-items:center;
+        opacity:0;
+        transform:translateY(20px);
+        pointer-events:none;
+        transition:opacity .35s,transform .35s,background .25s;
+        z-index:90;
+        box-shadow:0 8px 24px rgba(255,106,16,.45);
+    }
+
+    .stackly-categories-sf-top.stackly-categories-show,
+    #top.stackly-categories-sf-top.stackly-categories-show{
+        opacity:1;
+        transform:none;
+        pointer-events:auto;
+    }
+
+    .stackly-categories-sf-top:hover,
+    #top.stackly-categories-sf-top:hover{
+        background:#e85a05;
+        transform:translateY(-4px);
+    }
+
+    .stackly-categories-sf-top svg{
+        width:42%;
+        height:42%;
+        stroke:#fff;
+        fill:none;
+        stroke-width:2.6;
+        stroke-linecap:round;
+        stroke-linejoin:round;
+    }
+
+    @media (max-width:980px){
+        .stackly-categories-sf-main{
+            grid-template-columns:1fr 1fr;
+            gap:34px 24px;
+            padding:36px 24px 34px;
+        }
+
+        .stackly-categories-sf-brand{
+            grid-column:1/-1;
+        }
+
+        .stackly-categories-sf-brand p{
+            max-width:420px;
+        }
+
+        .stackly-categories-sf-col>ul li{
+            font-size:14px;
+        }
+
+        .stackly-categories-sf-col h4{
+            font-size:16px;
+        }
+
+        .stackly-categories-sf-contact,
+        .stackly-categories-sf-app{
+            grid-column:1/-1;
+        }
+
+        .stackly-categories-sf-bar{
+            margin:0 24px;
+            height:auto;
+            padding:14px 0;
+            flex-wrap:wrap;
+        }
+    }
+
+    .stackly-categories-sf-logo img{
+        filter:url(#sfOrange)!important;
+        opacity:1!important;
+    }
+
+    @keyframes shake{
+        20%,60%{transform:translateX(-5px)}
+        40%,80%{transform:translateX(5px)}
+    }
+
+    /* ---------- UTILITIES ---------- */
+
+    /* replaces the former inline style="" attributes */
+
+    .stackly-categories-sprite{
+        position:absolute;
+    }
+
+    .stackly-categories-nlx-msg-hidden{
+        opacity:0;
+        transition:opacity .4s;
+    }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="progress"></div>
+
+    <!-- HEADER -->
+
+    <header id="hdr">
+
+        <div class="stackly-categories-wrap stackly-categories-nav">
+
+            <a
+                href="index.html"
+                class="stackly-categories-logo"
+            ><img src="assets/Home_53.webp" alt="Stackly" /></a>
+
+            <nav
+                class="stackly-categories-menu"
+                id="menu"
+            >
+
+                <a href="index.html">Home</a>
+
+                <a href="shop.html">Shop</a>
+
+                <a
+                    href="categories.html"
+                    class="stackly-categories-active"
+                >Categories</a>
+
+                <a href="brands.html">Brands</a>
+
+                <a href="about.html">About Us</a>
+
+                <a href="blog.html">Blog</a>
+
+                <a href="contact.html">Contact Us</a>
+
+            </nav>
+
+            <div class="stackly-categories-search">
+
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    id="q"
+                />
+
+                <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 105.3 14l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0010 2zm0 2.4a5.6 5.6 0 110 11.2 5.6 5.6 0 010-11.2z"/></svg>
+
+            </div>
+
+            <div class="stackly-categories-icons">
+
+                <a
+                    href="login.html"
+                    aria-label="Account"
+                ><svg class="stackly-categories-sx-ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="7.500" r="4"/><path d="M4 21c0-4.200 3.500-6.800 8-6.800s8 2.600 8 6.800"/></svg></a>
+
+                <a
+                    href="cart.html"
+                    aria-label="Cart"
+                ><svg class="stackly-categories-sx-ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M1.500 3h3.200l2.600 12.200h11.300l2.200-8.700H5.800"/><circle cx="9.200" cy="19.800" r="1.400"/><circle cx="17.500" cy="19.800" r="1.400"/></svg><span class="stackly-categories-cart-count" id="cc"></span></a>
+
+            </div>
+
+            <button
+                class="stackly-categories-burger"
+                id="burger"
+                aria-label="Menu"
+            ><span></span><span></span><span></span></button>
+
+        </div>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="stackly-categories-hero">
+
+        <div
+            class="stackly-categories-hero-bg"
+            id="heroBg"
+        ></div>
+
+        <div class="stackly-categories-wrap">
+
+            <div class="stackly-categories-eyebrow">Auto Spare Parts</div>
+
+            <h1>All Categories</h1>
+
+            <p>
+                Find the right spare parts for your vehicle.Quality products, trusted brands,better performance.
+            </p>
+
+        </div>
+
+        <div class="stackly-categories-hero-line"></div>
+
+    </section>
+
+    <!-- MAIN -->
+
+    <div class="stackly-categories-wrap">
+
+        <div
+            class="stackly-categories-main"
+            id="mainGrid"
+        >
+
+            <!-- sidebar -->
+
+            <aside class="stackly-categories-side-col">
+
+                <div class="stackly-categories-side-box">
+
+                    <div class="stackly-categories-side-title">All Categories</div>
+
+                    <ul
+                        class="stackly-categories-cat-list"
+                        id="catList"
+                    >
+
+                        <li>
+
+                            <a
+                                href="#"
+                                class="stackly-categories-on"
+                            ><img class="stackly-categories-ic" src="assets/img_60.webp" alt="" />Engine Parts<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_62.webp" alt="" />Brake System<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_63.webp" alt="" />Suspension &amp; Steering<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_64.webp" alt="" />Electrical Parts<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_65.webp" alt="" />Filters<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_66.webp" alt="" />Cooling System<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_67.webp" alt="" />Transmission<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_68.webp" alt="" />Body Parts<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_69.webp" alt="" />Accessories<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_61.webp" alt="" />Fuel &amp; Exhaust System<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_74.webp" alt="" />Wheels &amp; Tyres<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_76.webp" alt="" />Car Care &amp; Maintenance<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_71.webp" alt="" />Tools &amp; Equipment<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/Home_46.webp" alt="" />Batteries<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_72.webp" alt="" />Lubricants &amp; Fluids<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#"><img class="stackly-categories-ic" src="assets/img_73.webp" alt="" />Performance Parts<i class="stackly-categories-chev"></i></a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="stackly-categories-promo">
+
+                    <h3>Get Genuine<br />Auto Parts</h3>
+
+                    <p>High quality parts for longer performance.</p>
+
+                    <a
+                        href="shop.html"
+                        class="stackly-categories-btn"
+                    >Shop Now</a>
+
+                    <img
+                        src="assets/img_78.webp"
+                        alt="Tyres"
+                    />
+
+                </div>
+
+            </aside>
+
+            <!-- categories -->
+
+            <section>
+
+                <div class="stackly-categories-sec-head">
+
+                    <h2>Shop By Category</h2>
+
+                    <a
+                        href="#"
+                        class="stackly-categories-view-all"
+                    >View All Categories <svg viewBox="0 0 24 20"><path d="M2 8h12V3l9 7-9 7v-5H2z" fill="#111"/></svg></a>
+
+                </div>
+
+                <div
+                    class="stackly-categories-grid"
+                    id="grid"
+                >
+
+                    <a href="shop.html?category=Engine%20Parts" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/Home_5.webp" alt="Engine Parts" loading="lazy" /></div>
+                        <h4>Engine Parts</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Brakes%20%26%20Clutch" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/Home_21.webp" alt="Brakes &amp; Clutch" loading="lazy" /></div>
+                        <h4>Brakes &amp; Clutch</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Suspension%20%26%20Steering" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/Home_34.webp" alt="Suspension &amp; Steering" loading="lazy" /></div>
+                        <h4>Suspension &amp; Steering</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Transmission%20%26%20Drivetrain" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/img_79.webp" alt="Transmission &amp; Drivetrain" loading="lazy" /></div>
+                        <h4>Transmission &amp; Drivetrain</h4>
+                        <span class="stackly-categories-vp">View All <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Electrical%20%26%20Electronics" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img class="stackly-categories-wide" src="assets/img_77.webp" alt="Electrical &amp; Electronics" loading="lazy" /></div>
+                        <h4>Electrical &amp; Electronics</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Fuel%20%26%20Exhaust%20System" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/Home_30.webp" alt="Fuel &amp; Exhaust System" loading="lazy" /></div>
+                        <h4>Fuel &amp; Exhaust System</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Cooling%20System" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/Home_29.webp" alt="Cooling System" loading="lazy" /></div>
+                        <h4>Cooling System</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Filters" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/Home_37.webp" alt="Filters" loading="lazy" /></div>
+                        <h4>Filters</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Body%20Parts%20%26%20Accessories" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/Home_27.webp" alt="Body Parts &amp; Accessories" loading="lazy" /></div>
+                        <h4>Body Parts &amp; Accessories</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Wheels%20%26%20Tyres" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/img_74.webp" alt="Wheels &amp; Tyres" loading="lazy" /></div>
+                        <h4>Wheels &amp; Tyres</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Interior%20Accessories" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/img_75.webp" alt="Interior Accessories" loading="lazy" /></div>
+                        <h4>Interior Accessories</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Car%20Care%20%26%20Maintenance" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/img_76.webp" alt="Car Care &amp; Maintenance" loading="lazy" /></div>
+                        <h4>Car Care &amp; Maintenance</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Tools%20%26%20Equipment" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/img_71.webp" alt="Tools &amp; Equipment" loading="lazy" /></div>
+                        <h4>Tools &amp; Equipment</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Batteries" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/Home_46.webp" alt="Batteries" loading="lazy" /></div>
+                        <h4>Batteries</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Lubricants%20%26%20Fluids" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/img_72.webp" alt="Lubricants &amp; Fluids" loading="lazy" /></div>
+                        <h4>Lubricants &amp; Fluids</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+                    <a href="shop.html?category=Performance%20Parts" class="stackly-categories-card stackly-categories-reveal">
+                        <div class="stackly-categories-pic"><img src="assets/img_73.webp" alt="Performance Parts" loading="lazy" /></div>
+                        <h4>Performance Parts</h4>
+                        <span class="stackly-categories-vp">View Products <img src="assets/Home_1.webp" alt="" /></span>
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- BRANDS -->
+
+        <section class="stackly-categories-brands">
+
+            <h2 class="stackly-categories-reveal">Popular Brands</h2>
+
+            <div class="stackly-categories-brand-row">
+
+                <img
+                    class="stackly-categories-bosch stackly-categories-reveal"
+                    src="assets/Home_6.webp"
+                    alt="Bosch"
+                />
+
+                <img
+                    class="stackly-categories-denso stackly-categories-reveal"
+                    src="assets/Home_22.webp"
+                    alt="Denso"
+                />
+
+                <img
+                    class="stackly-categories-mann stackly-categories-reveal"
+                    src="assets/Home_32.webp"
+                    alt="Mann Filter"
+                />
+
+                <img
+                    class="stackly-categories-mobil stackly-categories-reveal"
+                    src="assets/Home_36.webp"
+                    alt="Mobil"
+                />
+
+                <img
+                    class="stackly-categories-castrol stackly-categories-reveal"
+                    src="assets/Home_41.webp"
+                    alt="Castrol"
+                />
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- FEATURES -->
+
+    <section class="stackly-categories-features">
+
+        <div class="stackly-categories-wrap">
+
+            <div class="stackly-categories-feat stackly-categories-reveal">
+                <img src="assets/Home_2.webp" alt="" /><div><b>100% Genuine Parts</b><span>Orginal &amp; Trusted brands</span></div>
+            </div>
+
+            <div class="stackly-categories-feat stackly-categories-reveal">
+                <img src="assets/Home_4.webp" alt="" /><div><b>Fast &amp; Reliable Delivery</b><span>Across India</span></div>
+            </div>
+
+            <div class="stackly-categories-feat stackly-categories-reveal">
+                <img src="assets/Home_49.webp" alt="" /><div><b>Expert Support</b><span>Get help anytime</span></div>
+            </div>
+
+            <div class="stackly-categories-feat stackly-categories-reveal">
+                <img src="assets/Home_42.webp" alt="" /><div><b>Best Prices</b><span>Save more,Drive more</span></div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- NEWSLETTER -->
+
+    <section
+        class="stackly-categories-nlx"
+        aria-label="Newsletter"
+    >
+
+        <img
+            class="stackly-categories-nlx-bg"
+            src="assets/Home_9.webp"
+            alt=""
+            aria-hidden="true"
+        />
+
+        <div class="stackly-categories-nlx-in">
+
+            <span class="stackly-categories-nlx-ico"><svg viewBox="0 0 88 62" fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="82" height="54" rx="2"/><path d="M4 6l40 31L84 6"/></svg></span>
+
+            <div class="stackly-categories-nlx-copy">
+
+                <h3>Subscribe to Our Newsletter</h3>
+
+                <p>Get the latest updates on new arrivals,exclusive offers and more.</p>
+
+            </div>
+
+            <form
+                class="stackly-categories-nlx-form"
+                id="nl"
+                novalidate
+            >
+
+                <input
+                    type="email"
+                    placeholder="Enter Your Email Address"
+                    aria-label="Email address"
+                    autocomplete="email"
+                    required
+                />
+
+                <button type="submit">Subscribe</button>
+
+                <span
+                    class="stackly-categories-nlx-msg stackly-categories-nlx-msg-hidden"
+                    id="ok"
+                >Thanks for subscribing!</span>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <svg class="stackly-categories-sprite" width="0" height="0" aria-hidden="true" focusable="false"><filter id="sfOrange" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.9922  0 0 0 0 0.3569  0 0 0 0 0.0157  0 0 0 1 0"/></filter></svg>
+
+    <footer class="stackly-categories-sf">
+
+        <div class="stackly-categories-sf-main">
+
+            <div class="stackly-categories-sf-brand">
+
+                <a
+                    class="stackly-categories-sf-logo"
+                    href="index.html"
+                    aria-label="Stackly home"
+                ><img src="assets/logo-footer.webp" onerror="this.onerror=null;this.src='assets/Home_53.webp'" alt="Stackly" width="255" height="75" /></a>
+
+                <p>
+                    Your one-step destination for genuine automative Spare parts. Quality products, trusted brands and services.
+                </p>
+
+                <div class="stackly-categories-sf-socials">
+
+                    <a
+                        href="404.html"
+                        aria-label="Facebook"
+                    ><svg class="stackly-categories-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5 2h14a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3zM13.5 22v-7.600h2.500l.4-3h-2.900V9.500c0-.9.300-1.500 1.500-1.500h1.500V5.300c-.3 0-1.200-.1-2.200-.1-2.200 0-3.700 1.300-3.700 3.800v2.200H8.100v3h2.500V22z"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="Instagram"
+                    ><svg class="stackly-categories-sf-soc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.100"/><circle cx="17.300" cy="6.700" r="1" fill="currentColor" stroke="none"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="YouTube"
+                    ><svg class="stackly-categories-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M21.600 7.200a2.500 2.500 0 0 0-1.800-1.800C18.300 5 12 5 12 5s-6.300 0-7.800.4A2.500 2.500 0 0 0 2.400 7.200C2 8.700 2 12 2 12s0 3.300.4 4.800a2.500 2.500 0 0 0 1.800 1.800C5.700 19 12 19 12 19s6.300 0 7.800-.4a2.500 2.500 0 0 0 1.800-1.800C22 15.300 22 12 22 12s0-3.300-.4-4.800zM10 15V9l5.200 3z"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="WhatsApp"
+                    ><svg class="stackly-categories-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.030-.967-.273-.099-.471-.148-.670.150-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.150-1.255-.463-2.390-1.475-.883-.788-1.480-1.761-1.653-2.059-.173-.297-.018-.458.130-.606.134-.133.298-.347.446-.520.149-.174.198-.298.298-.497.099-.198.050-.371-.025-.520-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.500-.669-.510-.173-.008-.371-.010-.570-.010-.198 0-.520.074-.792.372-.272.297-1.040 1.016-1.040 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.200 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.360.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.870 9.870 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.860 9.860 0 01-1.510-5.260c.001-5.450 4.436-9.884 9.888-9.884 2.640 0 5.122 1.030 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.450-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.050 0C5.495 0 .160 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.480-8.413z"/></svg></a>
+
+                </div>
+
+            </div>
+
+            <div class="stackly-categories-sf-col">
+
+                <h4>Quick Links</h4>
+
+                <ul>
+
+                    <li>
+
+                        <a href="index.html">Home</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="shop.html">Shop</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="brands.html">Brands</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="about.html">About Us</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="blog.html">Blog</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="contact.html">Contact Us</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-categories-sf-col">
+
+                <h4>Customer Services</h4>
+
+                <ul>
+
+                    <li>
+
+                        <a href="404.html">Help Center</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Track Order</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Shipping Policy</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Return Policy</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">FAQs</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-categories-sf-col stackly-categories-sf-contact">
+
+                <h4>Contact Us</h4>
+
+                <ul>
+
+                    <li>
+                        <span class="stackly-categories-sf-dot"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.250.2 2.450.6 3.600a1 1 0 0 1-.25 1z"/></svg></span><a href="tel:+917010792745">+91 7010792745</a>
+                    </li>
+
+                    <li>
+                        <span class="stackly-categories-sf-dot"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 011 1v1.200l-10 6.300L2 7.200V6a1 1 0 011-1zm-1 4.500l10 6.300 10-6.300V18a1 1 0 01-1 1H3a1 1 0 01-1-1z"/></svg></span><a href="mailto:info@stackly.com">info@stackly.com</a>
+                    </li>
+
+                    <li>
+                        <span class="stackly-categories-sf-dot"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.500A2.500 2.500 0 1112 6.500a2.500 2.500 0 010 5z"/></svg></span><span>Tamilnadu<br />Salem - 636008</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-categories-sf-col stackly-categories-sf-app">
+
+                <h4>Download Our App</h4>
+
+                <div class="stackly-categories-sf-badges">
+
+                    <a
+                        class="stackly-categories-sf-badge"
+                        href="404.html"
+                        aria-label="Get it on Google Play"
+                    ><svg class="stackly-categories-sf-bico" width="22" height="24" viewBox="0 0 24 26" aria-hidden="true"><path fill="#00a0ff" d="M1.500 1.200L13 13 1.500 24.800C1.100 24.500 1 24 1 23.400V2.600C1 2 1.100 1.500 1.500 1.200z"/><path fill="#00f076" d="M1.500 1.200L18 9.800 13 13z"/><path fill="#ff3a44" d="M1.500 24.800L18 16.200 13 13z"/><path fill="#ffd500" d="M18 9.800l4.500 2.400c.9.500.9 1.600 0 2.100L18 16.200 13 13z"/></svg> <span><small>GET IT ON</small><b>Google Play</b></span></a>
+
+                    <a
+                        class="stackly-categories-sf-badge"
+                        href="404.html"
+                        aria-label="Download on the App Store"
+                    ><svg class="stackly-categories-sf-bico" width="22" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.365 1.430c0 1.140-.493 2.270-1.177 3.080-.744.900-1.990 1.570-2.987 1.570-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.150.572-2.270 1.206-2.980.804-.940 2.142-1.640 3.248-1.680.03.130.05.280.05.430zm4.565 15.710c-.03.07-.463 1.580-1.518 3.120-.945 1.340-1.940 2.710-3.430 2.710-1.517 0-1.900-.88-3.630-.88-1.698 0-2.302.91-3.670.91-1.377 0-2.332-1.260-3.428-2.800-1.287-1.820-2.323-4.630-2.323-7.280 0-4.280 2.797-6.550 5.552-6.550 1.448 0 2.675.95 3.600.95.865 0 2.222-1.010 3.902-1.010.613 0 2.886.06 4.374 2.190-.13.09-2.383 1.370-2.383 4.190 0 3.260 2.854 4.420 2.955 4.450z"/></svg> <span><small>Download on the</small><b>App Store</b></span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="stackly-categories-sf-bar">
+            <span>&copy; 2026 STACKLY. All rights reserved.</span><nav><a href="404.html">Privacy Policy</a><a href="404.html">Terms &amp; Conditions</a></nav>
+        </div>
+
+    </footer>
+
+    <button
+        id="top"
+        class="stackly-categories-sf-top"
+        aria-label="Back to top"
+    ><svg viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg></button>
+
+<script>
+(function () {
+  'use strict';
+
+  var CLS = 'stackly-categories-';
+  var $ = function (id) { return document.getElementById(id); };
+
+  var grid   = $('grid');
+  var list   = $('catList');
+  var hdr    = $('hdr');
+  var heroBg = $('heroBg');
+  var bar    = $('progress');
+  var topBtn = $('top');
+  var burger = $('burger');
+  var menu   = $('menu');
+  var nlForm = $('nl');
+  var nlOk   = $('ok');
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- reveal on scroll (cards stagger by column) ---------- */
+  var revealEls = document.querySelectorAll('.' + CLS + 'reveal');
+
+  grid.querySelectorAll('.' + CLS + 'card').forEach(function (card, i) {
+    card.style.transitionDelay = (i % 4) * 90 + 'ms';
+  });
+
+  function showEl(el) {
+    el.classList.add(CLS + 'show');
+    /* drop the stagger delay afterwards so hover stays instant */
+    setTimeout(function () { el.style.transitionDelay = ''; }, 1000);
+  }
+
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { showEl(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add(CLS + 'show'); });
+  }
+
+  /* ---------- sidebar: stagger in + active state ---------- */
+  var items = list.querySelectorAll('li');
+  items.forEach(function (li, i) { li.style.transitionDelay = (0.25 + i * 0.04) + 's'; });
+  requestAnimationFrame(function () {
+    $('mainGrid').classList.add(CLS + 'in');
+  });
+  /* clear the stagger once finished so hover is not delayed */
+  setTimeout(function () {
+    items.forEach(function (li) { li.style.transitionDelay = ''; });
+  }, 1600);
+
+  list.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a || !list.contains(a)) return;
+    e.preventDefault();
+    list.querySelectorAll('a').forEach(function (x) { x.classList.remove(CLS + 'on'); });
+    a.classList.add(CLS + 'on');
+
+    /* scroll to the matching card, if there is one */
+    var label = a.textContent.trim().toLowerCase();
+    var match = null;
+    grid.querySelectorAll('.' + CLS + 'card h4').forEach(function (h) {
+      var t = h.textContent.trim().toLowerCase();
+      if (!match && (t === label || t.indexOf(label) === 0 || label.indexOf(t) === 0)) match = h.parentNode;
+    });
+    if (match) {
+      match.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+    }
+  });
+
+  /* ---------- scroll effects (header, hero parallax, progress, back-to-top) ---------- */
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    hdr.classList.toggle(CLS + 'scrolled', y > 20);
+    if (!reduceMotion && y < 600) {
+      heroBg.style.transform = 'translateY(' + (y * 0.25) + 'px) scale(1.05)';
+    }
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    topBtn.classList.toggle(CLS + 'show', y > 500);
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+
+  topBtn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+
+  /* ---------- mobile menu ---------- */
+  function setMenu(open) {
+    burger.classList.toggle(CLS + 'open', open);
+    menu.classList.toggle(CLS + 'open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  burger.setAttribute('aria-expanded', 'false');
+  burger.addEventListener('click', function () {
+    setMenu(!menu.classList.contains(CLS + 'open'));
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setMenu(false);
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 860) setMenu(false);
+  });
+
+  /* ---------- card hover tilt (desktop pointer only) ---------- */
+  if (!reduceMotion && window.matchMedia('(hover:hover) and (min-width:1021px)').matches) {
+    grid.querySelectorAll('.' + CLS + 'card').forEach(function (card) {
+      var pic = card.querySelector('.' + CLS + 'pic');
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        pic.style.transform = 'scale(1.1) translate(' + (x * 8) + 'px,' + (y * 8) + 'px)';
+      });
+      card.addEventListener('mouseleave', function () { pic.style.transform = ''; });
+    });
+  }
+
+  /* ---------- search: send to the shop page ---------- */
+  var q = $('q');
+  if (q) {
+    q.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && q.value.trim()) {
+        window.location.href = 'shop.html?q=' + encodeURIComponent(q.value.trim());
+      }
+    });
+  }
+
+  /* ---------- newsletter ---------- */
+  var nlTimer;
+  nlForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var input = nlForm.querySelector('input[type="email"]');
+    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(input.value.trim());
+
+    clearTimeout(nlTimer);
+    nlForm.classList.toggle(CLS + 'err', !valid);
+
+    if (!valid) {
+      nlOk.textContent = 'Please enter a valid email address.';
+      nlOk.style.color = '#ff9b9b';
+      nlOk.style.opacity = 1;
+      input.focus();
+    } else {
+      nlOk.textContent = 'Thanks for subscribing!';
+      nlOk.style.color = '';
+      nlOk.style.opacity = 1;
+      nlForm.reset();
+    }
+    nlTimer = setTimeout(function () {
+      nlOk.style.opacity = 0;
+      nlForm.classList.remove(CLS + 'err');
+    }, 3000);
+  });
+})();
+</script>
+
+</body>
+</html>

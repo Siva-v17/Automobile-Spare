@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 – Page Not Found | Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<style>
+    /* ==========================================================
+       Stackly Auto Parts - error.html styles
+       class prefix: stackly-error-
+       ========================================================== */
+
+    :root{
+        --orange:#C06A00;
+        --orange-dark:#a85c00;
+        --ink:#000;
+    }
+
+    *{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+    }
+
+    html,
+    body{
+        height:100%;
+    }
+
+    body{
+        font-family:'Inter',sans-serif;
+        background:#fff;
+        color:var(--ink);
+        overflow-x:hidden;
+        position:relative;
+    }
+
+    .stackly-error-logo{
+        position:absolute;
+        top:70px;
+        left:clamp(20px,8.4vw,120px);
+        display:block;
+        z-index:2;
+    }
+
+    .stackly-error-logo img{
+        width:clamp(170px,21vw,300px);
+        height:auto;
+        display:block;
+    }
+
+    .stackly-error-stage{
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:140px 20px 60px;
+    }
+
+    .stackly-error-box{
+        text-align:center;
+        position:relative;
+        z-index:1;
+    }
+
+    .stackly-error-code{
+        display:flex;
+        justify-content:center;
+        gap:2px;
+        font-size:clamp(96px,17vw,150px);
+        font-weight:900;
+        line-height:1;
+        color:var(--orange);
+        letter-spacing:-2px;
+        perspective:700px;
+    }
+
+    .stackly-error-code span{
+        display:inline-block;
+        will-change:transform;
+    }
+
+    h1{
+        font-size:clamp(20px,2.4vw,24px);
+        font-weight:700;
+        margin-top:6px;
+    }
+
+    p{
+        font-size:clamp(14px,1.4vw,16px);
+        line-height:1.2;
+        margin-top:12px;
+        max-width:292px;
+        margin-inline:auto;
+    }
+
+    .stackly-error-btn{
+        display:inline-block;
+        margin-top:34px;
+        width:175px;
+        padding:13px 0;
+        background:var(--orange);
+        color:#fff;
+        font-family:'Poppins',sans-serif;
+        font-weight:600;
+        font-size:13px;
+        text-decoration:none;
+        border-radius:4px;
+        box-shadow:0 4px 6px rgba(0,0,0,.28);
+        position:relative;
+        overflow:hidden;
+        transition:background .25s,box-shadow .25s;
+    }
+
+    .stackly-error-btn::after{
+        content:"";
+        position:absolute;
+        top:0;
+        left:-70%;
+        width:50%;
+        height:100%;
+        background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
+        transform:skewX(-20deg);
+    }
+
+    .stackly-error-btn:hover{
+        background:var(--orange-dark);
+        box-shadow:0 8px 16px rgba(192,106,0,.4);
+    }
+
+    .stackly-error-btn:hover::after{
+        left:130%;
+        transition:left .7s;
+    }
+
+    .stackly-error-btn:focus-visible{
+        outline:3px solid #ffb35c;
+        outline-offset:3px;
+    }
+
+    @media (max-width:600px){
+        .stackly-error-logo{
+            top:24px;
+        }
+
+        .stackly-error-stage{
+            padding-top:120px;
+        }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+        *{
+            animation:none!important;
+            transition:none!important;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <a
+        class="stackly-error-logo"
+        href="index.html"
+        aria-label="Stackly home"
+    ><img src="assets/Home_53.webp" alt="Stackly" /></a>
+
+    <main class="stackly-error-stage">
+
+        <div class="stackly-error-box">
+
+            <div
+                class="stackly-error-code"
+                aria-label="404"
+            >
+                <span>4</span><span>0</span><span>4</span>
+            </div>
+
+            <h1>Oops! Page not found</h1>
+
+            <p>The page your looking for doesn’t exist or has been moved.</p>
+
+            <a
+                class="stackly-error-btn"
+                href="index.html"
+            >Go to Home</a>
+
+        </div>
+
+    </main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script>
+(function(){
+  if(!window.gsap||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var d=document.querySelectorAll('.stackly-error-code span');
+  var tl=gsap.timeline({defaults:{ease:'power3.out'}});
+  tl.from('.stackly-error-logo',{y:-24,opacity:0,duration:.7})
+    .from(d[0],{y:-260,opacity:0,rotation:-18,duration:.9,ease:'bounce.out'},.1)
+    .from(d[2],{y:-260,opacity:0,rotation:18,duration:.9,ease:'bounce.out'},.25)
+    .from(d[1],{scale:0,rotationY:540,opacity:0,duration:1,ease:'back.out(1.8)'},.4)
+    .from('h1',{y:20,opacity:0,duration:.6},'-=.35')
+    .from('p',{y:20,opacity:0,duration:.6},'-=.4')
+    .from('.stackly-error-btn',{scale:.4,opacity:0,duration:.7,ease:'elastic.out(1,.55)'},'-=.3')
+    .add(function(){
+      d.forEach(function(el,i){gsap.to(el,{y:-8,duration:1.6+i*.2,repeat:-1,yoyo:true,ease:'sine.inOut',delay:i*.2})});
+      gsap.to('.stackly-error-btn',{boxShadow:'0 8px 18px rgba(192,106,0,.45)',duration:1.2,repeat:-1,yoyo:true,ease:'sine.inOut'});
+      gsap.to(d[1],{rotationY:360,duration:1.2,ease:'power2.inOut',repeat:-1,repeatDelay:4});
+    });
+  // subtle mouse parallax on the 404 digits
+  var box=document.querySelector('.stackly-error-code');
+  window.addEventListener('mousemove',function(e){
+    var x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
+    gsap.to(box,{rotationY:x*14,rotationX:-y*10,duration:.6,ease:'power2.out',transformPerspective:700});
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Blog | Stackly Auto Parts</title>
+<meta name="description" content="Latest tips, guides and updates on car maintenance, spare parts and everything automotive.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@600;700;800&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+    /* ==========================================================
+       Stackly Auto Parts - blog.html styles
+       class prefix: stackly-blog-
+       ========================================================== */
+
+    :root{
+        --navy:#0a1a2c;
+        --navy2:#0d2038;
+        --orange:#ff5a00;
+        --orange2:#ff7a2b;
+        --ink:#111418;
+        --mute:#555d68;
+        --line:#d9dde3;
+        --w:1200px;
+    }
+
+    *{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+    }
+
+    html{
+        scroll-behavior:smooth;
+    }
+
+    body{
+        font-family:'Inter',system-ui,sans-serif;
+        color:var(--ink);
+        background:#fff;
+        overflow-x:hidden;
+        -webkit-font-smoothing:antialiased;
+    }
+
+    img{
+        display:block;
+        max-width:100%;
+    }
+
+    a{
+        color:inherit;
+        text-decoration:none;
+    }
+
+    ul{
+        list-style:none;
+    }
+
+    button,
+    input,
+    textarea{
+        font:inherit;
+    }
+
+    .stackly-blog-wrap{
+        width:min(var(--w),100% - 48px);
+        margin-inline:auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    .stackly-blog-hd-title{
+        font-family:'Montserrat',sans-serif;
+    }
+
+    /* ---------- PROGRESS BAR ---------- */
+
+    .stackly-blog-progress{
+        position:fixed;
+        left:0;
+        top:0;
+        height:3px;
+        width:100%;
+        background:linear-gradient(90deg,var(--orange),#ffb36b);
+        transform:scaleX(0);
+        transform-origin:left;
+        z-index:200;
+    }
+
+    /* ---------- HEADER ---------- */
+
+    .stackly-blog-hd{
+        position:sticky;
+        top:0;
+        z-index:100;
+        background:#fff;
+        height:90px;
+        transition:box-shadow .3s,height .3s;
+    }
+
+    .stackly-blog-hd.stackly-blog-scrolled{
+        box-shadow:0 6px 24px rgba(10,26,44,.12);
+        height:76px;
+    }
+
+    .stackly-blog-hd-in{
+        width:min(1320px,100% - 48px);
+        margin-inline:auto;
+        height:100%;
+        display:flex;
+        align-items:center;
+        gap:clamp(14px,2vw,36px);
+    }
+
+    .stackly-blog-logo{
+        flex:none;
+    }
+
+    .stackly-blog-logo img{
+        height:68px;
+        width:auto;
+        transition:height .3s;
+    }
+
+    .stackly-blog-hd.stackly-blog-scrolled .stackly-blog-logo img{
+        height:58px;
+    }
+
+    .stackly-blog-nav{
+        display:flex;
+        gap:clamp(16px,2.4vw,44px);
+        margin-left:clamp(0px,1vw,12px);
+    }
+
+    .stackly-blog-nav a{
+        font-size:13px;
+        font-weight:600;
+        white-space:nowrap;
+        position:relative;
+        padding:6px 0;
+        transition:color .25s;
+    }
+
+    .stackly-blog-nav a::after{
+        content:"";
+        position:absolute;
+        left:0;
+        bottom:0;
+        height:2px;
+        width:100%;
+        background:var(--orange);
+        transform:scaleX(0);
+        transform-origin:right;
+        transition:transform .35s cubic-bezier(.7,0,.2,1);
+    }
+
+    .stackly-blog-nav a:hover,
+    .stackly-blog-nav a.stackly-blog-active{
+        color:var(--orange);
+    }
+
+    .stackly-blog-nav a:hover::after,
+    .stackly-blog-nav a.stackly-blog-active::after{
+        transform:scaleX(1);
+        transform-origin:left;
+    }
+
+    .stackly-blog-hd-right{
+        margin-left:auto;
+        display:flex;
+        align-items:center;
+        gap:clamp(12px,1.6vw,26px);
+        flex:none;
+    }
+
+    .stackly-blog-search{
+        position:relative;
+        width:clamp(140px,13vw,206px);
+        height:37px;
+        border:1.5px solid #666;
+        border-radius:8px;
+        display:flex;
+        align-items:center;
+        padding:0 12px;
+        transition:width .35s,border-color .25s,box-shadow .25s;
+    }
+
+    .stackly-blog-search:focus-within{
+        width:clamp(170px,16vw,250px);
+        border-color:var(--orange);
+        box-shadow:0 0 0 3px rgba(255,90,0,.15);
+    }
+
+    .stackly-blog-search input{
+        border:0;
+        outline:0;
+        background:none;
+        width:100%;
+        font-size:13px;
+    }
+
+    .stackly-blog-search svg{
+        flex:none;
+        width:19px;
+        height:19px;
+        color:#555;
+    }
+
+    .stackly-blog-ico{
+        position:relative;
+        width:36px;
+        height:36px;
+        display:grid;
+        place-items:center;
+        transition:transform .25s;
+    }
+
+    .stackly-blog-ico:hover{
+        transform:translateY(-3px);
+    }
+
+    .stackly-blog-ico img{
+        width:34px;
+        height:34px;
+    }
+
+    .stackly-blog-cart-badge{
+        position:absolute;
+        right:-4px;
+        top:-2px;
+        background:var(--orange);
+        color:#fff;
+        font-size:10px;
+        font-weight:700;
+        border-radius:99px;
+        min-width:17px;
+        height:17px;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-blog-burger{
+        display:none;
+        width:40px;
+        height:40px;
+        border:0;
+        background:none;
+        cursor:pointer;
+        margin-left:auto;
+        position:relative;
+    }
+
+    .stackly-blog-burger span{
+        position:absolute;
+        left:8px;
+        right:8px;
+        height:2px;
+        background:#111;
+        transition:.3s;
+    }
+
+    .stackly-blog-burger span:nth-child(1){
+        top:13px;
+    }
+
+    .stackly-blog-burger span:nth-child(2){
+        top:19px;
+    }
+
+    .stackly-blog-burger span:nth-child(3){
+        top:25px;
+    }
+
+    .stackly-blog-burger.stackly-blog-open span:nth-child(1){
+        top:19px;
+        transform:rotate(45deg);
+    }
+
+    .stackly-blog-burger.stackly-blog-open span:nth-child(2){
+        opacity:0;
+    }
+
+    .stackly-blog-burger.stackly-blog-open span:nth-child(3){
+        top:19px;
+        transform:rotate(-45deg);
+    }
+
+    /* ---------- HERO ---------- */
+
+    .stackly-blog-hero{
+        position:relative;
+        background:var(--navy);
+        color:#fff;
+        overflow:hidden;
+        isolation:isolate;
+    }
+
+    .stackly-blog-hero-img{
+        position:absolute;
+        top:0;
+        right:0;
+        height:100%;
+        width:64%;
+        z-index:-1;
+        -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 38%);
+        mask-image:linear-gradient(90deg,transparent 0,#000 38%);
+    }
+
+    .stackly-blog-hero-img img{
+        width:100%;
+        height:118%;
+        object-fit:cover;
+        object-position:right center;
+        will-change:transform;
+    }
+
+    .stackly-blog-hero .stackly-blog-wrap{
+        position:relative;
+    }
+
+    .stackly-blog-crumb{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        font-size:20px;
+        font-weight:500;
+    }
+
+    .stackly-blog-crumb svg{
+        width:11px;
+        height:11px;
+        opacity:.85;
+    }
+
+    .stackly-blog-crumb a{
+        transition:color .25s;
+    }
+
+    .stackly-blog-crumb a:hover{
+        color:var(--orange2);
+    }
+
+    .stackly-blog-hero h1{
+        font-size:40px;
+        font-weight:800;
+        letter-spacing:-.4px;
+        margin-top:22px;
+        line-height:1.1;
+    }
+
+    .stackly-blog-hero p{
+        font-size:18px;
+        line-height:1.35;
+        max-width:470px;
+        margin-top:22px;
+        font-weight:500;
+    }
+
+    .stackly-blog-line-mask{
+        display:inline-block;
+        overflow:hidden;
+        vertical-align:top;
+    }
+
+    .stackly-blog-char{
+        display:inline-block;
+        will-change:transform;
+    }
+
+    /* ---------- BUTTONS ---------- */
+
+    .stackly-blog-btn{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        border:0;
+        cursor:pointer;
+        background:var(--orange);
+        color:#fff;
+        font-weight:700;
+        font-size:13px;
+        border-radius:8px;
+        position:relative;
+        overflow:hidden;
+        transition:box-shadow .3s,transform .2s;
+        will-change:transform;
+    }
+
+    .stackly-blog-btn::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);
+        transform:translateX(-120%);
+    }
+
+    .stackly-blog-btn:hover::before{
+        transform:translateX(120%);
+        transition:transform .7s;
+    }
+
+    .stackly-blog-btn:hover{
+        box-shadow:0 10px 24px rgba(255,90,0,.38);
+    }
+
+    .stackly-blog-btn:active{
+        transform:scale(.97);
+    }
+
+    /* ---------- EYEBROW ---------- */
+
+    .stackly-blog-eyebrow{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        font-size:15px;
+        font-weight:700;
+        letter-spacing:.4px;
+        color:var(--orange);
+        text-transform:uppercase;
+    }
+
+    .stackly-blog-eyebrow i{
+        display:block;
+        width:44px;
+        height:5px;
+        border-radius:9px;
+        background:var(--orange);
+    }
+
+    /* ---------- NEWSLETTER ---------- */
+
+    .stackly-blog-news{
+        position:relative;
+        color:#fff;
+        background:#121315;
+        overflow:hidden;
+        isolation:isolate;
+    }
+
+    .stackly-blog-news::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        z-index:-1;
+        background:
+            radial-gradient(60% 120% at 50% 110%,rgba(255,255,255,.07),transparent 60%),
+            linear-gradient(180deg,#26282b 0,#16171a 60%,#0d0d0f 100%);
+    }
+
+    .stackly-blog-news svg.stackly-blog-road{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        z-index:-1;
+        opacity:.55;
+    }
+
+    .stackly-blog-news-in{
+        width:min(1200px,100% - 48px);
+        margin-inline:auto;
+        display:flex;
+        align-items:center;
+        gap:40px;
+        padding:56px 0 58px;
+    }
+
+    .stackly-blog-news-in>img{
+        width:88px;
+        height:auto;
+        filter:invert(1) brightness(1.2);
+        flex:none;
+        transform-origin:50% 60%;
+    }
+
+    .stackly-blog-news-t{
+        flex:1;
+    }
+
+    .stackly-blog-news-t h3{
+        font-size:25px;
+        font-weight:700;
+    }
+
+    .stackly-blog-news-t p{
+        font-size:18px;
+        margin-top:6px;
+        font-weight:500;
+    }
+
+    .stackly-blog-news-f{
+        display:flex;
+        width:445px;
+        max-width:100%;
+        height:40px;
+        position:relative;
+    }
+
+    .stackly-blog-news-f input{
+        flex:1;
+        min-width:0;
+        border:0;
+        outline:0;
+        padding:0 16px;
+        font-size:12px;
+        border-radius:2px 0 0 2px;
+        background:#fff;
+        color:#111;
+    }
+
+    .stackly-blog-news-f input::placeholder{
+        color:#9a9a9a;
+    }
+
+    .stackly-blog-news-f button{
+        width:174px;
+        border-radius:0 2px 2px 0;
+        font-size:15px;
+    }
+
+    .stackly-blog-news-f.stackly-blog-err input{
+        animation:stackly-blog-shake .4s;
+    }
+
+    @keyframes stackly-blog-shake{
+        20%{
+            transform:translateX(-6px);
+        }
+
+        40%{
+            transform:translateX(6px);
+        }
+
+        60%{
+            transform:translateX(-4px);
+        }
+
+        80%{
+            transform:translateX(4px);
+        }
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    .stackly-blog-ft{
+        background:#0a0a0a;
+        color:#fff;
+        padding:18px 0 0;
+    }
+
+    .stackly-blog-ft-grid{
+        width:min(1200px,100% - 48px);
+        margin-inline:auto;
+        display:grid;
+        grid-template-columns:1.6fr .75fr 1.15fr 1.2fr 1fr;
+        gap:20px;
+        padding-bottom:34px;
+    }
+
+    .stackly-blog-ft-brand img.stackly-blog-fl{
+        width:222px;
+        height:auto;
+        margin-left:-4px;
+        filter:url(#toOrange);
+    }
+
+    .stackly-blog-ft-brand p{
+        font-size:15px;
+        line-height:1.4;
+        margin-top:6px;
+        max-width:290px;
+        font-weight:500;
+    }
+
+    .stackly-blog-socials{
+        display:flex;
+        gap:18px;
+        margin-top:20px;
+    }
+
+    .stackly-blog-socials a{
+        width:35px;
+        height:35px;
+        border-radius:7px;
+        overflow:hidden;
+        transition:transform .3s,box-shadow .3s;
+        display:block;
+    }
+
+    .stackly-blog-socials a:hover{
+        transform:translateY(-5px) rotate(-6deg);
+        box-shadow:0 8px 16px rgba(255,90,0,.45);
+    }
+
+    .stackly-blog-socials img{
+        width:35px;
+        height:35px;
+    }
+
+    .stackly-blog-ft h4{
+        font-size:12.5px;
+        font-weight:700;
+        margin:12px 0 11px;
+    }
+
+    .stackly-blog-ft li{
+        margin-bottom:8px;
+    }
+
+    .stackly-blog-ft li a{
+        font-size:10.5px;
+        font-weight:600;
+        display:inline-block;
+        transition:color .25s,transform .25s;
+    }
+
+    .stackly-blog-ft li a:hover{
+        color:var(--orange);
+        transform:translateX(5px);
+    }
+
+    .stackly-blog-ft-c li{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        font-size:10.5px;
+        font-weight:600;
+        margin-bottom:12px;
+    }
+
+    .stackly-blog-ft-c .stackly-blog-ci{
+        flex:none;
+        width:19px;
+        height:19px;
+        border-radius:50%;
+        background:var(--orange);
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-blog-ft-c .stackly-blog-ci svg{
+        width:10px;
+        height:10px;
+        color:#fff;
+    }
+
+    .stackly-blog-ft-c li span{
+        line-height:1.35;
+    }
+
+    .stackly-blog-badge{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        border:1px solid #9a9a9a;
+        border-radius:8px;
+        height:46px;
+        width:128px;
+        padding:0 10px;
+        margin-bottom:14px;
+        background:#000;
+        transition:transform .3s,border-color .3s;
+    }
+
+    .stackly-blog-badge:hover{
+        transform:translateY(-4px) scale(1.03);
+        border-color:var(--orange);
+    }
+
+    .stackly-blog-badge svg{
+        width:22px;
+        height:22px;
+        flex:none;
+    }
+
+    .stackly-blog-badge small{
+        display:block;
+        font-size:7px;
+        line-height:1.1;
+        letter-spacing:.2px;
+        font-weight:500;
+    }
+
+    .stackly-blog-badge b{
+        display:block;
+        font-size:15px;
+        line-height:1.15;
+        font-weight:600;
+        white-space:nowrap;
+    }
+
+    .stackly-blog-badge{
+        width:136px;
+    }
+
+    .stackly-blog-ft-bar{
+        border-top:1px solid #2a2a2a;
+    }
+
+    .stackly-blog-ft-bar div{
+        width:min(1200px,100% - 48px);
+        margin-inline:auto;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        font-size:8px;
+        height:38px;
+    }
+
+    .stackly-blog-ft-bar nav{
+        display:flex;
+        gap:30px;
+    }
+
+    .stackly-blog-ft-bar a:hover{
+        color:var(--orange);
+    }
+
+    /* ---------- TOAST ---------- */
+
+    .stackly-blog-toast{
+        position:fixed;
+        right:24px;
+        bottom:24px;
+        z-index:300;
+        background:#0a1a2c;
+        color:#fff;
+        border-left:5px solid var(--orange);
+        padding:16px 22px;
+        border-radius:10px;
+        box-shadow:0 18px 40px rgba(0,0,0,.3);
+        font-size:14px;
+        font-weight:600;
+        max-width:340px;
+        transform:translateY(140%);
+        opacity:0;
+    }
+
+    @media (max-width:1180px){
+        .stackly-blog-logo img{
+            height:56px;
+        }
+
+        .stackly-blog-hd.stackly-blog-scrolled .stackly-blog-logo img{
+            height:50px;
+        }
+    }
+
+    @media (max-width:1060px){
+        .stackly-blog-burger{
+            display:block;
+        }
+
+        .stackly-blog-hd-right{
+            display:none;
+        }
+
+        .stackly-blog-nav{
+            position:fixed;
+            top:90px;
+            left:0;
+            right:0;
+            background:#fff;
+            flex-direction:column;
+            gap:0;
+            margin:0;
+            padding:8px 24px 20px;
+            box-shadow:0 20px 30px rgba(0,0,0,.12);
+            clip-path:inset(0 0 100% 0);
+            transition:clip-path .45s cubic-bezier(.7,0,.2,1);
+        }
+
+        .stackly-blog-nav.stackly-blog-open{
+            clip-path:inset(0 0 0 0);
+        }
+
+        .stackly-blog-nav a{
+            padding:14px 0;
+            border-bottom:1px solid #eee;
+            font-size:15px;
+        }
+
+        .stackly-blog-news-in{
+            flex-wrap:wrap;
+        }
+
+        .stackly-blog-ft-grid{
+            grid-template-columns:1fr 1fr;
+            gap:28px;
+        }
+    }
+
+    @media (max-width:640px){
+        .stackly-blog-hero h1{
+            font-size:32px;
+        }
+
+        .stackly-blog-crumb{
+            font-size:16px;
+        }
+
+        .stackly-blog-hero p{
+            font-size:16px;
+        }
+
+        .stackly-blog-hero-img{
+            width:100%;
+            opacity:.55;
+        }
+
+        .stackly-blog-news-f{
+            width:100%;
+        }
+
+        .stackly-blog-news-t h3{
+            font-size:21px;
+        }
+
+        .stackly-blog-news-t p{
+            font-size:15px;
+        }
+
+        .stackly-blog-ft-grid{
+            grid-template-columns:1fr;
+        }
+
+        .stackly-blog-ft-bar div{
+            flex-direction:column;
+            justify-content:center;
+            gap:4px;
+            height:auto;
+            padding:10px 0;
+        }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+        *{
+            animation:none!important;
+            transition:none!important;
+        }
+    }
+
+    .stackly-blog-hero.stackly-blog-blog{
+        height:241px;
+        padding-top:36px;
+    }
+
+    .stackly-blog-hero.stackly-blog-blog .stackly-blog-crumb{
+        font-size:19px;
+    }
+
+    .stackly-blog-hero.stackly-blog-blog h1{
+        margin-top:20px;
+        font-size:38px;
+    }
+
+    .stackly-blog-hero.stackly-blog-blog p{
+        max-width:520px;
+        margin-top:16px;
+    }
+
+    .stackly-blog-bl{
+        padding:24px 0 36px;
+    }
+
+    .stackly-blog-bl-in{
+        display:grid;
+        grid-template-columns:1fr 360px;
+        gap:30px;
+        align-items:start;
+    }
+
+    .stackly-blog-chips-row{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:30px;
+        margin-bottom:30px;
+        grid-column:1/-1;
+    }
+
+    .stackly-blog-chips{
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap;
+        padding-left:10px;
+    }
+
+    .stackly-blog-chip{
+        border:0;
+        background:#d8d8d8;
+        color:#222;
+        border-radius:99px;
+        height:36px;
+        padding:0 18px;
+        font-size:13px;
+        font-weight:500;
+        cursor:pointer;
+        transition:background .3s,color .3s,box-shadow .3s;
+    }
+
+    .stackly-blog-chip:hover{
+        background:#c9ccd1;
+    }
+
+    .stackly-blog-chip.stackly-blog-on{
+        background:var(--orange);
+        color:#fff;
+        font-weight:700;
+        box-shadow:0 6px 16px rgba(255,90,0,.35);
+    }
+
+    .stackly-blog-sbox{
+        width:360px;
+        height:40px;
+        display:flex;
+        border:1px solid #cdd1d7;
+        border-radius:5px;
+        overflow:hidden;
+        flex:none;
+        transition:border-color .25s,box-shadow .25s;
+    }
+
+    .stackly-blog-sbox:focus-within{
+        border-color:var(--orange);
+        box-shadow:0 0 0 3px rgba(255,90,0,.15);
+    }
+
+    .stackly-blog-sbox input{
+        flex:1;
+        min-width:0;
+        border:0;
+        outline:0;
+        padding:0 20px;
+        font-size:12px;
+    }
+
+    .stackly-blog-sbox button{
+        width:50px;
+        border:0;
+        background:var(--orange);
+        color:#fff;
+        display:grid;
+        place-items:center;
+        cursor:pointer;
+        transition:background .25s;
+    }
+
+    .stackly-blog-sbox button:hover{
+        background:#e04e00;
+    }
+
+    .stackly-blog-sbox svg{
+        width:20px;
+        height:20px;
+    }
+
+    .stackly-blog-posts{
+        display:flex;
+        flex-direction:column;
+        gap:18px;
+        min-height:400px;
+    }
+
+    .stackly-blog-post{
+        display:grid;
+        grid-template-columns:352px 1fr;
+        gap:17px;
+        align-items:start;
+    }
+
+    .stackly-blog-post .stackly-blog-th{
+        height:186px;
+        border-radius:5px;
+        overflow:hidden;
+        position:relative;
+        background:#222;
+    }
+
+    .stackly-blog-post .stackly-blog-th img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        transition:transform .8s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .stackly-blog-post:hover .stackly-blog-th img{
+        transform:scale(1.1) rotate(.8deg);
+    }
+
+    .stackly-blog-post .stackly-blog-th::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.25) 50%,transparent 60%);
+        transform:translateX(-100%);
+        transition:transform .8s;
+    }
+
+    .stackly-blog-post:hover .stackly-blog-th::after{
+        transform:translateX(100%);
+    }
+
+    .stackly-blog-post time{
+        display:block;
+        font-size:12px;
+        font-weight:500;
+        margin-top:8px;
+    }
+
+    .stackly-blog-post h2{
+        font-size:20px;
+        line-height:1.25;
+        font-weight:800;
+        margin-top:11px;
+        letter-spacing:-.2px;
+        transition:color .25s;
+    }
+
+    .stackly-blog-post:hover h2{
+        color:var(--orange);
+    }
+
+    .stackly-blog-post p{
+        font-size:15px;
+        line-height:1.2;
+        margin-top:10px;
+        font-weight:500;
+        color:#111;
+    }
+
+    .stackly-blog-rm{
+        display:inline-flex;
+        align-items:center;
+        gap:0;
+        margin-top:12px;
+        color:var(--orange);
+        font-weight:700;
+        font-size:15px;
+    }
+
+    .stackly-blog-rm i{
+        font-style:normal;
+        display:inline-block;
+        transition:transform .3s;
+    }
+
+    .stackly-blog-post:hover .stackly-blog-rm i{
+        transform:translateX(7px);
+    }
+
+    .stackly-blog-empty{
+        padding:60px 0;
+        text-align:center;
+        font-weight:600;
+        color:var(--mute);
+    }
+
+    .stackly-blog-pager{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:12px;
+        margin-top:34px;
+    }
+
+    .stackly-blog-page{
+        width:33px;
+        height:33px;
+        border-radius:50%;
+        border:1px solid #9aa0a8;
+        background:#fff;
+        color:#111;
+        display:grid;
+        place-items:center;
+        font-size:15px;
+        font-weight:500;
+        cursor:pointer;
+        transition:background .3s,color .3s,border-color .3s;
+    }
+
+    .stackly-blog-page:hover:not(:disabled){
+        border-color:var(--orange);
+        color:var(--orange);
+    }
+
+    .stackly-blog-page.stackly-blog-on{
+        background:var(--orange);
+        border-color:var(--orange);
+        color:#fff;
+    }
+
+    .stackly-blog-page:disabled{
+        opacity:.35;
+        cursor:default;
+    }
+
+    .stackly-blog-page svg{
+        width:12px;
+        height:12px;
+    }
+
+    aside{
+        display:flex;
+        flex-direction:column;
+        gap:0;
+    }
+
+    aside h3{
+        font-size:18px;
+        font-weight:700;
+        margin-bottom:10px;
+    }
+
+    .stackly-blog-cats{
+        border:1px solid #9aa0a8;
+        border-radius:5px;
+    }
+
+    .stackly-blog-cats em{
+        font-style:normal;
+    }
+
+    .stackly-blog-cats button{
+        width:100%;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:0 32px 0 54px;
+        height:44px;
+        border:0;
+        border-bottom:1px solid #d3d6db;
+        background:#fff;
+        font-size:15px;
+        font-weight:500;
+        cursor:pointer;
+        text-align:left;
+        transition:background .25s,color .25s,padding .3s;
+    }
+
+    .stackly-blog-cats button:last-child{
+        border-bottom:0;
+    }
+
+    .stackly-blog-cats button:hover{
+        background:#fff4ec;
+        color:var(--orange);
+        padding-left:62px;
+    }
+
+    .stackly-blog-cats button.stackly-blog-on{
+        color:var(--orange);
+        font-weight:700;
+    }
+
+    aside h3.stackly-blog-rp{
+        margin:24px 0 8px;
+    }
+
+    .stackly-blog-rec{
+        display:flex;
+        flex-direction:column;
+    }
+
+    .stackly-blog-rec a{
+        display:grid;
+        grid-template-columns:105px 1fr;
+        gap:13px;
+        padding:7px 0;
+        border-bottom:1px solid #d3d6db;
+        align-items:center;
+    }
+
+    .stackly-blog-rec a:last-child{
+        border-bottom:0;
+    }
+
+    .stackly-blog-rec img{
+        width:105px;
+        height:55px;
+        object-fit:cover;
+        border-radius:3px;
+        transition:transform .4s;
+    }
+
+    .stackly-blog-rec a:hover img{
+        transform:scale(1.07);
+    }
+
+    .stackly-blog-rec b{
+        font-size:11px;
+        line-height:1.3;
+        font-weight:700;
+        display:block;
+        transition:color .25s;
+    }
+
+    .stackly-blog-rec a:hover b{
+        color:var(--orange);
+    }
+
+    .stackly-blog-rec span{
+        font-size:9px;
+        display:block;
+        margin-top:3px;
+        font-weight:500;
+    }
+
+    .stackly-blog-cta{
+        position:relative;
+        margin-top:14px;
+        height:190px;
+        border-radius:5px;
+        overflow:hidden;
+        background:var(--navy);
+        color:#fff;
+        padding:32px 32px;
+        isolation:isolate;
+    }
+
+    .stackly-blog-cta>img{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        z-index:-1;
+        opacity:.55;
+        transition:transform 1.2s;
+    }
+
+    .stackly-blog-cta:hover>img{
+        transform:scale(1.12);
+    }
+
+    .stackly-blog-cta h3{
+        font-size:20px;
+        line-height:1.2;
+        font-weight:500;
+        font-family:'Inter',sans-serif;
+        margin-bottom:12px;
+        letter-spacing:-.1px;
+    }
+
+    .stackly-blog-cta p{
+        font-size:10px;
+        line-height:1.35;
+        max-width:190px;
+        color:#e1e8f0;
+    }
+
+    .stackly-blog-cta .stackly-blog-btn{
+        margin-top:16px;
+        height:30px;
+        padding:0 14px;
+        font-size:10px;
+        background:#f03a2e;
+        border-radius:3px;
+        gap:7px;
+    }
+
+    .stackly-blog-cta .stackly-blog-btn svg{
+        width:11px;
+        height:11px;
+    }
+
+    .stackly-blog-author{
+        margin-top:30px;
+        border:1px solid #9aa0a8;
+        border-radius:8px;
+        padding:22px 25px 26px;
+        font-family:'Poppins',sans-serif;
+    }
+
+    .stackly-blog-author h3{
+        font-family:'Poppins',sans-serif;
+        font-size:15px;
+        font-weight:700;
+        margin-bottom:18px;
+    }
+
+    .stackly-blog-au-grid{
+        display:grid;
+        grid-template-columns:60px minmax(0,1fr);
+        column-gap:12px;
+        align-items:start;
+    }
+
+    .stackly-blog-au-av{
+        width:60px;
+        height:60px;
+        border-radius:50%;
+        display:block;
+    }
+
+    .stackly-blog-au-body{
+        padding-top:9px;
+    }
+
+    .stackly-blog-au-body b{
+        display:block;
+        font-size:14px;
+        line-height:1.3;
+        font-weight:700;
+    }
+
+    .stackly-blog-au-body .stackly-blog-role{
+        display:block;
+        font-size:12px;
+        line-height:1.3;
+        font-weight:400;
+        margin-top:2px;
+    }
+
+    .stackly-blog-au-body p{
+        font-size:12px;
+        line-height:1.5;
+        font-weight:500;
+        margin-top:18px;
+        color:#111;
+    }
+
+    .stackly-blog-au-soc{
+        display:flex;
+        gap:17px;
+        margin-top:20px;
+    }
+
+    .stackly-blog-au-soc a{
+        width:28px;
+        height:28px;
+        border-radius:50%;
+        background:linear-gradient(145deg,#ff7a2b,#ff5a00);
+        display:grid;
+        place-items:center;
+        color:#fff;
+        transition:transform .3s,box-shadow .3s;
+    }
+
+    .stackly-blog-au-soc a:hover{
+        transform:translateY(-4px) scale(1.12);
+        box-shadow:0 6px 12px rgba(255,90,0,.4);
+    }
+
+    .stackly-blog-au-soc svg{
+        width:15px;
+        height:15px;
+        display:block;
+    }
+
+    @media (max-width:1060px){
+        .stackly-blog-bl-in{
+            grid-template-columns:1fr;
+        }
+
+        .stackly-blog-chips-row{
+            flex-direction:column;
+            align-items:stretch;
+        }
+
+        .stackly-blog-sbox{
+            width:100%;
+        }
+
+        aside{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:24px;
+        }
+
+        aside>*{
+            margin:0!important;
+        }
+
+        .stackly-blog-cta,
+        .stackly-blog-author{
+            grid-column:auto;
+        }
+    }
+
+    @media (max-width:720px){
+        .stackly-blog-post{
+            grid-template-columns:1fr;
+        }
+
+        .stackly-blog-post .stackly-blog-th{
+            height:210px;
+        }
+
+        aside{
+            grid-template-columns:1fr;
+        }
+
+        .stackly-blog-chips{
+            padding-left:0;
+        }
+    }
+
+    /* ---------- REFERENCE ALIGNMENT ---------- */
+    /* header icons, newsletter envelope, black footer, SVG socials */
+
+    .stackly-blog-sx-ico{
+        width:32px;
+        height:32px;
+        display:block;
+        flex:none;
+        transition:transform .25s;
+    }
+
+    a:hover>.stackly-blog-sx-ico,
+    button:hover>.stackly-blog-sx-ico{
+        transform:translateY(-2px);
+    }
+
+    .stackly-blog-news svg.stackly-blog-env,
+    .stackly-blog-news svg.stackly-blog-mail,
+    .stackly-blog-news #mailIco,
+    .stackly-blog-news-in>svg{
+        filter:none!important;
+    }
+
+    .stackly-blog-news-mail{
+        background:none!important;
+        border-radius:0!important;
+    }
+
+    .stackly-blog-news-mail svg{
+        width:100%;
+        height:100%;
+        display:block;
+    }
+
+    body>footer,
+    .stackly-blog-site-footer,
+    footer.stackly-blog-footer,
+    footer.stackly-blog-ft{
+        background:#000!important;
+    }
+
+    .stackly-blog-foot-logo,
+    .stackly-blog-foot-logo img{
+        opacity:1!important;
+    }
+
+    .stackly-blog-socials,
+    .stackly-blog-social{
+        display:flex;
+        gap:20px;
+        margin-top:22px;
+    }
+
+    .stackly-blog-socials a,
+    .stackly-blog-social a{
+        width:35px;
+        height:35px;
+        border-radius:7px;
+        background:#fff;
+        color:#000;
+        display:grid!important;
+        place-items:center;
+        overflow:hidden;
+        flex:none;
+        transition:transform .3s cubic-bezier(.3,1.6,.5,1),box-shadow .3s;
+    }
+
+    .stackly-blog-socials a:hover,
+    .stackly-blog-social a:hover{
+        transform:translateY(-4px) scale(1.1);
+        box-shadow:0 8px 16px rgba(255,90,0,.45);
+    }
+
+    .stackly-blog-sx-soc{
+        width:27px;
+        height:27px;
+        display:block;
+    }
+
+    .stackly-blog-ct-dot{
+        flex:none;
+        width:19px;
+        height:19px;
+        border-radius:50%;
+        background:#ff5a00;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-blog-ct-dot svg{
+        width:10px;
+        height:10px;
+        fill:#fff;
+    }
+
+    /* ---------- HIDE CART BADGE UNTIL IT HAS A COUNT ---------- */
+
+    .stackly-blog-cart-count:empty,
+    .stackly-blog-cart-badge:empty{
+        display:none!important;
+    }
+
+    /* ---------- NEWSLETTER BAND ---------- */
+    /* matches reference: full-width, fixed outline envelope, Montserrat */
+
+    .stackly-blog-nlx{
+        position:relative;
+        overflow:hidden;
+        background:#0b0d10;
+        color:#fff;
+        font-family:'Montserrat','Inter','Poppins',Arial,sans-serif;
+        isolation:isolate;
+    }
+
+    .stackly-blog-nlx-bg{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:center 45%;
+        opacity:.3;
+        z-index:-2;
+        pointer-events:none;
+    }
+
+    .stackly-blog-nlx::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        z-index:-1;
+        background:linear-gradient(90deg,rgba(8,10,13,.92) 0,rgba(8,10,13,.7) 45%,rgba(8,10,13,.78) 100%);
+    }
+
+    .stackly-blog-nlx-in{
+        display:flex;
+        align-items:center;
+        min-height:clamp(120px,8.4vw,158px);
+        padding:18px clamp(20px,1.86vw,36px);
+    }
+
+    .stackly-blog-nlx-ico{
+        flex:none;
+        display:block;
+        width:clamp(46px,3.95vw,76px);
+        margin-right:clamp(16px,2.3vw,43px);
+        transform:none!important;
+        animation:none!important;
+    }
+
+    .stackly-blog-nlx-ico svg{
+        display:block;
+        width:100%;
+        height:auto;
+        filter:none!important;
+        transform:none!important;
+        animation:none!important;
+    }
+
+    .stackly-blog-nlx-copy{
+        min-width:0;
+    }
+
+    .stackly-blog-nlx-copy h3{
+        margin:0;
+        font-size:clamp(18px,1.6vw,30px);
+        line-height:1.2;
+        font-weight:700;
+        letter-spacing:0;
+        color:#fff;
+    }
+
+    .stackly-blog-nlx-copy p{
+        margin:clamp(1px,.2vw,4px) 0 0;
+        font-size:clamp(13px,1.04vw,20px);
+        line-height:1.3;
+        font-weight:500;
+        color:#fff;
+    }
+
+    .stackly-blog-nlx-form{
+        position:relative;
+        flex:none;
+        display:flex;
+        margin-left:auto;
+        width:clamp(340px,28.7vw,540px);
+        height:clamp(42px,2.88vw,54px);
+    }
+
+    .stackly-blog-nlx-form input{
+        flex:1;
+        min-width:0;
+        height:100%;
+        border:0;
+        outline:0;
+        background:#fff;
+        color:#222;
+        padding:0 clamp(14px,1.1vw,21px);
+        font:500 clamp(12px,.9vw,17px) 'Montserrat','Inter',Arial,sans-serif;
+        border-radius:3px 0 0 3px;
+    }
+
+    .stackly-blog-nlx-form input::placeholder{
+        color:#8a8a8a;
+        opacity:1;
+    }
+
+    .stackly-blog-nlx-form input:focus-visible{
+        box-shadow:inset 0 0 0 2px #ff6a10;
+    }
+
+    .stackly-blog-nlx-form button{
+        flex:none;
+        width:33.4%;
+        height:100%;
+        border:0;
+        background:#ff6a10;
+        color:#fff;
+        font:700 clamp(14px,1.15vw,22px) 'Montserrat','Inter',Arial,sans-serif;
+        border-radius:0 3px 3px 0;
+        cursor:pointer;
+        transition:background .25s;
+    }
+
+    .stackly-blog-nlx-form button:hover{
+        background:#e85a05;
+    }
+
+    .stackly-blog-nlx-form button:focus-visible{
+        outline:2px solid #fff;
+        outline-offset:-4px;
+    }
+
+    .stackly-blog-nlx-msg,
+    .stackly-blog-nlx-form .stackly-blog-news-msg{
+        position:absolute;
+        left:0;
+        top:calc(100% + 6px);
+        font-size:12px;
+        font-weight:600;
+        color:#9be7a8;
+        white-space:nowrap;
+    }
+
+    .stackly-blog-nlx-form.stackly-blog-err input{
+        animation:stackly-blog-shake .4s;
+    }
+
+    @media (max-width:860px){
+        .stackly-blog-nlx-in{
+            flex-wrap:wrap;
+            gap:16px 0;
+            padding:26px 20px 34px;
+        }
+
+        .stackly-blog-nlx-copy{
+            flex:1;
+            min-width:200px;
+        }
+
+        .stackly-blog-nlx-form{
+            width:100%;
+            margin-left:0;
+            height:46px;
+        }
+
+        .stackly-blog-nlx-form input{
+            font-size:14px;
+        }
+
+        .stackly-blog-nlx-form button{
+            font-size:15px;
+        }
+    }
+
+    /* ---------- FOOTER ---------- */
+    /* matches reference: black, Poppins, 5-column grid, orange back-to-top */
+
+    .stackly-blog-sf{
+        position:relative;
+        margin:0;
+        padding:0;
+        border:0;
+        background:#000!important;
+        color:#fff;
+        font-family:'Poppins','Inter',Arial,sans-serif;
+        -webkit-font-smoothing:antialiased;
+    }
+
+    .stackly-blog-sf *,
+    .stackly-blog-sf *::before,
+    .stackly-blog-sf *::after{
+        box-sizing:border-box;
+    }
+
+    .stackly-blog-sf a{
+        color:#fff;
+        text-decoration:none;
+        transition:color .25s;
+    }
+
+    .stackly-blog-sf ul{
+        list-style:none;
+        margin:0;
+        padding:0;
+    }
+
+    .stackly-blog-sf-main{
+        display:grid;
+        grid-template-columns:461fr 290fr 321fr 383fr 310fr;
+        padding:clamp(28px,2.1vw,40px) 3.2vw clamp(32px,2.3vw,44px);
+        align-items:start;
+    }
+
+    .stackly-blog-sf-logo{
+        display:block;
+        width:clamp(170px,13.5vw,255px);
+    }
+
+    .stackly-blog-sf-logo img{
+        display:block;
+        width:100%;
+        height:auto;
+        opacity:1!important;
+    }
+
+    .stackly-blog-sf-brand p{
+        margin:clamp(14px,1.2vw,22px) 0 0;
+        max-width:19.2vw;
+        min-width:260px;
+        font-size:clamp(15px,1.12vw,21px);
+        line-height:1.48;
+        font-weight:400;
+        color:#fff;
+    }
+
+    .stackly-blog-sf-socials{
+        display:flex;
+        gap:clamp(14px,1.6vw,30px);
+        margin-top:clamp(20px,1.95vw,37px);
+    }
+
+    .stackly-blog-sf-socials a{
+        flex:none;
+        width:clamp(38px,2.8vw,53px);
+        height:clamp(38px,2.8vw,53px);
+        border-radius:clamp(6px,.45vw,9px);
+        background:#fff;
+        color:#000;
+        display:grid;
+        place-items:center;
+        transition:transform .3s cubic-bezier(.3,1.6,.5,1),box-shadow .3s;
+    }
+
+    .stackly-blog-sf-socials a:hover{
+        transform:translateY(-4px) scale(1.08);
+        box-shadow:0 8px 18px rgba(255,106,16,.45);
+        color:#000;
+    }
+
+    .stackly-blog-sf-soc{
+        width:92%;
+        height:92%;
+        display:block;
+    }
+
+    .stackly-blog-sf-col h4{
+        margin:0;
+        font-size:clamp(15px,1vw,19px);
+        line-height:1.5;
+        font-weight:700;
+        color:#fff;
+    }
+
+    .stackly-blog-sf-col>ul{
+        margin-top:clamp(16px,1.5vw,28px);
+        display:flex;
+        flex-direction:column;
+        gap:clamp(14px,1.43vw,27px);
+    }
+
+    .stackly-blog-sf-col>ul li{
+        font-size:clamp(13px,.85vw,16px);
+        line-height:1.5;
+        font-weight:600;
+    }
+
+    .stackly-blog-sf-col>ul li a:hover{
+        color:#ff6a10;
+    }
+
+    .stackly-blog-sf-contact>ul{
+        margin-top:clamp(10px,.9vw,17px);
+        gap:clamp(10px,.9vw,17px);
+    }
+
+    .stackly-blog-sf-contact>ul li{
+        display:flex;
+        align-items:center;
+        gap:clamp(10px,.75vw,14px);
+        min-height:clamp(28px,1.8vw,34px);
+        line-height:1.38;
+    }
+
+    .stackly-blog-sf-dot{
+        flex:none;
+        width:clamp(28px,1.8vw,34px);
+        height:clamp(28px,1.8vw,34px);
+        border-radius:50%;
+        background:#ff6a10;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-blog-sf-dot svg{
+        width:48%;
+        height:48%;
+        fill:#fff;
+        display:block;
+    }
+
+    .stackly-blog-sf-badges{
+        margin-top:clamp(12px,1vw,19px);
+        display:flex;
+        flex-direction:column;
+        gap:clamp(10px,.8vw,15px);
+    }
+
+    .stackly-blog-sf-badge{
+        display:flex;
+        align-items:center;
+        gap:clamp(8px,.7vw,13px);
+        width:clamp(176px,11.94vw,225px);
+        height:clamp(42px,2.65vw,50px);
+        padding:0 clamp(12px,1.1vw,21px);
+        border:1px solid rgba(255,255,255,.7);
+        border-radius:8px;
+        background:#000;
+        transition:background .25s,transform .25s,border-color .25s;
+    }
+
+    .stackly-blog-sf-badge:hover{
+        background:#111;
+        border-color:#fff;
+        transform:translateY(-2px);
+        color:#fff;
+    }
+
+    .stackly-blog-sf-bico{
+        flex:none;
+        width:clamp(22px,1.55vw,29px);
+        height:auto;
+    }
+
+    .stackly-blog-sf-badge span{
+        display:block;
+    }
+
+    .stackly-blog-sf-badge small{
+        display:block;
+        font-size:clamp(8px,.58vw,11px);
+        line-height:1.1;
+        font-weight:600;
+        letter-spacing:.02em;
+        text-transform:uppercase;
+    }
+
+    .stackly-blog-sf-badge b{
+        display:block;
+        font-size:clamp(14px,1.15vw,22px);
+        line-height:1.1;
+        font-weight:500;
+    }
+
+    .stackly-blog-sf-bar{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        margin:0 3.2vw;
+        padding:0;
+        height:clamp(38px,2.35vw,44px);
+        border-top:1px solid rgba(255,255,255,.13);
+        font-size:clamp(10.5px,.64vw,12px);
+        font-weight:400;
+        color:#fff;
+    }
+
+    .stackly-blog-sf-bar nav{
+        display:flex;
+        gap:clamp(18px,1.9vw,36px);
+    }
+
+    .stackly-blog-sf-bar a:hover{
+        color:#ff6a10;
+    }
+
+    .stackly-blog-sf-top,
+    #top.stackly-blog-sf-top{
+        position:fixed;
+        right:clamp(16px,1.75vw,33px);
+        bottom:clamp(16px,1.6vw,30px);
+        left:auto;
+        top:auto;
+        width:clamp(46px,3.7vw,70px);
+        height:clamp(46px,3.7vw,70px);
+        border-radius:50%;
+        background:#ff6a10;
+        border:0;
+        padding:0;
+        cursor:pointer;
+        display:grid;
+        place-items:center;
+        opacity:0;
+        transform:translateY(20px);
+        pointer-events:none;
+        transition:opacity .35s,transform .35s,background .25s;
+        z-index:90;
+        box-shadow:0 8px 24px rgba(255,106,16,.45);
+    }
+
+    .stackly-blog-sf-top.stackly-blog-show,
+    #top.stackly-blog-sf-top.stackly-blog-show{
+        opacity:1;
+        transform:none;
+        pointer-events:auto;
+    }
+
+    .stackly-blog-sf-top:hover,
+    #top.stackly-blog-sf-top:hover{
+        background:#e85a05;
+        transform:translateY(-4px);
+    }
+
+    .stackly-blog-sf-top svg{
+        width:42%;
+        height:42%;
+        stroke:#fff;
+        fill:none;
+        stroke-width:2.6;
+        stroke-linecap:round;
+        stroke-linejoin:round;
+    }
+
+    @media (max-width:980px){
+        .stackly-blog-sf-main{
+            grid-template-columns:1fr 1fr;
+            gap:34px 24px;
+            padding:36px 24px 34px;
+        }
+
+        .stackly-blog-sf-brand{
+            grid-column:1/-1;
+        }
+
+        .stackly-blog-sf-brand p{
+            max-width:420px;
+        }
+
+        .stackly-blog-sf-col>ul li{
+            font-size:14px;
+        }
+
+        .stackly-blog-sf-col h4{
+            font-size:16px;
+        }
+
+        .stackly-blog-sf-contact,
+        .stackly-blog-sf-app{
+            grid-column:1/-1;
+        }
+
+        .stackly-blog-sf-bar{
+            margin:0 24px;
+            height:auto;
+            padding:14px 0;
+            flex-wrap:wrap;
+        }
+    }
+
+    .stackly-blog-sf-logo img{
+        filter:url(#sfOrange)!important;
+        opacity:1!important;
+    }
+
+    /* ---------- UTILITIES ---------- */
+
+    /* replaces the former inline style="" attributes */
+
+    .stackly-blog-sprite{
+        position:absolute;
+    }
+</style>
+</head>
+<body>
+
+    <div
+        class="stackly-blog-progress"
+        id="progress"
+    ></div>
+
+    <header
+        class="stackly-blog-hd"
+        id="hd"
+    >
+
+        <div class="stackly-blog-hd-in">
+
+            <a
+                class="stackly-blog-logo"
+                href="index.html"
+                aria-label="Stackly home"
+            ><img src="assets/Home_53.webp" alt="Stackly" width="226" height="68" /></a>
+
+            <nav
+                class="stackly-blog-nav"
+                id="nav"
+            >
+                <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="categories.html">Categories</a><a href="brands.html">Brands</a><a href="about.html">About Us</a><a href="blog.html" class="stackly-blog-active">Blog</a><a href="contact.html">Contact Us</a>
+            </nav>
+
+            <div class="stackly-blog-hd-right">
+
+                <label class="stackly-blog-search"><input type="search" placeholder="Search..." aria-label="Search" /><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></label>
+
+                <a
+                    class="stackly-blog-ico"
+                    href="login.html"
+                    aria-label="Account"
+                ><svg class="stackly-blog-sx-ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="7.500" r="4"/><path d="M4 21c0-4.200 3.500-6.800 8-6.800s8 2.600 8 6.800"/></svg></a>
+
+                <a
+                    class="stackly-blog-ico"
+                    href="cart.html"
+                    aria-label="Cart"
+                ><svg class="stackly-blog-sx-ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M1.500 3h3.200l2.600 12.200h11.300l2.200-8.700H5.800"/><circle cx="9.200" cy="19.800" r="1.400"/><circle cx="17.500" cy="19.800" r="1.400"/></svg><span class="stackly-blog-cart-badge" id="cartBadge"></span></a>
+
+            </div>
+
+            <button
+                class="stackly-blog-burger"
+                id="burger"
+                aria-label="Menu"
+            ><span></span><span></span><span></span></button>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="stackly-blog-hero stackly-blog-blog">
+
+            <div class="stackly-blog-hero-img">
+
+                <img
+                    src="assets/img_115.webp"
+                    alt=""
+                    width="5760"
+                    height="968"
+                />
+
+            </div>
+
+            <div class="stackly-blog-wrap">
+
+                <div class="stackly-blog-crumb">
+                    <a href="index.html">Home</a><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 1 5 5-5 5"/></svg><span>Blog</span>
+                </div>
+
+                <h1>Our Blog</h1>
+
+                <p>
+                    Get the latest tips, guides and updates on car maintenance, spare parts and everything automotive.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="stackly-blog-bl">
+
+            <div class="stackly-blog-wrap stackly-blog-bl-in">
+
+                <div class="stackly-blog-chips-row">
+
+                    <div
+                        class="stackly-blog-chips"
+                        id="chips"
+                    >
+                        <button class="stackly-blog-chip stackly-blog-on" data-c="All">All</button><button class="stackly-blog-chip" data-c="Maintenance">Maintenance</button><button class="stackly-blog-chip" data-c="Spare Parts">Spare Parts</button><button class="stackly-blog-chip" data-c="Car Care">Car Care</button><button class="stackly-blog-chip" data-c="Buying Guide">Buying Guide</button><button class="stackly-blog-chip" data-c="News &amp; Updates">News &amp; Updates</button>
+                    </div>
+
+                    <form
+                        class="stackly-blog-sbox"
+                        id="sbox"
+                        role="search"
+                    >
+                        <input id="q" type="search" placeholder="Search Blog Articles..." aria-label="Search blog articles" /><button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button>
+                    </form>
+
+                </div>
+
+                <div>
+
+                    <div
+                        class="stackly-blog-posts"
+                        id="posts"
+                    ></div>
+
+                    <div
+                        class="stackly-blog-pager"
+                        id="pager"
+                    ></div>
+
+                </div>
+
+                <aside>
+
+                    <h3 class="stackly-blog-rv">Categories</h3>
+
+                    <div
+                        class="stackly-blog-cats stackly-blog-rv"
+                        id="cats"
+                    >
+
+                        <button data-c="Maintenance"><span>Maintenance</span><em data-n="12">0</em></button>
+
+                        <button data-c="Spare Parts"><span>Spare Parts</span><em data-n="10">0</em></button>
+
+                        <button data-c="Car Care"><span>Car Care</span><em data-n="8">0</em></button>
+
+                        <button data-c="Buying Guide"><span>Buying Guide</span><em data-n="7">0</em></button>
+
+                        <button data-c="News &amp; Updates"><span>News &amp; Updates</span><em data-n="5">0</em></button>
+
+                    </div>
+
+                    <h3 class="stackly-blog-rp stackly-blog-rv">Recent Posts</h3>
+
+                    <div class="stackly-blog-rec stackly-blog-rv">
+
+                        <a href="#"><img src="assets/img_76.webp" alt="" /><div><b>Top 10 Car Maintenance Tips to Keep Your Vehicle in Top Shape</b><span>July 28, 2026</span></div></a>
+
+                        <a href="#"><img src="assets/img_118.webp" alt="" /><div><b>How to Choose the Right Brake Pads for Your Car</b><span>July 25, 2026</span></div></a>
+
+                        <a href="#"><img src="assets/img_122.webp" alt="" /><div><b>New Arrivals: Premium Spare Parts for All Major Car Brands</b><span>July 10, 2026</span></div></a>
+
+                        <a href="#"><img src="assets/img_123.webp" alt="" /><div><b>5 Signs Your Car Needs a Wheel Alignment</b><span>July 05, 2026</span></div></a>
+
+                        <a href="#"><img src="assets/img_119.webp" alt="" /><div><b>Best Engine Oils for Better Performance and Longer Life</b><span>July 20, 2026</span></div></a>
+
+                    </div>
+
+                    <div class="stackly-blog-cta stackly-blog-rv">
+                        <img src="assets/img_116.webp" alt="" /><h3>Need Help Finding<br />the Right Parts?</h3><p>Our experts are here to assist you with the best recommendations.</p><a class="stackly-blog-btn" href="contact.html"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>Contact Us</a>
+                    </div>
+
+                    <div class="stackly-blog-author stackly-blog-rv">
+
+                        <h3>About the Author</h3>
+
+                        <div class="stackly-blog-au-grid">
+                            <svg class="stackly-blog-au-av" viewBox="0 0 60 60" role="img" aria-label="Roshan Mehta"><circle cx="30" cy="30" r="30" fill="#d9d9d9"/><circle cx="30" cy="23.5" r="10.5" fill="#8d8d8d"/><path d="M7 54c2.5-11.500 11.500-18 23-18s20.500 6.500 23 18a30 30 0 0 1-46 0z" fill="#8d8d8d"/></svg><div class="stackly-blog-au-body"><b>Roshan Mehta</b><span class="stackly-blog-role">Automotive Export</span> <p>Roshan is a passionate automotive enthusiast with over 10 years of experience in the auto parts industry. He shares valuable Insights,tips and guides to help you keep your vehicle in the best condition.</p> <div class="stackly-blog-au-soc"> <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21z"/></svg></a> <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8C22 15.2 22 12 22 12s0-3.2-.4-4.8zM10 15V9l5.2 3z"/></svg></a> <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8.9H3.7V20h3.2V8.9zM5.3 4a1.9 1.9 0 1 0 0 3.8A1.9 1.9 0 0 0 5.3 4zM20.3 13.6c0-3-1.6-4.9-4.1-4.9-1.3 0-2.2.7-2.6 1.3V8.9h-3.1V20h3.2v-6c0-1.6.3-2.7 1.8-2.7s1.6 1.3 1.6 2.8V20h3.2v-6.4z"/></svg></a> <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></a> </div></div>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <section
+        class="stackly-blog-nlx"
+        aria-label="Newsletter"
+    >
+
+        <img
+            class="stackly-blog-nlx-bg"
+            src="assets/Home_9.webp"
+            alt=""
+            aria-hidden="true"
+        />
+
+        <div class="stackly-blog-nlx-in">
+
+            <span class="stackly-blog-nlx-ico"><svg viewBox="0 0 88 62" fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="82" height="54" rx="2"/><path d="M4 6l40 31L84 6"/></svg></span>
+
+            <div class="stackly-blog-nlx-copy">
+
+                <h3>Subscribe to Our Newsletter</h3>
+
+                <p>Get the latest updates on new arrivals,exclusive offers and more.</p>
+
+            </div>
+
+            <form
+                class="stackly-blog-nlx-form"
+                id="newsForm"
+                novalidate
+            >
+
+                <input
+                    type="email"
+                    placeholder="Enter Your Email Address"
+                    aria-label="Email address"
+                    autocomplete="email"
+                    required
+                />
+
+                <button type="submit">Subscribe</button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <svg class="stackly-blog-sprite" width="0" height="0" aria-hidden="true"><filter id="toOrange" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 0.353  0 0 0 0 0.039  0 0 0 1 0"/></filter></svg>
+
+    <svg class="stackly-blog-sprite" width="0" height="0" aria-hidden="true" focusable="false"><filter id="sfOrange" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.9922  0 0 0 0 0.3569  0 0 0 0 0.0157  0 0 0 1 0"/></filter></svg>
+
+    <footer class="stackly-blog-sf">
+
+        <div class="stackly-blog-sf-main">
+
+            <div class="stackly-blog-sf-brand">
+
+                <a
+                    class="stackly-blog-sf-logo"
+                    href="index.html"
+                    aria-label="Stackly home"
+                ><img src="assets/logo-footer.webp" onerror="this.onerror=null;this.src='assets/Home_53.webp'" alt="Stackly" width="255" height="75" /></a>
+
+                <p>
+                    Your one-step destination for genuine automative Spare parts. Quality products, trusted brands and services.
+                </p>
+
+                <div class="stackly-blog-sf-socials">
+
+                    <a
+                        href="404.html"
+                        aria-label="Facebook"
+                    ><svg class="stackly-blog-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5 2h14a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3zM13.5 22v-7.600h2.500l.4-3h-2.900V9.500c0-.9.300-1.500 1.500-1.500h1.500V5.300c-.3 0-1.200-.1-2.200-.1-2.200 0-3.700 1.300-3.700 3.800v2.200H8.100v3h2.500V22z"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="Instagram"
+                    ><svg class="stackly-blog-sf-soc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.100"/><circle cx="17.300" cy="6.700" r="1" fill="currentColor" stroke="none"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="YouTube"
+                    ><svg class="stackly-blog-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M21.600 7.200a2.500 2.500 0 0 0-1.800-1.800C18.300 5 12 5 12 5s-6.300 0-7.800.4A2.500 2.500 0 0 0 2.400 7.200C2 8.700 2 12 2 12s0 3.300.4 4.800a2.500 2.500 0 0 0 1.800 1.800C5.700 19 12 19 12 19s6.300 0 7.800-.4a2.500 2.500 0 0 0 1.800-1.800C22 15.300 22 12 22 12s0-3.300-.4-4.800zM10 15V9l5.200 3z"/></svg></a>
+
+                    <a
+                        href="404.html"
+                        aria-label="WhatsApp"
+                    ><svg class="stackly-blog-sf-soc" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.030-.967-.273-.099-.471-.148-.670.150-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.150-1.255-.463-2.390-1.475-.883-.788-1.480-1.761-1.653-2.059-.173-.297-.018-.458.130-.606.134-.133.298-.347.446-.520.149-.174.198-.298.298-.497.099-.198.050-.371-.025-.520-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.500-.669-.510-.173-.008-.371-.010-.570-.010-.198 0-.520.074-.792.372-.272.297-1.040 1.016-1.040 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.200 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.360.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.870 9.870 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.860 9.860 0 01-1.510-5.260c.001-5.450 4.436-9.884 9.888-9.884 2.640 0 5.122 1.030 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.450-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.050 0C5.495 0 .160 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.480-8.413z"/></svg></a>
+
+                </div>
+
+            </div>
+
+            <div class="stackly-blog-sf-col">
+
+                <h4>Quick Links</h4>
+
+                <ul>
+
+                    <li>
+
+                        <a href="index.html">Home</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="shop.html">Shop</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="brands.html">Brands</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="about.html">About Us</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="blog.html">Blog</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="contact.html">Contact Us</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-blog-sf-col">
+
+                <h4>Customer Services</h4>
+
+                <ul>
+
+                    <li>
+
+                        <a href="404.html">Help Center</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Track Order</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Shipping Policy</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">Return Policy</a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="404.html">FAQs</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-blog-sf-col stackly-blog-sf-contact">
+
+                <h4>Contact Us</h4>
+
+                <ul>
+
+                    <li>
+                        <span class="stackly-blog-sf-dot"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.250.2 2.450.6 3.600a1 1 0 0 1-.25 1z"/></svg></span><a href="tel:+917010792745">+91 7010792745</a>
+                    </li>
+
+                    <li>
+                        <span class="stackly-blog-sf-dot"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 011 1v1.200l-10 6.300L2 7.200V6a1 1 0 011-1zm-1 4.500l10 6.300 10-6.300V18a1 1 0 01-1 1H3a1 1 0 01-1-1z"/></svg></span><a href="mailto:info@stackly.com">info@stackly.com</a>
+                    </li>
+
+                    <li>
+                        <span class="stackly-blog-sf-dot"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.500A2.500 2.500 0 1112 6.500a2.500 2.500 0 010 5z"/></svg></span><span>Tamilnadu<br />Salem - 636008</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="stackly-blog-sf-col stackly-blog-sf-app">
+
+                <h4>Download Our App</h4>
+
+                <div class="stackly-blog-sf-badges">
+
+                    <a
+                        class="stackly-blog-sf-badge"
+                        href="404.html"
+                        aria-label="Get it on Google Play"
+                    ><svg class="stackly-blog-sf-bico" width="22" height="24" viewBox="0 0 24 26" aria-hidden="true"><path fill="#00a0ff" d="M1.500 1.200L13 13 1.500 24.800C1.100 24.500 1 24 1 23.400V2.600C1 2 1.100 1.500 1.500 1.200z"/><path fill="#00f076" d="M1.500 1.200L18 9.800 13 13z"/><path fill="#ff3a44" d="M1.500 24.800L18 16.200 13 13z"/><path fill="#ffd500" d="M18 9.800l4.500 2.400c.9.500.9 1.600 0 2.100L18 16.200 13 13z"/></svg> <span><small>GET IT ON</small><b>Google Play</b></span></a>
+
+                    <a
+                        class="stackly-blog-sf-badge"
+                        href="404.html"
+                        aria-label="Download on the App Store"
+                    ><svg class="stackly-blog-sf-bico" width="22" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.365 1.430c0 1.140-.493 2.270-1.177 3.080-.744.900-1.990 1.570-2.987 1.570-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.150.572-2.270 1.206-2.980.804-.940 2.142-1.640 3.248-1.680.03.130.05.280.05.430zm4.565 15.710c-.03.07-.463 1.580-1.518 3.120-.945 1.340-1.940 2.710-3.430 2.710-1.517 0-1.900-.88-3.630-.88-1.698 0-2.302.91-3.670.91-1.377 0-2.332-1.260-3.428-2.800-1.287-1.820-2.323-4.630-2.323-7.280 0-4.280 2.797-6.550 5.552-6.550 1.448 0 2.675.95 3.600.95.865 0 2.222-1.010 3.902-1.010.613 0 2.886.06 4.374 2.190-.13.09-2.383 1.370-2.383 4.190 0 3.260 2.854 4.420 2.955 4.450z"/></svg> <span><small>Download on the</small><b>App Store</b></span></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="stackly-blog-sf-bar">
+            <span>&copy; 2026 STACKLY. All rights reserved.</span><nav><a href="404.html">Privacy Policy</a><a href="404.html">Terms &amp; Conditions</a></nav>
+        </div>
+
+    </footer>
+
+    <div
+        class="stackly-blog-toast"
+        id="toast"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+
+const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasG=!!window.gsap && !reduce;
+if(window.gsap&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
+
+addEventListener('load',()=>window.ScrollTrigger&&ScrollTrigger.refresh());
+/* header: scrolled state, progress bar, mobile menu */
+const hd=$('#hd'),prog=$('#progress');
+addEventListener('scroll',()=>{
+  hd.classList.toggle('stackly-blog-scrolled',scrollY>30);
+  const h=document.documentElement.scrollHeight-innerHeight;
+  prog.style.transform='scaleX('+(h>0?scrollY/h:0)+')';
+},{passive:true});
+const burger=$('#burger'),nav=$('#nav');
+burger.addEventListener('click',()=>{burger.classList.toggle('stackly-blog-open');nav.classList.toggle('stackly-blog-open')});
+$$('.stackly-blog-nav a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('stackly-blog-open');nav.classList.remove('stackly-blog-open')}));
+
+/* toast */
+let toastTl;
+function toast(msg){
+  const t=$('#toast');t.textContent=msg;
+  if(!hasG){t.style.cssText+='transform:none;opacity:1';setTimeout(()=>t.style.opacity=0,3200);return}
+  toastTl&&toastTl.kill();
+  toastTl=gsap.timeline().to(t,{y:0,opacity:1,duration:.5,ease:'back.out(1.6)'}).to(t,{y:140,opacity:0,duration:.4,delay:2.8,ease:'power2.in'});
+}
+
+/* newsletter */
+const nf=$('#newsForm');
+nf.addEventListener('submit',e=>{
+  e.preventDefault();
+  const i=nf.querySelector('input');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(i.value.trim())){
+    nf.classList.remove('stackly-blog-err');void nf.offsetWidth;nf.classList.add('stackly-blog-err');toast('Please enter a valid email address.');return}
+  toast('Thanks for subscribing! Watch your inbox for offers.');i.value='';
+});
+
+/* split text into chars */
+function split(el){
+  const txt=el.textContent;el.setAttribute('aria-label',txt);el.textContent='';
+  const out=[];
+  txt.split(' ').forEach((w,wi,arr)=>{
+    const wrap=document.createElement('span');wrap.className='stackly-blog-line-mask';wrap.setAttribute('aria-hidden','true');
+    [...w].forEach(ch=>{const s=document.createElement('span');s.className='stackly-blog-char';s.textContent=ch;wrap.appendChild(s);out.push(s)});
+    el.appendChild(wrap);if(wi<arr.length-1)el.appendChild(document.createTextNode(' '));
+  });
+  return out;
+}
+
+/* magnetic buttons */
+if(hasG&&matchMedia('(hover:hover)').matches){
+  $$('.stackly-blog-btn,.stackly-blog-page,.stackly-blog-chip').forEach(b=>{
+    const xTo=gsap.quickTo(b,'x',{duration:.4,ease:'power3'}),yTo=gsap.quickTo(b,'y',{duration:.4,ease:'power3'});
+    b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();xTo((e.clientX-r.left-r.width/2)*.22);yTo((e.clientY-r.top-r.height/2)*.3)});
+    b.addEventListener('mouseleave',()=>{xTo(0);yTo(0)});
+  });
+}
+
+/* common intro: header + hero + parallax + newsletter/footer reveals */
+function introCommon(){
+  if(!hasG)return;
+  const tl=gsap.timeline({defaults:{ease:'power4.out'}});
+  tl.from('.stackly-blog-hd-in>*',{y:-40,autoAlpha:0,duration:.8,stagger:.08});
+  tl.from('.stackly-blog-crumb',{x:-40,autoAlpha:0,duration:.8},'-=.5');
+  const chars=split($('.stackly-blog-hero h1'));
+  tl.from(chars,{yPercent:120,rotate:6,duration:.9,stagger:.035},'-=.5');
+  tl.from('.stackly-blog-hero p',{y:26,autoAlpha:0,duration:.9},'-=.5');
+  tl.from('.stackly-blog-hero-img',{xPercent:12,autoAlpha:0,duration:1.4,ease:'power3.out'},0.2);
+  gsap.to('.stackly-blog-hero-img img',{yPercent:-9,ease:'none',scrollTrigger:{trigger:'.stackly-blog-hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.stackly-blog-hero-img',{scale:1.06,transformOrigin:'right center',ease:'none',scrollTrigger:{trigger:'.stackly-blog-hero',start:'top top',end:'bottom top',scrub:true}});
+    gsap.from('.stackly-blog-nlx-copy,.stackly-blog-nlx-form',{y:34,autoAlpha:0,duration:.8,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:'.stackly-blog-nlx',start:'top 85%'}});
+      gsap.from('.stackly-blog-sf-brand,.stackly-blog-sf-col',{y:40,autoAlpha:0,duration:.8,stagger:.1,ease:'power3.out',scrollTrigger:{trigger:'.stackly-blog-sf',start:'top 90%'}});
+}
+
+
+const POSTS=[["July 28, 2026", "Top 10 Car Maintenance Tips to Keep Your Vehicle in Top Shape", "Regular maintenance can save you money and prevent major repairs. Here are 10 essential car maintenance tips every vehicle owner should follow....", "Maintenance", "img_76"], ["July 25, 2026", "How to Choose the Right Brake Pads for Your Car", "Brake pads are crucial for your safety. Learn how to choose the best brake pads based on your car model, driving style, and budget...", "Buying Guide", "img_118"], ["July 20, 2026", "Best Engine Oils for Better Performance and Longer Life", "Using the right engine oil improves fuel efficiency, reduces wear and tear, and keeps your engine running smoothly. Find out which oil is best for your vehicle.", "Spare Parts", "img_119"], ["July 15, 2026", "How to Choose the Right Car Battery", "A good battery keeps your car running smoothly. Here’s a simple guide to help you choose the right car battery based on your vehicle and driving needs.", "Buying Guide", "img_121"], ["July 10, 2026", "New Arrivals: Premium Spare Parts for All Major Car Brands", "We are excited to announce the launch of new premium spare parts for Toyota, Hyundai, Honda, Ford and more. High Quality. Better performance. Greater value.", "News & Updates", "img_122"], ["July 05, 2026", "5 Signs Your Car Needs a Wheel Alignment", "Uneven tire wear? Pulling to one side? It could be a sign that your car needs a wheel alignment. Learn the signs and why it’s important.", "Car Care", "img_123"], ["July 02, 2026", "When to Replace Your Air Filter", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your maintenance spend....", "Maintenance", "img_113"], ["June 30, 2026", "Spark Plugs 101: Types, Life and Signs of Wear", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your spare parts spend....", "Spare Parts", "img_92"], ["June 29, 2026", "Winter-Proof Your Car in Five Easy Steps", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your car care spend....", "Car Care", "img_100"], ["June 27, 2026", "Genuine vs. Aftermarket Parts: What Should You Buy?", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your buying guide spend....", "Buying Guide", "img_92"], ["June 26, 2026", "Stackly Now Delivers to More Cities Across India", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your news & updates spend....", "News & Updates", "img_111"], ["June 24, 2026", "How Often Should You Change Your Engine Oil?", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your maintenance spend....", "Maintenance", "img_119"], ["June 23, 2026", "Shock Absorbers: Signs They Are Failing", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your spare parts spend....", "Spare Parts", "img_123"], ["June 21, 2026", "Keeping Your Car Interior Fresh All Year", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your car care spend....", "Car Care", "img_112"], ["June 20, 2026", "Choosing Tyres for Indian Roads", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your buying guide spend....", "Buying Guide", "img_122"], ["June 18, 2026", "Introducing Our New Mobile App", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your news & updates spend....", "News & Updates", "img_111"], ["June 17, 2026", "Brake Fluid: The Most Ignored Fluid in Your Car", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your maintenance spend....", "Maintenance", "img_118"], ["June 15, 2026", "Timing Belt vs. Chain: What’s the Difference?", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your spare parts spend....", "Spare Parts", "img_113"], ["June 14, 2026", "Monsoon Driving: Protect Your Car from Water Damage", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your car care spend....", "Car Care", "img_100"], ["June 12, 2026", "Headlight Bulbs Buying Guide", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your buying guide spend....", "Buying Guide", "img_112"], ["June 11, 2026", "Festive Season Offers on Genuine Parts", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your news & updates spend....", "News & Updates", "img_92"], ["June 09, 2026", "Coolant Checks Every Owner Should Know", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your maintenance spend....", "Maintenance", "img_113"], ["June 08, 2026", "Clutch Plate Wear: Warning Signs", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your spare parts spend....", "Spare Parts", "img_100"], ["June 06, 2026", "How to Wash Your Car Without Damaging the Paint", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your car care spend....", "Car Care", "img_122"], ["June 05, 2026", "Wiper Blades: Which Type Suits You?", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your buying guide spend....", "Buying Guide", "img_123"], ["June 03, 2026", "New Brand Partners Join the Stackly Family", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your news & updates spend....", "News & Updates", "img_111"], ["June 02, 2026", "Tyre Pressure and Mileage: The Link", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your maintenance spend....", "Maintenance", "img_121"], ["May 31, 2026", "What Does a Catalytic Converter Do?", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your spare parts spend....", "Spare Parts", "img_113"], ["May 30, 2026", "Quick Fixes for Common Dashboard Warnings", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your car care spend....", "Car Care", "img_100"], ["May 28, 2026", "Battery Brands Compared: Which Lasts Longest?", "A practical guide from the Stackly team covering what to look for, common mistakes to avoid and simple steps to get the best value from your buying guide spend....", "Buying Guide", "img_121"]];
+const PER=6;
+let cat='All',term='',page=1;
+const postsEl=$('#posts'),pager=$('#pager');
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function filtered(){return POSTS.filter(p=>(cat==='All'||p[3]===cat)&&(!term||(p[1]+' '+p[2]).toLowerCase().includes(term)))}
+function render(animate=true,scroll=false){
+  const list=filtered(),pages=Math.max(1,Math.ceil(list.length/PER));
+  if(page>pages)page=pages;
+  const slice=list.slice((page-1)*PER,page*PER);
+  const draw=()=>{
+    postsEl.innerHTML=slice.length?slice.map(p=>`<article class="stackly-blog-post"><a class="stackly-blog-th" href="#" tabindex="-1" aria-hidden="true"><img src="assets/${p[4]}.webp" alt="" loading="lazy"></a><div><time>${p[0]}</time><h2><a href="#">${esc(p[1])}</a></h2><p>${esc(p[2])}</p><a class="stackly-blog-rm" href="#">Read More....<i>→</i></a></div></article>`).join(''):'<p class="stackly-blog-empty">No articles found. Try a different search or category.</p>';
+    if(hasG){
+      gsap.from('.stackly-blog-post',{y:50,autoAlpha:0,duration:.7,stagger:.1,ease:'power3.out',clearProps:'all'});
+      gsap.from('.stackly-blog-post .stackly-blog-th',{clipPath:'inset(0 100% 0 0)',duration:.9,stagger:.1,ease:'power3.inOut',clearProps:'clipPath'});
+    }
+    drawPager(pages);
+  };
+  if(animate&&hasG&&postsEl.children.length){
+    gsap.to(postsEl.children,{y:-20,autoAlpha:0,duration:.25,stagger:.03,ease:'power2.in',onComplete:draw});
+  }else draw();
+  if(scroll)scrollTo({top:$('.stackly-blog-bl').offsetTop-60,behavior:'smooth'});
+}
+const arrowL='<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 1 3 6l5 5"/></svg>',arrowR='<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m4 1 5 5-5 5"/></svg>';
+function drawPager(pages){
+  let h=`<button class="stackly-blog-page" data-p="${page-1}" ${page===1?'disabled':''} aria-label="Previous page">${arrowL}</button>`;
+  for(let i=1;i<=pages;i++)h+=`<button class="stackly-blog-page ${i===page?'stackly-blog-on':''}" data-p="${i}">${i}</button>`;
+  h+=`<button class="stackly-blog-page" data-p="${page+1}" ${page===pages?'disabled':''} aria-label="Next page">${arrowR}</button>`;
+  pager.innerHTML=h;
+}
+pager.addEventListener('click',e=>{const b=e.target.closest('.stackly-blog-page');if(!b||b.disabled)return;page=+b.dataset.p;render(true,true)});
+function setCat(c){
+  cat=(cat===c&&c!=='All')?'All':c;page=1;
+  $$('#chips .stackly-blog-chip').forEach(x=>x.classList.toggle('stackly-blog-on',x.dataset.c===cat));
+  $$('#cats button').forEach(x=>x.classList.toggle('stackly-blog-on',x.dataset.c===cat));
+  render();
+}
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('.stackly-blog-chip');if(b)setCat(b.dataset.c)});
+$('#cats').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setCat(b.dataset.c)});
+let tm;
+$('#q').addEventListener('input',e=>{clearTimeout(tm);tm=setTimeout(()=>{term=e.target.value.trim().toLowerCase();page=1;render()},250)});
+$('#sbox').addEventListener('submit',e=>{e.preventDefault();term=$('#q').value.trim().toLowerCase();page=1;render()});
+$$('.stackly-blog-rm,.stackly-blog-post a,.stackly-blog-rec a').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+$('.stackly-blog-bl').addEventListener('click',e=>{if(e.target.closest('.stackly-blog-post a,.stackly-blog-rec a'))e.preventDefault()});
+
+render(false);
+introCommon();
+if(hasG){
+  gsap.from('.stackly-blog-chip',{y:20,autoAlpha:0,duration:.6,stagger:.07,ease:'back.out(1.8)',delay:.9});
+  gsap.from('.stackly-blog-sbox',{x:50,autoAlpha:0,duration:.8,ease:'power3.out',delay:1});
+  gsap.from('aside .stackly-blog-rv',{x:60,autoAlpha:0,duration:.8,stagger:.12,ease:'power3.out',delay:1.1});
+  gsap.from('.stackly-blog-rec a',{x:30,autoAlpha:0,duration:.6,stagger:.08,ease:'power2.out',scrollTrigger:{trigger:'.stackly-blog-rec',start:'top 90%'}});
+  gsap.to('.stackly-blog-cta>img',{yPercent:-12,ease:'none',scrollTrigger:{trigger:'.stackly-blog-cta',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.from('.stackly-blog-au-soc a',{scale:0,duration:.6,stagger:.1,ease:'back.out(3)',clearProps:'transform',scrollTrigger:{trigger:'.stackly-blog-author',start:'top 98%'}});
+}
+/* animated category counters */
+$$('#cats em').forEach(el=>{
+  const n=+el.dataset.n;
+  if(!hasG){el.textContent=n;return}
+  const o={v:0};
+  gsap.to(o,{v:n,duration:1.4,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 95%'},onUpdate:()=>el.textContent=Math.round(o.v)});
+});
+
+</script>
+
+    <button
+        class="stackly-blog-sf-top"
+        id="sfTop"
+        aria-label="Back to top"
+    ><svg viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg></button>
+
+<script>(function(){var b=document.getElementById('sfTop');if(!b)return;function f(){b.classList.toggle('stackly-blog-show',(window.scrollY||document.documentElement.scrollTop)>400)}window.addEventListener('scroll',f,{passive:true});f();b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})})();</script>
+
+</body>
+</html>

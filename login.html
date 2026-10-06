@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login | Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    /* ==========================================================
+       Stackly Auto Parts - login.html styles
+       class prefix: stackly-login-
+       ========================================================== */
+
+    :root{
+        --orange:#C06A00;
+        --orange-dark:#a85c00;
+        --navy:#0b1f33;
+        --sky:#38b6f2;
+    }
+
+    *{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+    }
+
+    body{
+        font-family:'Inter',sans-serif;
+        color:#000;
+        background:#fff;
+        min-height:100vh;
+        display:flex;
+        flex-direction:column;
+        overflow-x:hidden;
+    }
+
+    .stackly-login-top{
+        width:min(1220px,100%);
+        margin:0 auto;
+        padding:0 20px;
+        height:122px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        flex:none;
+    }
+
+    .stackly-login-top .stackly-login-logo img{
+        width:clamp(170px,21vw,300px);
+        display:block;
+    }
+
+    .stackly-login-links{
+        display:flex;
+        align-items:center;
+        gap:30px;
+    }
+
+    .stackly-login-links a,
+    .stackly-login-lang{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        font-size:15px;
+        font-weight:600;
+        color:#000;
+        text-decoration:none;
+        cursor:pointer;
+        background:none;
+        border:0;
+        font-family:inherit;
+        position:relative;
+    }
+
+    .stackly-login-links img{
+        width:20px;
+        height:21px;
+        object-fit:contain;
+    }
+
+    .stackly-login-links a::after{
+        content:"";
+        position:absolute;
+        left:0;
+        bottom:-5px;
+        width:100%;
+        height:2px;
+        background:var(--orange);
+        transform:scaleX(0);
+        transform-origin:left;
+        transition:transform .3s;
+    }
+
+    .stackly-login-links a:hover::after{
+        transform:scaleX(1);
+    }
+
+    .stackly-login-lang svg.stackly-login-chev{
+        width:12px;
+        height:12px;
+    }
+
+    .stackly-login-lang{
+        position:relative;
+    }
+
+    .stackly-login-menu{
+        position:absolute;
+        top:34px;
+        right:0;
+        background:#fff;
+        border-radius:10px;
+        box-shadow:0 10px 30px rgba(0,0,0,.18);
+        list-style:none;
+        padding:6px;
+        min-width:90px;
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(-6px);
+        transition:.2s;
+        z-index:5;
+    }
+
+    .stackly-login-menu.stackly-login-open{
+        opacity:1;
+        visibility:visible;
+        transform:none;
+    }
+
+    .stackly-login-menu li{
+        padding:8px 12px;
+        border-radius:6px;
+        font-size:14px;
+        font-weight:500;
+        text-align:left;
+    }
+
+    .stackly-login-menu li:hover{
+        background:#f3ece2;
+        color:var(--orange);
+    }
+
+    main{
+        width:min(1220px,100%);
+        margin:0 auto;
+        padding:0 20px 24px;
+        flex:1;
+        display:grid;
+        grid-template-columns:1fr 38%;
+        gap:22px;
+        align-items:stretch;
+    }
+
+    .stackly-login-panel{
+        position:relative;
+        background:var(--navy);
+        border-top-right-radius:30px;
+        overflow:hidden;
+        min-height:690px;
+    }
+
+    .stackly-login-panel .stackly-login-img{
+        position:absolute;
+        inset:0;
+        background:url(assets/img_127_clean.webp) right bottom/cover no-repeat;
+        transform-origin:70% 60%;
+    }
+
+    /* hides the text already baked into the photo so live text can sit on top */
+
+    .stackly-login-panel .stackly-login-mask{
+        position:absolute;
+        inset:0;
+        background:
+            linear-gradient(180deg,var(--navy) 0,var(--navy) 50%,rgba(11,31,51,0) 64%),
+            linear-gradient(90deg,var(--navy) 0,var(--navy) 38%,rgba(11,31,51,.0) 78%);
+        -webkit-mask-image:linear-gradient(90deg,#000 0,#000 52%,transparent 76%);
+        mask-image:linear-gradient(90deg,#000 0,#000 52%,transparent 76%);
+    }
+
+    .stackly-login-panel .stackly-login-mask2{
+        position:absolute;
+        inset:0;
+        background:linear-gradient(180deg,rgba(11,31,51,.88) 0,rgba(11,31,51,.55) 30%,rgba(11,31,51,0) 52%);
+    }
+
+    .stackly-login-copy{
+        position:relative;
+        padding:99px 34px 0;
+        z-index:2;
+    }
+
+    .stackly-login-eyebrow{
+        color:var(--sky);
+        font-weight:700;
+        font-size:21px;
+        letter-spacing:-.2px;
+    }
+
+    .stackly-login-copy h2{
+        color:#fff;
+        font-weight:600;
+        font-size:clamp(30px,3.1vw,40px);
+        line-height:1.18;
+        margin-top:20px;
+        letter-spacing:-.6px;
+        max-width:560px;
+    }
+
+    .stackly-login-copy h2 .stackly-login-ln{
+        display:block;
+        overflow:hidden;
+    }
+
+    .stackly-login-copy h2 .stackly-login-ln i{
+        display:block;
+        font-style:normal;
+    }
+
+    .stackly-login-copy p{
+        color:#fff;
+        font-size:clamp(15px,1.5vw,18px);
+        line-height:1.2;
+        margin-top:26px;
+        max-width:440px;
+        font-weight:400;
+    }
+
+    .stackly-login-card{
+        background:#fff;
+        border-radius:30px;
+        box-shadow:0 4px 14px rgba(0,0,0,.28);
+        padding:38px 30px 22px;
+        text-align:center;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .stackly-login-card .stackly-login-home{
+        width:28px;
+        height:28px;
+        display:block;
+    }
+
+    .stackly-login-card h1{
+        font-size:21px;
+        font-weight:600;
+        margin-top:26px;
+        letter-spacing:-.2px;
+    }
+
+    .stackly-login-card .stackly-login-sub{
+        font-size:13px;
+        line-height:1.2;
+        margin-top:16px;
+        max-width:260px;
+    }
+
+    form{
+        width:100%;
+        text-align:left;
+        margin-top:24px;
+    }
+
+    form label.stackly-login-lab{
+        display:block;
+        font-size:13px;
+        font-weight:700;
+        margin:0 0 7px 3px;
+    }
+
+    .stackly-login-in{
+        position:relative;
+        height:46px;
+        margin-bottom:6px;
+    }
+
+    .stackly-login-in input{
+        width:100%;
+        height:100%;
+        border-radius:12px;
+        font:400 14px 'Inter',sans-serif;
+        color:#222;
+        padding:0 44px 0 66px;
+        outline:none;
+        transition:border-color .25s,box-shadow .25s,background .25s;
+    }
+
+    .stackly-login-in.stackly-login-outline input{
+        border:1px solid #bdbdbd;
+        background:#fff;
+    }
+
+    .stackly-login-in.stackly-login-fill input{
+        border:1px solid transparent;
+        background:#f2f2f2;
+    }
+
+    .stackly-login-in input::placeholder{
+        color:#8b8b8b;
+    }
+
+    .stackly-login-in input:focus{
+        border-color:var(--orange);
+        box-shadow:0 0 0 3px rgba(192,106,0,.16);
+        background:#fff;
+    }
+
+    .stackly-login-in.stackly-login-err input{
+        border-color:#d33;
+        box-shadow:0 0 0 3px rgba(211,51,51,.14);
+    }
+
+    .stackly-login-in .stackly-login-lead{
+        position:absolute;
+        left:22px;
+        top:50%;
+        transform:translateY(-50%);
+        width:20px;
+        height:20px;
+        object-fit:contain;
+    }
+
+    .stackly-login-in .stackly-login-eye{
+        position:absolute;
+        right:16px;
+        top:50%;
+        transform:translateY(-50%);
+        width:26px;
+        height:26px;
+        border:0;
+        background:none;
+        cursor:pointer;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-login-in .stackly-login-eye svg{
+        width:22px;
+        height:22px;
+    }
+
+    .stackly-login-em{
+        font-size:11.5px;
+        color:#d33;
+        margin:-2px 0 6px 3px;
+        height:0;
+        overflow:hidden;
+        opacity:0;
+    }
+
+    .stackly-login-in.stackly-login-err+.stackly-login-em{
+        height:14px;
+        opacity:1;
+    }
+
+    .stackly-login-row{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin:8px 4px 18px 3px;
+        font-size:14px;
+    }
+
+    .stackly-login-row label{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        cursor:pointer;
+    }
+
+    .stackly-login-row a{
+        color:#000;
+        text-decoration:none;
+        font-size:14px;
+        transition:color .2s;
+    }
+
+    .stackly-login-row a:hover{
+        color:var(--orange);
+    }
+
+    .stackly-login-chk{
+        appearance:none;
+        -webkit-appearance:none;
+        width:13px;
+        height:13px;
+        border:1.5px solid #222;
+        border-radius:2px;
+        position:relative;
+        background:#fff;
+        cursor:pointer;
+        flex:none;
+        transition:.2s;
+    }
+
+    .stackly-login-chk:checked{
+        background:var(--orange);
+        border-color:var(--orange);
+    }
+
+    .stackly-login-chk:checked::after{
+        content:"";
+        position:absolute;
+        left:3px;
+        top:0;
+        width:4px;
+        height:8px;
+        border:solid #fff;
+        border-width:0 2px 2px 0;
+        transform:rotate(45deg);
+    }
+
+    .stackly-login-login{
+        width:100%;
+        height:46px;
+        border:0;
+        border-radius:12px;
+        background:var(--orange);
+        color:#fff;
+        font:700 15px 'Inter',sans-serif;
+        cursor:pointer;
+        position:relative;
+        overflow:hidden;
+        transition:background .25s,box-shadow .25s;
+    }
+
+    .stackly-login-login::after{
+        content:"";
+        position:absolute;
+        top:0;
+        left:-60%;
+        width:40%;
+        height:100%;
+        background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
+        transform:skewX(-20deg);
+    }
+
+    .stackly-login-login:hover{
+        background:var(--orange-dark);
+        box-shadow:0 8px 18px rgba(192,106,0,.45);
+    }
+
+    .stackly-login-login:hover::after{
+        left:140%;
+        transition:left .7s;
+    }
+
+    .stackly-login-login.stackly-login-loading{
+        pointer-events:none;
+        opacity:.85;
+    }
+
+    .stackly-login-or{
+        display:flex;
+        align-items:center;
+        gap:20px;
+        width:100%;
+        margin-top:26px;
+        color:#6b6b6b;
+        font-size:14.5px;
+        justify-content:center;
+    }
+
+    .stackly-login-or::before,
+    .stackly-login-or::after{
+        content:"";
+        height:1px;
+        background:#8a8a8a;
+        flex:1;
+        transform-origin:center;
+    }
+
+    .stackly-login-alt{
+        display:flex;
+        justify-content:space-between;
+        width:100%;
+        margin-top:26px;
+        padding:0;
+    }
+
+    .stackly-login-alt button{
+        background:none;
+        border:0;
+        cursor:pointer;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:4px;
+        font:400 14px 'Inter',sans-serif;
+        color:#111;
+        transition:transform .25s;
+    }
+
+    .stackly-login-alt button:hover{
+        transform:translateY(-5px);
+    }
+
+    .stackly-login-alt .stackly-login-ico{
+        width:32px;
+        height:32px;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-login-alt svg{
+        width:30px;
+        height:30px;
+    }
+
+    .stackly-login-sec{
+        font-size:11.5px;
+        margin-top:16px;
+    }
+
+    .stackly-login-acc{
+        font-size:14.5px;
+        margin-top:14px;
+    }
+
+    .stackly-login-acc a{
+        display:block;
+        color:var(--orange);
+        font-weight:700;
+        font-size:15.5px;
+        margin-top:10px;
+        text-decoration:none;
+    }
+
+    .stackly-login-acc a:hover{
+        text-decoration:underline;
+    }
+
+    .stackly-login-chrome{
+        width:29px;
+        height:29px;
+        border-radius:50%;
+        background:conic-gradient(from -60deg,#ea4335 0 120deg,#fbbc05 120deg 240deg,#34a853 240deg 360deg);
+        position:relative;
+        box-shadow:0 1px 3px rgba(0,0,0,.25);
+    }
+
+    .stackly-login-chrome::before{
+        content:"";
+        position:absolute;
+        inset:7px;
+        border-radius:50%;
+        background:#fff;
+    }
+
+    .stackly-login-chrome::after{
+        content:"";
+        position:absolute;
+        inset:9px;
+        border-radius:50%;
+        background:#4285f4;
+    }
+
+    @media (max-width:900px){
+        main{
+            grid-template-columns:1fr;
+        }
+
+        .stackly-login-panel{
+            min-height:520px;
+            border-top-left-radius:30px;
+        }
+
+        .stackly-login-copy{
+            padding-top:60px;
+        }
+
+        .stackly-login-links{
+            gap:16px;
+        }
+
+        .stackly-login-links a,
+        .stackly-login-lang{
+            font-size:13px;
+        }
+    }
+
+    @media (max-width:520px){
+        .stackly-login-links a{
+            display:none;
+        }
+
+        .stackly-login-card{
+            padding:36px 20px 24px;
+        }
+
+        .stackly-login-alt .stackly-login-lbl{
+            font-size:12px;
+        }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+        *{
+            animation:none!important;
+            transition:none!important;
+        }
+    }
+
+    /* ---------- UTILITIES ---------- */
+
+    /* replaces the former inline style="" attributes */
+
+    img.stackly-login-lang-icon{
+        width:20px;
+        height:20px;
+    }
+
+    form label.stackly-login-lab.stackly-login-lab-spaced{
+        margin-top:12px;
+    }
+
+    .stackly-login-slash{
+        display:none;
+    }
+</style>
+</head>
+<body>
+
+    <div class="stackly-login-top">
+
+        <a
+            class="stackly-login-logo"
+            href="index.html"
+            aria-label="Stackly home"
+        ><img src="assets/Home_53.webp" alt="Stackly" /></a>
+
+        <nav class="stackly-login-links">
+
+            <a href="#"><img src="assets/img_128.webp" alt="" />Security</a>
+
+            <a href="#"><img src="assets/img_129.webp" alt="" />Help Center</a>
+
+            <div
+                class="stackly-login-lang"
+                id="lang"
+                tabindex="0"
+            >
+
+                <img
+                    class="stackly-login-lang-icon"
+                    src="assets/img_129.webp"
+                    alt=""
+                />
+
+                <span id="langTxt">EN</span>
+
+                <svg class="stackly-login-chev" viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 4 4 4-4"/></svg>
+
+                <ul
+                    class="stackly-login-menu"
+                    id="menu"
+                >
+
+                    <li>EN</li>
+
+                    <li>HI</li>
+
+                    <li>TA</li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+    </div>
+
+    <main>
+
+        <section class="stackly-login-panel">
+
+            <div class="stackly-login-img"></div>
+
+            <div class="stackly-login-mask2"></div>
+
+            <div class="stackly-login-copy">
+
+                <div class="stackly-login-eyebrow">WELCOME BACK</div>
+
+                <h2>
+                    <span class="stackly-login-ln"><i>Your One Stop Shop for</i></span><span class="stackly-login-ln"><i>Genuine Automotive</i></span><span class="stackly-login-ln"><i>Spare Parts</i></span>
+                </h2>
+
+                <p>
+                    Get the right parts for your vehicle with the best quality,trusted brands and great prices.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="stackly-login-card">
+
+            <svg class="stackly-login-home" viewBox="0 0 28 28" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 14 3l11 10v12H3z"/><path d="M10 25V15h8v10"/></svg>
+
+            <h1>Login to Your Account</h1>
+
+            <p class="stackly-login-sub">Login to your account and continue your creative journey with us.</p>
+
+            <form
+                id="form"
+                novalidate
+            >
+
+                <label
+                    class="stackly-login-lab"
+                    for="id"
+                >Email Address/Customer ID</label>
+
+                <div
+                    class="stackly-login-in stackly-login-outline"
+                    id="f-id"
+                >
+
+                    <svg class="stackly-login-lead" viewBox="0 0 24 24" fill="none" stroke="#b8b8b8" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="1.5"/><path d="m2.5 6 9.5 7 9.5-7"/></svg>
+
+                    <input
+                        id="id"
+                        type="text"
+                        placeholder="Enter your email/customer ID"
+                        autocomplete="username"
+                    />
+
+                </div>
+
+                <div class="stackly-login-em">Enter your email or customer ID</div>
+
+                <label
+                    class="stackly-login-lab stackly-login-lab-spaced"
+                    for="pw"
+                >Password</label>
+
+                <div
+                    class="stackly-login-in stackly-login-fill"
+                    id="f-pw"
+                >
+
+                    <img
+                        class="stackly-login-lead"
+                        src="assets/img_128.webp"
+                        alt=""
+                    />
+
+                    <input
+                        id="pw"
+                        type="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                    />
+
+                    <button
+                        type="button"
+                        class="stackly-login-eye"
+                        id="eye"
+                        aria-label="Show password"
+                    ><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/><path class="stackly-login-slash" id="slash" d="M3 3l18 18"/></svg></button>
+
+                </div>
+
+                <div class="stackly-login-em">Password is required</div>
+
+                <div class="stackly-login-row">
+
+                    <label><input class="stackly-login-chk" type="checkbox" id="remember" />Remember me</label>
+
+                    <a href="#">Forgot Password?</a>
+
+                </div>
+
+                <button
+                    class="stackly-login-login"
+                    type="submit"
+                    id="login"
+                >Login Securely</button>
+
+            </form>
+
+            <div class="stackly-login-or">or Continue with</div>
+
+            <div class="stackly-login-alt">
+
+                <button
+                    type="button"
+                    data-provider="google"
+                ><span class="stackly-login-ico"><span class="stackly-login-chrome"></span></span>Google</button>
+
+                <button
+                    type="button"
+                    data-provider="apple"
+                ><span class="stackly-login-ico"><svg viewBox="0 0 24 24"><path fill="#000" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg></span>Apple</button>
+
+                <button type="button" data-provider="fingerprint"><span class="stackly-login-ico"><svg viewBox="0 0 32 32" fill="none" stroke="#9a9a9a" stroke-width="1.3" stroke-linecap="round"><circle cx="16" cy="16" r="15" fill="#efefef" stroke="none"/><path d="M8 13a8 8 0 0 1 16 0"/><path d="M6.5 17c0-.5 0-1 .2-1.5M25.5 17c0-3-.5-4-1-5"/><path d="M10 25c1-1.5 1-3 1-5a5 5 0 0 1 10 0c0 3 .3 5 1.2 6.4"/><path d="M13.5 26.5c.7-1.5 1-3.5 1-6a1.5 1.5 0 0 1 3 0c0 2 .3 4 1 5.5"/><path d="M8 20.5c0 2-.3 3.2-1 4.5"/></svg></span>Fingerprint</button>
+
+                <button type="button" data-provider="faceid"><span class="stackly-login-ico"><svg viewBox="0 0 32 32" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10V6a3 3 0 0 1 3-3h4M22 3h4a3 3 0 0 1 3 3v4M29 22v4a3 3 0 0 1-3 3h-4M10 29H6a3 3 0 0 1-3-3v-4"/><path d="M11 12v3M21 12v3M16 12v6h-1.5M11 22c3 2.5 7 2.5 10 0"/></svg></span>Face ID</button>
+
+            </div>
+
+            <p class="stackly-login-sec">Your security is our top priority</p>
+
+            <p class="stackly-login-acc">Already have an account ?<a href="signup.html">Sign Up</a></p>
+
+        </section>
+
+    </main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, hasG=!!window.gsap&&!reduce;
+
+  if(hasG){
+    gsap.to('.stackly-login-panel .stackly-login-img',{scale:1.07,duration:16,ease:'sine.inOut',repeat:-1,yoyo:true});
+    var tl=gsap.timeline({defaults:{ease:'power3.out'}});
+    tl.from('.stackly-login-top .stackly-login-logo',{y:-24,opacity:0,duration:.6})
+      .from('.stackly-login-links > *',{y:-18,opacity:0,stagger:.09,duration:.5},.1)
+      .from('.stackly-login-panel',{x:-70,opacity:0,duration:1,ease:'power4.out'},.15)
+      .from('.stackly-login-eyebrow',{x:-30,opacity:0,duration:.6},.7)
+      .from('.stackly-login-copy h2 .stackly-login-ln i',{yPercent:110,duration:.8,stagger:.14,ease:'power4.out'},.8)
+      .from('.stackly-login-copy p',{y:20,opacity:0,duration:.7},1.3)
+      .from('.stackly-login-card',{x:70,opacity:0,duration:1,ease:'power4.out'},.25)
+      .from('.stackly-login-card .stackly-login-home',{scale:0,rotation:-120,duration:.8,ease:'back.out(2)'},.85)
+      .from('.stackly-login-card h1,.stackly-login-card .stackly-login-sub',{y:16,opacity:0,stagger:.1,duration:.5},1)
+      .from('form label.stackly-login-lab, form .stackly-login-in, .stackly-login-row',{y:18,opacity:0,stagger:.07,duration:.45},1.15)
+      .from('.stackly-login-login',{scaleX:.8,opacity:0,duration:.55},1.5)
+      .from('.stackly-login-or',{opacity:0,duration:.5},1.65)
+      .from('.stackly-login-alt button',{y:24,scale:.5,opacity:0,stagger:.1,duration:.55,ease:'back.out(2.2)'},1.75)
+      .from('.stackly-login-sec,.stackly-login-acc',{opacity:0,y:10,stagger:.1,duration:.5},2.05);
+    gsap.to('.stackly-login-card .stackly-login-home',{y:-4,duration:1.6,repeat:-1,yoyo:true,ease:'sine.inOut',delay:2});
+    // gentle parallax on the hero photo
+    var img=document.querySelector('.stackly-login-panel .stackly-login-img');
+    document.querySelector('.stackly-login-panel').addEventListener('mousemove',function(e){
+      var r=this.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      gsap.to(img,{x:x*-18,y:y*-14,duration:.8,ease:'power2.out'});
+    });
+  }
+
+  // language menu
+  var lang=document.getElementById('lang'),menu=document.getElementById('menu');
+  lang.addEventListener('click',function(e){
+    if(e.target.tagName==='LI'){document.getElementById('langTxt').textContent=e.target.textContent}
+    menu.classList.toggle('stackly-login-open');
+  });
+  document.addEventListener('click',function(e){if(!lang.contains(e.target))menu.classList.remove('stackly-login-open')});
+
+  // show / hide password
+  var pw=document.getElementById('pw'),slash=document.getElementById('slash');
+  document.getElementById('eye').addEventListener('click',function(){
+    var show=pw.type==='password';
+    pw.type=show?'text':'password';
+    slash.style.display=show?'block':'none';
+    if(hasG)gsap.fromTo(this,{scale:.7},{scale:1,duration:.4,ease:'back.out(3)'});
+  });
+
+  // validation + submit
+  function shake(el){if(hasG)gsap.fromTo(el,{x:-8},{x:0,duration:.6,ease:'elastic.out(1.2,.25)'})}
+  ['id','pw'].forEach(function(k){
+    document.getElementById(k).addEventListener('input',function(){this.parentNode.classList.remove('stackly-login-err')});
+  });
+  document.getElementById('form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=true;
+    [['id','f-id'],['pw','f-pw']].forEach(function(p){
+      var box=document.getElementById(p[1]);
+      if(!document.getElementById(p[0]).value.trim()){box.classList.add('stackly-login-err');shake(box);ok=false}
+    });
+    if(!ok)return;
+    var b=document.getElementById('login');
+    b.classList.add('stackly-login-loading');b.textContent='Signing you in…';
+    try{
+      if(document.getElementById('remember').checked)localStorage.setItem('stacklyRemember',document.getElementById('id').value.trim());
+      else localStorage.removeItem('stacklyRemember');
+    }catch(_){}
+    setTimeout(function(){
+      b.textContent='✓ Logged in';
+      if(hasG)gsap.fromTo(b,{scale:.96},{scale:1,duration:.5,ease:'back.out(3)'});
+      setTimeout(function(){location.href='error.html?source=password&from=login'},800);
+    },1000);
+  });
+  try{var r=localStorage.getItem('stacklyRemember');if(r){document.getElementById('id').value=r;document.getElementById('remember').checked=true}}catch(_){}
+  document.querySelectorAll('[data-provider]').forEach(function(b){
+    b.addEventListener('click',function(){
+      location.href='error.html?source='+b.dataset.provider+'&from=login';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

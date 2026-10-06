@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign Up | Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    /* ==========================================================
+       Stackly Auto Parts - signup.html styles
+       class prefix: stackly-signup-
+       ========================================================== */
+
+    :root{
+        --orange:#C06A00;
+        --orange-dark:#a85c00;
+        --line:#cfcfcf;
+        --ink:#000;
+    }
+
+    *{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+    }
+
+    body{
+        font-family:'Inter',sans-serif;
+        color:var(--ink);
+        background:#fff;
+        min-height:100vh;
+        display:flex;
+        flex-direction:column;
+        overflow-x:hidden;
+    }
+
+    header{
+        height:125px;
+        background:#fff;
+        position:relative;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex:none;
+    }
+
+    .stackly-signup-back{
+        position:absolute;
+        left:clamp(16px,8.4vw,120px);
+        top:74px;
+        transform:none;
+        display:flex;
+        align-items:center;
+        gap:20px;
+        padding:0 0 0 20px;
+        width:175px;
+        height:43px;
+        background:var(--orange);
+        color:#fff;
+        text-decoration:none;
+        font-weight:600;
+        font-size:14px;
+        border-radius:4px;
+        box-shadow:0 3px 6px rgba(0,0,0,.3);
+        transition:background .25s,transform .25s;
+    }
+
+    .stackly-signup-back svg{
+        width:28px;
+        height:20px;
+        transition:transform .3s;
+    }
+
+    .stackly-signup-back:hover{
+        background:var(--orange-dark);
+    }
+
+    .stackly-signup-back:hover svg{
+        transform:translateX(-5px);
+    }
+
+    .stackly-signup-logo img{
+        width:clamp(180px,21vw,300px);
+        display:block;
+    }
+
+    .stackly-signup-hero{
+        flex:1;
+        position:relative;
+        background:#16181b;
+        overflow:hidden;
+        display:flex;
+        justify-content:center;
+        padding:0 20px 28px;
+    }
+
+    .stackly-signup-hero .stackly-signup-bg{
+        position:absolute;
+        inset:0;
+        background:url(assets/img_126.webp) left center/cover no-repeat;
+        transform-origin:20% 40%;
+    }
+
+    .stackly-signup-wrap{
+        position:relative;
+        width:min(678px,100%);
+        margin-left:auto;
+        margin-right:clamp(0px,8.5vw,124px);
+        padding-top:30px;
+        display:flex;
+        flex-direction:column;
+        min-height:620px;
+    }
+
+    .stackly-signup-have{
+        text-align:right;
+        color:#e8e8e8;
+        font-size:16px;
+        padding-right:53px;
+        margin-bottom:28px;
+        margin-top:auto;
+        padding-top:60px;
+    }
+
+    .stackly-signup-have a{
+        color:#d9780a;
+        font-weight:700;
+        text-decoration:none;
+        margin-left:10px;
+        position:relative;
+    }
+
+    .stackly-signup-have a::after{
+        content:"";
+        position:absolute;
+        left:0;
+        bottom:-3px;
+        width:100%;
+        height:2px;
+        background:currentColor;
+        transform:scaleX(0);
+        transform-origin:left;
+        transition:transform .3s;
+    }
+
+    .stackly-signup-have a:hover::after{
+        transform:scaleX(1);
+    }
+
+    .stackly-signup-card{
+        background:#fff;
+        border-radius:22px;
+        padding:30px 39px 38px;
+        box-shadow:0 20px 50px rgba(0,0,0,.45);
+    }
+
+    .stackly-signup-card h1{
+        font-size:30px;
+        font-weight:800;
+        letter-spacing:-.5px;
+        line-height:1.1;
+    }
+
+    .stackly-signup-card .stackly-signup-sub{
+        font-size:19px;
+        margin-top:3px;
+        font-weight:400;
+    }
+
+    .stackly-signup-cols{
+        display:flex;
+        gap:0;
+        margin-top:14px;
+    }
+
+    .stackly-signup-left{
+        width:258px;
+        flex:none;
+    }
+
+    .stackly-signup-divider{
+        width:1px;
+        background:#8e8e8e;
+        margin:6px 0 6px 41px;
+        flex:none;
+        transform-origin:top;
+    }
+
+    .stackly-signup-right{
+        flex:1;
+        min-width:0;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:19px;
+        padding-left:42px;
+    }
+
+    label.stackly-signup-lab{
+        display:block;
+        font-size:19px;
+        font-weight:700;
+        margin:10px 0 5px;
+        line-height:1.2;
+    }
+
+    .stackly-signup-field{
+        position:relative;
+        height:39px;
+    }
+
+    .stackly-signup-field input{
+        width:100%;
+        height:100%;
+        border:1px solid var(--line);
+        border-radius:9px;
+        padding:0 10px 0 56px;
+        font:400 14px 'Inter',sans-serif;
+        color:#222;
+        background:#fff;
+        outline:none;
+        transition:border-color .25s,box-shadow .25s;
+    }
+
+    .stackly-signup-field input::placeholder{
+        color:#8b8b8b;
+    }
+
+    .stackly-signup-field input:focus{
+        border-color:var(--orange);
+        box-shadow:0 0 0 3px rgba(192,106,0,.18);
+    }
+
+    .stackly-signup-field.stackly-signup-err input{
+        border-color:#d33;
+        box-shadow:0 0 0 3px rgba(211,51,51,.14);
+    }
+
+    .stackly-signup-field .stackly-signup-ic{
+        position:absolute;
+        left:14px;
+        top:50%;
+        transform:translateY(-50%);
+        width:26px;
+        height:26px;
+        border-radius:7px;
+        display:grid;
+        place-items:center;
+    }
+
+    .stackly-signup-ic.stackly-signup-user{
+        background:#ececf1;
+        border-radius:50%;
+        width:25px;
+        height:25px;
+        left:14px;
+    }
+
+    .stackly-signup-ic.stackly-signup-mail{
+        background:#e5ecfb;
+    }
+
+    .stackly-signup-ic img{
+        width:18px;
+        height:20px;
+        object-fit:contain;
+    }
+
+    .stackly-signup-ic svg{
+        width:16px;
+        height:16px;
+    }
+
+    .stackly-signup-field.stackly-signup-has-eye input{
+        padding-right:44px;
+    }
+
+    .stackly-signup-eye{
+        position:absolute;
+        right:10px;
+        top:50%;
+        transform:translateY(-50%);
+        width:26px;
+        height:26px;
+        border:0;
+        background:none;
+        cursor:pointer;
+        display:grid;
+        place-items:center;
+        border-radius:50%;
+        transition:background .2s;
+    }
+
+    .stackly-signup-eye:hover{
+        background:#f3ece2;
+    }
+
+    .stackly-signup-eye svg{
+        width:20px;
+        height:20px;
+    }
+
+    .stackly-signup-msg{
+        font-size:11.5px;
+        color:#d33;
+        height:0;
+        overflow:hidden;
+        opacity:0;
+    }
+
+    .stackly-signup-field.stackly-signup-err+.stackly-signup-msg{
+        height:15px;
+        opacity:1;
+        margin-top:3px;
+    }
+
+    .stackly-signup-social{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        height:39px;
+        width:100%;
+        max-width:258px;
+        border:1px solid var(--line);
+        border-radius:9px;
+        background:#fff;
+        font:700 12.5px 'Inter',sans-serif;
+        color:#000;
+        cursor:pointer;
+        transition:transform .25s,box-shadow .25s,border-color .25s;
+    }
+
+    .stackly-signup-social svg{
+        width:20px;
+        height:20px;
+    }
+
+    .stackly-signup-social:hover{
+        transform:translateY(-3px);
+        box-shadow:0 8px 16px rgba(0,0,0,.12);
+        border-color:var(--orange);
+    }
+
+    .stackly-signup-terms{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        margin-top:12px;
+        font-size:16px;
+        font-weight:400;
+    }
+
+    .stackly-signup-terms a{
+        color:var(--orange);
+        text-decoration:none;
+    }
+
+    .stackly-signup-terms a:hover{
+        text-decoration:underline;
+    }
+
+    .stackly-signup-chk{
+        appearance:none;
+        -webkit-appearance:none;
+        width:19px;
+        height:15px;
+        border:1px solid #666;
+        border-radius:3px;
+        background:#fff;
+        cursor:pointer;
+        position:relative;
+        flex:none;
+        transition:background .2s,border-color .2s;
+    }
+
+    .stackly-signup-chk:checked{
+        background:var(--orange);
+        border-color:var(--orange);
+    }
+
+    .stackly-signup-chk:checked::after{
+        content:"";
+        position:absolute;
+        left:5px;
+        top:1px;
+        width:5px;
+        height:9px;
+        border:solid #fff;
+        border-width:0 2px 2px 0;
+        transform:rotate(45deg);
+    }
+
+    .stackly-signup-terms.stackly-signup-err .stackly-signup-chk{
+        border-color:#d33;
+        box-shadow:0 0 0 3px rgba(211,51,51,.18);
+    }
+
+    .stackly-signup-create{
+        margin-top:30px;
+        width:100%;
+        height:38px;
+        border:0;
+        border-radius:6px;
+        background:var(--orange);
+        color:#fff;
+        font:600 17px 'Inter',sans-serif;
+        cursor:pointer;
+        position:relative;
+        overflow:hidden;
+        transition:background .25s,box-shadow .25s;
+    }
+
+    .stackly-signup-create::after{
+        content:"";
+        position:absolute;
+        top:0;
+        left:-60%;
+        width:40%;
+        height:100%;
+        background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
+        transform:skewX(-20deg);
+    }
+
+    .stackly-signup-create:hover{
+        background:var(--orange-dark);
+        box-shadow:0 8px 18px rgba(192,106,0,.45);
+    }
+
+    .stackly-signup-create:hover::after{
+        left:140%;
+        transition:left .7s;
+    }
+
+    .stackly-signup-create.stackly-signup-loading{
+        pointer-events:none;
+        opacity:.85;
+    }
+
+    @media (max-width:860px){
+        .stackly-signup-back{
+            position:static;
+            margin:0 0 0 16px;
+            width:120px;
+            gap:10px;
+            padding-left:12px;
+            height:38px;
+            font-size:13px;
+        }
+
+        header{
+            height:auto;
+            flex-direction:column;
+            align-items:flex-start;
+            padding:14px 0;
+            gap:10px;
+        }
+
+        .stackly-signup-logo{
+            align-self:center;
+        }
+
+        .stackly-signup-wrap{
+            margin:0 auto;
+        }
+
+        .stackly-signup-have{
+            padding-right:10px;
+        }
+    }
+
+    @media (max-width:980px){
+        .stackly-signup-left{
+            width:clamp(220px,34vw,258px);
+        }
+
+        .stackly-signup-social{
+            max-width:clamp(220px,34vw,258px);
+        }
+
+        .stackly-signup-divider{
+            margin-left:clamp(14px,4vw,41px);
+        }
+
+        .stackly-signup-right{
+            padding-left:clamp(20px,4vw,42px);
+        }
+
+        .stackly-signup-card{
+            padding:30px clamp(24px,4vw,39px) 38px;
+        }
+    }
+
+    @media (max-width:760px){
+        .stackly-signup-cols{
+            flex-direction:column;
+            align-items:stretch;
+        }
+
+        .stackly-signup-cols .stackly-signup-divider{
+            width:100%;
+            height:1px;
+            margin:22px 0 4px;
+        }
+
+        .stackly-signup-cols .stackly-signup-left{
+            width:100%;
+        }
+
+        .stackly-signup-cols .stackly-signup-right{
+            width:100%;
+            padding:18px 0 0;
+            align-items:stretch;
+        }
+
+        .stackly-signup-cols .stackly-signup-right .stackly-signup-social{
+            width:100%;
+            max-width:100%;
+            margin:0;
+            box-sizing:border-box;
+        }
+    }
+
+    @media (max-width:620px){
+        .stackly-signup-card{
+            padding:24px 22px 30px;
+        }
+
+        .stackly-signup-terms{
+            font-size:14px;
+        }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+        *{
+            animation:none!important;
+            transition:none!important;
+        }
+    }
+
+    /* ---------- UTILITIES ---------- */
+
+    /* replaces the former inline style="" attributes */
+
+    .stackly-signup-slash{
+        display:none;
+    }
+</style>
+</head>
+<body>
+
+    <header>
+
+        <a
+            class="stackly-signup-back"
+            href="index.html"
+        ><svg viewBox="0 0 28 20" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M26 10H3M11 2 3 10l8 8"/></svg> Go Back</a>
+
+        <a
+            class="stackly-signup-logo"
+            href="index.html"
+            aria-label="Stackly home"
+        ><img src="assets/Home_53.webp" alt="Stackly" /></a>
+
+    </header>
+
+    <section class="stackly-signup-hero">
+
+        <div class="stackly-signup-bg"></div>
+
+        <div class="stackly-signup-wrap">
+
+            <p class="stackly-signup-have">Already have an account ? <a href="login.html">Log In</a></p>
+
+            <div class="stackly-signup-card">
+
+                <h1>Sign Up</h1>
+
+                <p class="stackly-signup-sub">Create your account to start shopping.</p>
+
+                <form
+                    id="form"
+                    novalidate
+                >
+
+                    <div class="stackly-signup-cols">
+
+                        <div class="stackly-signup-left">
+
+                            <label
+                                class="stackly-signup-lab"
+                                for="name"
+                            >Full Name</label>
+
+                            <div
+                                class="stackly-signup-field"
+                                id="f-name"
+                            >
+
+                                <span class="stackly-signup-ic stackly-signup-user"><svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span>
+
+                                <input
+                                    id="name"
+                                    type="text"
+                                    placeholder="Enter your full name"
+                                    autocomplete="name"
+                                />
+
+                            </div>
+
+                            <div class="stackly-signup-msg">Please enter your full name</div>
+
+                            <label
+                                class="stackly-signup-lab"
+                                for="email"
+                            >Email Address</label>
+
+                            <div
+                                class="stackly-signup-field"
+                                id="f-email"
+                            >
+
+                                <span class="stackly-signup-ic stackly-signup-mail"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2.5" fill="#1a73e8"/><path d="m4 8 8 5.5L20 8" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+
+                                <input
+                                    id="email"
+                                    type="email"
+                                    placeholder="Enter your email address"
+                                    autocomplete="email"
+                                />
+
+                            </div>
+
+                            <div class="stackly-signup-msg">Enter a valid email address</div>
+
+                            <label
+                                class="stackly-signup-lab"
+                                for="pw"
+                            >Password</label>
+
+                            <div
+                                class="stackly-signup-field stackly-signup-has-eye"
+                                id="f-pw"
+                            >
+
+                                <span class="stackly-signup-ic"><img src="assets/img_128.webp" alt="" /></span>
+
+                                <input
+                                    id="pw"
+                                    type="password"
+                                    placeholder="Create a Password"
+                                    autocomplete="new-password"
+                                />
+
+                                <button
+                                    type="button"
+                                    class="stackly-signup-eye"
+                                    data-target="pw"
+                                    aria-label="Show password"
+                                ><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/><path class="stackly-signup-slash" d="M3 3l18 18"/></svg></button>
+
+                            </div>
+
+                            <div class="stackly-signup-msg">Password must be at least 6 characters</div>
+
+                            <label
+                                class="stackly-signup-lab"
+                                for="cpw"
+                            >Confirm Password</label>
+
+                            <div
+                                class="stackly-signup-field stackly-signup-has-eye"
+                                id="f-cpw"
+                            >
+
+                                <span class="stackly-signup-ic"><img src="assets/img_128.webp" alt="" /></span>
+
+                                <input
+                                    id="cpw"
+                                    type="password"
+                                    placeholder="Confirm your Password"
+                                    autocomplete="new-password"
+                                />
+
+                                <button
+                                    type="button"
+                                    class="stackly-signup-eye"
+                                    data-target="cpw"
+                                    aria-label="Show password"
+                                ><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/><path class="stackly-signup-slash" d="M3 3l18 18"/></svg></button>
+
+                            </div>
+
+                            <div class="stackly-signup-msg">Passwords do not match</div>
+
+                        </div>
+
+                        <div class="stackly-signup-divider"></div>
+
+                        <div class="stackly-signup-right">
+
+                            <button
+                                type="button"
+                                class="stackly-signup-social"
+                                data-provider
+                            ><svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Continue with Google</button>
+
+                            <button
+                                type="button"
+                                class="stackly-signup-social"
+                                data-provider
+                            ><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#1877F2"/><path fill="#fff" d="M16.6 24v-9h3l.5-3.6h-3.5V9.2c0-1 .3-1.8 1.8-1.8h1.9V4.2c-.3 0-1.5-.1-2.8-.1-2.7 0-4.5 1.7-4.5 4.7v2.6h-3V15h3v9z"/></svg> Continue with Facebook</button>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="stackly-signup-terms"
+                        id="terms"
+                    >
+
+                        <input
+                            class="stackly-signup-chk"
+                            type="checkbox"
+                            id="agree"
+                        />
+
+                        <label for="agree">I agree to the <a href="error.html">Terms of Service</a> and <a href="error.html">Privacy Policy</a></label>
+
+                    </div>
+
+                    <button
+                        class="stackly-signup-create"
+                        type="submit"
+                        id="create"
+                    >Create Account</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, hasG=!!window.gsap&&!reduce;
+
+  if(hasG){
+    gsap.to('.stackly-signup-hero .stackly-signup-bg',{scale:1.08,duration:18,ease:'sine.inOut',repeat:-1,yoyo:true});
+    var tl=gsap.timeline({defaults:{ease:'power3.out'}});
+    tl.from('header .stackly-signup-logo',{y:-30,opacity:0,duration:.7})
+      .from('.stackly-signup-back',{x:-50,opacity:0,duration:.7},.1)
+      .from('.stackly-signup-hero .stackly-signup-bg',{opacity:0,duration:1.1},.1)
+      .from('.stackly-signup-have',{y:20,opacity:0,duration:.6},.5)
+      .from('.stackly-signup-card',{y:90,opacity:0,duration:.9,ease:'power4.out'},.55)
+      .from('.stackly-signup-card h1,.stackly-signup-card .stackly-signup-sub',{y:18,opacity:0,stagger:.1,duration:.5},.9)
+      .from('.stackly-signup-left .stackly-signup-lab, .stackly-signup-left .stackly-signup-field',{x:-24,opacity:0,stagger:.08,duration:.5},1.0)
+      .from('.stackly-signup-divider',{scaleY:0,duration:.6},1.1)
+      .from('.stackly-signup-social',{
+        x:matchMedia('(max-width:760px)').matches?0:30,
+        y:matchMedia('(max-width:760px)').matches?18:0,
+        opacity:0,stagger:.12,duration:.55,
+        onStart:function(){this.targets().forEach(function(el){el.style.transition='none'})},
+        onComplete:function(){this.targets().forEach(function(el){el.style.transition='';gsap.set(el,{clearProps:'transform,opacity'})})}
+      },1.2)
+      .from('.stackly-signup-terms',{y:14,opacity:0,duration:.5},1.5)
+      .from('.stackly-signup-create',{y:16,opacity:0,scaleX:.85,duration:.6},1.6);
+  }
+
+  var fields={
+    name:{box:'f-name',ok:function(v){return v.trim().length>1}},
+    email:{box:'f-email',ok:function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)}},
+    pw:{box:'f-pw',ok:function(v){return v.length>=6}},
+    cpw:{box:'f-cpw',ok:function(v){return v.length>0&&v===document.getElementById('pw').value}}
+  };
+  function shake(el){ if(hasG) gsap.fromTo(el,{x:-8},{x:0,duration:.6,ease:'elastic.out(1.2,.25)'}); }
+  Object.keys(fields).forEach(function(k){
+    document.getElementById(k).addEventListener('input',function(){
+      document.getElementById(fields[k].box).classList.remove('stackly-signup-err');
+    });
+  });
+  document.getElementById('pw').addEventListener('input',function(){document.getElementById('f-cpw').classList.remove('stackly-signup-err')});
+  document.querySelectorAll('.stackly-signup-eye').forEach(function(b){
+    b.addEventListener('click',function(){
+      var inp=document.getElementById(b.dataset.target),show=inp.type==='password';
+      inp.type=show?'text':'password';
+      b.querySelector('.stackly-signup-slash').style.display=show?'block':'none';
+      b.setAttribute('aria-label',show?'Hide password':'Show password');
+      if(hasG)gsap.fromTo(b,{scale:.7},{scale:1,duration:.4,ease:'back.out(3)'});
+    });
+  });
+  document.getElementById('agree').addEventListener('change',function(){document.getElementById('terms').classList.remove('stackly-signup-err')});
+
+  document.getElementById('form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var valid=true;
+    Object.keys(fields).forEach(function(k){
+      var f=fields[k],box=document.getElementById(f.box);
+      if(!f.ok(document.getElementById(k).value)){box.classList.add('stackly-signup-err');shake(box);valid=false}
+    });
+    var agree=document.getElementById('agree');
+    if(!agree.checked){document.getElementById('terms').classList.add('stackly-signup-err');shake('#terms');valid=false}
+    if(!valid)return;
+    var btn=document.getElementById('create');
+    btn.classList.add('stackly-signup-loading');btn.textContent='Creating account…';
+    try{
+      var users=JSON.parse(localStorage.getItem('stacklyUsers')||'[]');
+      users.push({name:document.getElementById('name').value.trim(),email:document.getElementById('email').value.trim().toLowerCase()});
+      localStorage.setItem('stacklyUsers',JSON.stringify(users));
+    }catch(_){}
+    setTimeout(function(){
+      btn.textContent='✓ Account created';
+      if(hasG) gsap.fromTo(btn,{scale:.96},{scale:1,duration:.5,ease:'back.out(3)'});
+      setTimeout(function(){location.href='login.html'},900);
+    },1000);
+  });
+  document.querySelectorAll('[data-provider]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var p=b.textContent.replace('Continue with','').trim().toLowerCase();
+      location.href='error.html?source='+encodeURIComponent(p)+'&from=signup';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
