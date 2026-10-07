@@ -478,7 +478,7 @@
         display:flex;
         justify-content:space-between;
         width:100%;
-        margin-top:26px;
+        margin-top:30px;
         padding:0;
     }
 
@@ -489,8 +489,8 @@
         display:flex;
         flex-direction:column;
         align-items:center;
-        gap:4px;
-        font:400 14px 'Inter',sans-serif;
+        gap:8px;
+        font:500 15px 'Inter',sans-serif;
         color:#111;
         transition:transform .25s;
     }
@@ -500,20 +500,20 @@
     }
 
     .stackly-login-alt .stackly-login-ico{
-        width:32px;
-        height:32px;
+        width:46px;
+        height:46px;
         display:grid;
         place-items:center;
     }
 
     .stackly-login-alt svg{
-        width:30px;
-        height:30px;
+        width:44px;
+        height:44px;
     }
 
     .stackly-login-sec{
         font-size:11.5px;
-        margin-top:16px;
+        margin-top:26px;
     }
 
     .stackly-login-acc{
@@ -535,8 +535,8 @@
     }
 
     .stackly-login-chrome{
-        width:29px;
-        height:29px;
+        width:42px;
+        height:42px;
         border-radius:50%;
         background:conic-gradient(from -60deg,#ea4335 0 120deg,#fbbc05 120deg 240deg,#34a853 240deg 360deg);
         position:relative;
@@ -546,7 +546,7 @@
     .stackly-login-chrome::before{
         content:"";
         position:absolute;
-        inset:7px;
+        inset:24%;
         border-radius:50%;
         background:#fff;
     }
@@ -554,7 +554,7 @@
     .stackly-login-chrome::after{
         content:"";
         position:absolute;
-        inset:9px;
+        inset:31%;
         border-radius:50%;
         background:#4285f4;
     }
@@ -592,8 +592,23 @@
             padding:36px 20px 24px;
         }
 
-        .stackly-login-alt .stackly-login-lbl{
-            font-size:12px;
+        .stackly-login-alt button{
+            font-size:13px;
+        }
+
+        .stackly-login-alt .stackly-login-ico{
+            width:40px;
+            height:40px;
+        }
+
+        .stackly-login-alt svg{
+            width:38px;
+            height:38px;
+        }
+
+        .stackly-login-chrome{
+            width:36px;
+            height:36px;
         }
     }
 
@@ -771,7 +786,7 @@
 
                     <label><input class="stackly-login-chk" type="checkbox" id="remember" />Remember me</label>
 
-                    <a href="#">Forgot Password?</a>
+                    <a href="error.html?source=forgot-password&from=login">Forgot Password?</a>
 
                 </div>
 
