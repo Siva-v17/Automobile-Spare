@@ -300,12 +300,13 @@
     }
 
     .stackly-shop-hero h1{
-        font-size:46px;
-        font-weight:700;
-        line-height:1.1;
-        letter-spacing:-.5px;
-        overflow:hidden;
-        padding-bottom:3px;
+    font-size:46px;
+    font-weight:700;
+    line-height:1.2;          /* was 1.1 */
+    letter-spacing:1px;       /* was -.5px */
+    overflow:hidden;
+    padding-bottom:6px;       /* was 3px, keeps descender of "p" from clipping */
+    margin-top:4px;
     }
 
     .stackly-shop-hero h1 span{
@@ -313,11 +314,12 @@
     }
 
     .stackly-shop-hero p{
-        font-size:15px;
-        font-weight:500;
-        line-height:1.35;
-        max-width:440px;
-        margin-top:2px;
+    font-size:15px;
+    font-weight:500;
+    line-height:1.7;          /* was 1.35 */
+    letter-spacing:.4px;      /* new */
+    max-width:480px;          /* was 440px, gives room for the wider text */
+    margin-top:6px;           /* was 2px */
     }
 
     /* ---------- LAYOUT ---------- */
